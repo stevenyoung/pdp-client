@@ -1,0 +1,21 @@
+/* spacing */
+$space: 1.5em;
+$space-lg: 2em;
+
+/* dark color, light overlay */
+$default: slategray;
+$primary: steelblue;
+$secondary: teal;
+$danger: crimson;
+$warning: tomato;
+$success: mediumseagreen;
+$golden: darkkhaki;
+
+/* light color, dark overlay */
+$default-light: whitesmoke;
+$primary-light: lightsteelblue;
+$secondary-light: lightcyan;
+$danger-light: lightpink;
+$warning-light: moccasin;
+$success-light: honeydew;
+$golden-light: floralwhite;

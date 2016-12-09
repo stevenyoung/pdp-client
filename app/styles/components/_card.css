@@ -1,0 +1,45 @@
+.card {
+  background: white;
+  border: 1px solid lightgrey;
+  border-radius: 3px;
+  box-shadow: 1px 1px 1px 0 darkgrey;
+  padding: 0.8em 1em 0;
+
+  &::after {
+    content: '\00a0'; /* &nbsp; */
+    display: block;
+    height: 0;
+    margin-top: 1em;
+    visibility: hidden;
+  }
+
+  &.is_spaced {
+    margin-bottom: $space;
+  }
+
+  &.is_message {
+    cursor: pointer;
+    transition: 1s background;
+
+    &:hover {
+      background: honeydew;
+    }
+  }
+}
+
+.message {
+  background: $yellow;
+}
+
+.demo {
+  background: $fadesand;
+}
+
+.stack {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
