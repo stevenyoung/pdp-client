@@ -14,7 +14,7 @@ const ResultsSummary = () =>
       </div>
       <div className="w-dyn-empty">
         <div className="emplylocationlist">No items found.</div>
-        <a className="more-locations" href="/nearby">more nearby locations...</a>
+        <a className="more-locations w-button" href="/nearby">more nearby locations...</a>
       </div>
     </div>
   );
