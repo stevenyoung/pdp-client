@@ -84,7 +84,7 @@
 
     .app-title {
       position: relative;
-      left: 5%;
+      left: 10%;
       top: 0;
       right: 0;
       bottom: 0;
@@ -178,7 +178,7 @@
   @media (max-width: 991px) {
     .logosearchcontainer {
       .app-title {
-        left: 2%;
+        left: 6%;
       }
 
       .searchform {
