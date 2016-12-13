@@ -1,10 +1,29 @@
 import React from 'react';
-
+import L from 'leaflet';
 
 class MapContainer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.mapSettings = {
+      accessToken: 'pk.eyJ1Ijoic3RldmVueW91bmciLCJhIjoiY2l3anExbW4zMDAyOTJ0cXhwYnlpNGdmZSJ9.sjA5t0UMpCwyfVzZmzBVow',
+      tileUrl: 'https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}',
+      defaultZoom: 13,
+      maxZoom: 18
+    };
+    this.state = {
+      userLocation: {
+        lng: 51.505,
+        lat: -0.09
+      },
+    };
+  }
+
   componentDidMount() {
-    const mymap = L.map('leafletmap').setView([51.505, -0.09], 13);
-    L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoic3RldmVueW91bmciLCJhIjoiY2l3anExbW4zMDAyOTJ0cXhwYnlpNGdmZSJ9.sjA5t0UMpCwyfVzZmzBVow', { maxZoom: 18 }).addTo(mymap);
+    const mymap = L.map('leafletmap').setView([this.state.userLocation.lng,
+      this.state.userLocation.lat], this.mapSettings.defaultZoom);
+    L.tileLayer(`${this.mapSettings.tileUrl}?access_token=${this.mapSettings.accessToken}`,
+      { maxZoom: this.mapSettings.maxZoom }
+    ).addTo(mymap);
   }
 
   render() {
