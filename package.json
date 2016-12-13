@@ -82,5 +82,13 @@
     "reactjs",
     "redux",
     "postcss"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stevenyoung/pdp-client.git"
+  },
+  "bugs": {
+    "url": "https://github.com/stevenyoung/pdp-client/issues"
+  },
+  "homepage": "https://github.com/stevenyoung/pdp-client#readme"
 }
