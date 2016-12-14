@@ -7,6 +7,7 @@ import { shallow } from 'enzyme';
 import MapContainer from '../../app/components/MapContainer.jsx';
 
 describe('<MapContainer />', () => {
-  it('should contain one map node');
+  it('<shallow> should contain one map node');
+  it('<shallow> should accept props for children')
   it('should display a map given a location');
 });
