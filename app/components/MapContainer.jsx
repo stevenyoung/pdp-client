@@ -19,22 +19,31 @@ class MapContainer extends React.Component {
   }
 
   componentDidMount() {
+    this.requestPlaceData();
+    this.displayMap();
+  }
+
+  displayMap() {
     const mymap = L.map('leafletmap').setView([this.state.userLocation.lng,
       this.state.userLocation.lat], this.mapSettings.defaultZoom);
-    L.tileLayer(`${this.mapSettings.tileUrl}?access_token=${this.mapSettings.accessToken}`,
+    L.tileLayer(
+      `${this.mapSettings.tileUrl}?access_token=${this.mapSettings.accessToken}`,
       { maxZoom: this.mapSettings.maxZoom }
     ).addTo(mymap);
   }
 
+  requestPlaceData() {
+    const nearbyPlacesUrl = 'http://localhost:5000/places/near/-122.419416/37.774929';
+    this.serverRequest = $.get(nearbyPlacesUrl, (response) => {
+      this.setState({ place_collection: response.result });
+    });
+  }
+
   render() {
     return (
-      <div className="googlemapcontainer w-container">
+      <div className="leafletmapcontainer">
         <div
           id="leafletmap"
-          className="googlemap w-widget w-widget-map"
-          data-widget-latlng="51.511214,-0.119824"
-          data-widget-style="roadmap"
-          data-widget-zoom="12"
         />
       </div>
     );
