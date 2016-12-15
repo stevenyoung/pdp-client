@@ -30,6 +30,9 @@ class MapContainer extends React.Component {
       `${this.mapSettings.tileUrl}?access_token=${this.mapSettings.accessToken}`,
       { maxZoom: this.mapSettings.maxZoom }
     ).addTo(mymap);
+    const marker = L.marker([this.state.userLocation.lng, this.state.userLocation.lat]);
+    marker.bindPopup('<b>Hello world!</b><br>I am a popup.').openPopup();
+    marker.addTo(mymap);
   }
 
   requestPlaceData() {
