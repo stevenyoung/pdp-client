@@ -1,7 +1,6 @@
 import React from 'react';
 import ContentSearchInput from './ContentSearchInput.jsx';
 import MapContainer from './MapContainer.jsx';
-import ResultsSummary from './ResultsSummary.jsx';
 import Footer from './Footer.jsx';
 import SiteData from '../content/SiteData.js';
 
@@ -9,8 +8,7 @@ export default function HomePage() {
   return (
     <div className="home">
       <ContentSearchInput />
-      <MapContainer />
-      <ResultsSummary />
+      <MapContainer accessToken={SiteData.mapboxToken}/>
       <Footer copyright={SiteData.copyright} />
     </div>
   );
