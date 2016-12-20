@@ -14,7 +14,7 @@ describe('<HomePage />', () => {
 
   it('should have four child nodes', () => {
     const wrapper = shallow(<HomePage />);
-    expect(wrapper.props().children).to.have.length(4);
+    expect(wrapper.props().children).to.have.length(3);
   });
 
   it('should provide content navigation');
