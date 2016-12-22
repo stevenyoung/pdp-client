@@ -11,8 +11,8 @@ describe('<MapContainer />', () => {
     const wrapper = render(<MapContainer />);
     expect(wrapper.find('.leafletmapcontainer')).to.have.length(1);
   });
-  it('<shallow> should contain node with a list of locations', () => {
-    const wrapper = shallow(<MapContainer />);
+  it('<render> should contain node with a list of locations', () => {
+    const wrapper = render(<MapContainer />);
     expect(wrapper.find('.w-dyn-list')).to.have.length(1);
   });
   it('should pass props to its children');
