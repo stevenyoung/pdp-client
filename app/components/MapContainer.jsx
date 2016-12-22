@@ -1,56 +1,80 @@
 import React from 'react';
 import L from 'leaflet';
+import $ from 'jquery';
+
+import ResultsSummary from './ResultsSummary';
 
 class MapContainer extends React.Component {
+  // contains two nodes: the map node, and a list of locations
+  // selecting a location should update the map, centering it on selection
+
   constructor(props) {
     super(props);
     this.mapSettings = {
-      accessToken: 'pk.eyJ1Ijoic3RldmVueW91bmciLCJhIjoiY2l3anExbW4zMDAyOTJ0cXhwYnlpNGdmZSJ9.sjA5t0UMpCwyfVzZmzBVow',
+      accessToken: props.accessToken,
       tileUrl: 'https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}',
       defaultZoom: 13,
       maxZoom: 18
     };
-    this.state = {
-      userLocation: {
-        lng: 51.505,
-        lat: -0.09
-      },
-    };
   }
 
   componentDidMount() {
-    this.requestPlaceData();
-    this.displayMap();
+    this.requestPlaceData(this.props.userLocation);
+    this.initializeLeafletMap();
+    this.displayMapForCoords(this.props.userLocation);
+    this.mapTiles.addTo(this.map);
+    this.displayMarker(this.props.userLocation, '<b>Hello world!</b><br>I am a popup.');
   }
 
-  displayMap() {
-    const mymap = L.map('leafletmap').setView([this.state.userLocation.lng,
-      this.state.userLocation.lat], this.mapSettings.defaultZoom);
-    L.tileLayer(
+  initializeLeafletMap() {
+    this.map = L.map('leafletmap');
+    this.mapTiles = L.tileLayer(
       `${this.mapSettings.tileUrl}?access_token=${this.mapSettings.accessToken}`,
       { maxZoom: this.mapSettings.maxZoom }
-    ).addTo(mymap);
-    const marker = L.marker([this.state.userLocation.lng, this.state.userLocation.lat]);
-    marker.bindPopup('<b>Hello world!</b><br>I am a popup.').openPopup();
-    marker.addTo(mymap);
+    );
   }
 
-  requestPlaceData() {
-    const nearbyPlacesUrl = 'http://localhost:5000/places/near/-122.419416/37.774929';
+  displayMapForCoords(coords) {
+    this.map.setView([coords.lng, coords.lat], this.mapSettings.defaultZoom);
+  }
+
+  displayMarker(coords, message) {
+    const marker = L.marker([coords.lng, coords.lat]);
+    marker.bindPopup(message).openPopup().addTo(this.map);
+  }
+
+  requestPlaceData(location) {
+    const nearbyPlacesUrl = `http://localhost:5000/places/near/${location.lat}/${location.lng}`;
     this.serverRequest = $.get(nearbyPlacesUrl, (response) => {
-      this.setState({ place_collection: response.result });
+      this.setState({ placeCollection: response.result });
     });
   }
 
   render() {
     return (
-      <div className="leafletmapcontainer">
-        <div
-          id="leafletmap"
+      <div>
+        <Leafletmap
+          center={this.props.userLocation}
+          places={this.props.placeCollection}
         />
+        <ResultsSummary places={this.props.placeCollection} />
       </div>
     );
   }
 }
+
+const Leafletmap = () => (
+  <div className="leafletmapcontainer">
+    <div
+      id="leafletmap"
+    />
+  </div>
+);
+
+MapContainer.propTypes = {
+  accessToken: React.PropTypes.string,
+  userLocation: React.PropTypes.object,
+  placeCollection: React.PropTypes.array
+};
 
 export default MapContainer;
