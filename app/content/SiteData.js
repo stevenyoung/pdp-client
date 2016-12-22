@@ -1,11 +1,10 @@
-const HELLO = 'Howdy';
-
 const SiteData = {
+  mapboxToken: 'pk.eyJ1Ijoic3RldmVueW91bmciLCJhIjoiY2l3anExbW4zMDAyOTJ0cXhwYnlpNGdmZSJ9.sjA5t0UMpCwyfVzZmzBVow',
   copyright: '© 2016. MIT License.',
   tagline: 'places.press',
   home: {
     header: {
-      message: `${HELLO} This header message was passed in from static data file`,
+      message: 'This is where I want to put a notification style message',
       promoButton: {
         url: '//stevenyoung.tumblr.com',
         label: 'Read my Tumblr'
@@ -18,7 +17,6 @@ const SiteData = {
         'use react storybook to build ui',
         'cdn css as react components',
         'ajax as react components',
-        'connect to a real-time database using firebase.',
         'test components via enzyme with mocha, chai'
       ],
       promoButton: {
