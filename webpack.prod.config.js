@@ -1,5 +1,3 @@
-/* eslint import/no-extraneous-dependencies: ["error", {"peerDependencies": true}] */
-
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
