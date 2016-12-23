@@ -19,11 +19,19 @@ class MapContainer extends React.Component {
   }
 
   componentDidMount() {
-    this.requestPlaceData(this.props.userLocation);
+    // this.requestPlaceData(this.props.userLocation);
     this.initializeLeafletMap();
     this.displayMapForCoords(this.props.userLocation);
     this.mapTiles.addTo(this.map);
     this.displayMarker(this.props.userLocation, '<b>Hello world!</b><br>I am a popup.');
+    this.props.placeCollection.forEach((place) => {
+      const markerCoords = {
+        lat: place.location.latitude,
+        lng: place.location.longitude
+      };
+      const markerLabel = `${place.scenelocation} from ${place.title} by ${place.author}`;
+      this.displayMarker(markerCoords, markerLabel);
+    });
   }
 
   initializeLeafletMap() {
@@ -50,9 +58,17 @@ class MapContainer extends React.Component {
     });
   }
 
+  displayMarkerCollection(places) {
+    places.forEach((place) => {
+      const markerLabel = `${place.name} from ${place.title} by ${place.author}`;
+      const markerCoords = { lat: place.lat, lng: place.lng };
+      this.displayMarker(markerCoords, markerLabel);
+    });
+  }
+
   render() {
     return (
-      <div>
+      <div className="mapcontainer">
         <Leafletmap
           center={this.props.userLocation}
           places={this.props.placeCollection}
@@ -75,6 +91,10 @@ MapContainer.propTypes = {
   accessToken: React.PropTypes.string,
   userLocation: React.PropTypes.object,
   placeCollection: React.PropTypes.array
+};
+
+MapContainer.defaultProps = {
+  userLocation: { lat: -122.419416, lng: 37.774929 }
 };
 
 export default MapContainer;
