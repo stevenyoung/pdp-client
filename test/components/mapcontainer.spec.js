@@ -8,12 +8,9 @@ import MapContainer from '../../app/components/MapContainer.jsx';
 
 describe('<MapContainer />', () => {
   it('<render> should contain one map node', () => {
-    const wrapper = render(<MapContainer />);
-    expect(wrapper.find('.leafletmapcontainer')).to.have.length(1);
+    const wrapper = shallow(<MapContainer />);
+    expect(wrapper.is('.mapcontainer')).to.equal(true);
   });
-  it('<render> should contain node with a list of locations', () => {
-    const wrapper = render(<MapContainer />);
-    expect(wrapper.find('.w-dyn-list')).to.have.length(1);
-  });
+  it('should contain node with a list of locations');
   it('should pass props to its children');
 });
