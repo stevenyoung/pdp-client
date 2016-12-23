@@ -19,34 +19,6 @@ module.exports = {
       "react",
   ],
   "rules": {
-    "comma-dangle": [
-      "warn",
-      "never"
-    ],
-    "indent": [
-      "warn",
-      2
-    ],
-    "linebreak-style": [
-      "warn",
-      "unix"
-    ],
-    "quotes": [
-      "error",
-      "single"
-    ],
-    "semi": [
-      "error",
-      "always"
-    ],
-    "import/no-extraneous-dependencies": [
-      "error",
-      {
-        "devDependencies": true,
-        "optionalDependencies": false,
-        "peerDependencies": false
-      }
-    ],
     "react/jsx-filename-extension": [
       1,
       { "extensions": [".js", ".jsx"] }
