@@ -1,15 +1,24 @@
 import React from 'react';
 
-const ResultsSummary = () =>
+const ResultsSummary = (props) =>
   (
     <div className="placelistitem w-dyn-list">
       <div className="locationlist w-dyn-items" id="locations-list">
         <div className="location-list-items w-dyn-item">
-          <div className="locationitem">
-            <a className="location-name" href="/location" />
-            <div className="location-work-title" />
-            <div className="location-artist" />
-          </div>
+          {props.places.map((place) =>
+            <div className="locationitem">
+              <a className="location-name" href="/location" >
+                {place.name}
+              </a>
+              <div className="location-work-title">
+                {place.title}
+              </div>
+              <div className="location-artist">
+                {place.artist}
+              </div>
+            </div>
+            )
+          }
         </div>
       </div>
       <div className="w-dyn-empty">
@@ -18,5 +27,9 @@ const ResultsSummary = () =>
       </div>
     </div>
   );
+
+ResultsSummary.propTypes = {
+  places: React.PropTypes.Array
+};
 
 export default ResultsSummary;
