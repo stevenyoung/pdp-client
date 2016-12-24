@@ -11,11 +11,8 @@ const ResultsSummary = (props) => {
               <a className="location-name" href="/location" >
                 {place.scenelocation}
               </a>
-              <div className="location-work-title">
-                {place.title}
-              </div>
               <div className="location-artist">
-                {place.author}
+                {place.title} by {place.author}
               </div>
             </div>
             )
@@ -30,7 +27,7 @@ const ResultsSummary = (props) => {
       </div>
     );
   }
-  return <div className="placelistitem w-dyn-list">{listNodeContent}</div>;
+  return <div className="resultssummary w-dyn-list">{listNodeContent}</div>;
 };
 
 ResultsSummary.propTypes = {

@@ -1,5 +1,13 @@
-.emptylocationlist {
-  font-size: 16px;
+.emptylocationlist,
+.placelistitem {
+  font-size: $normal-font-size;
+}
+
+.resultssummary {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 940px;
+  background-color: white;
 }
 
 .locationitem {
@@ -7,7 +15,9 @@
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  margin-left: 100px;
+  margin: 10px 10px;
+  text-align: left;
+  line-height: 24px;
 }
 
 .location-work-title {
