@@ -2,6 +2,7 @@ import React from 'react';
 import L from 'leaflet';
 import $ from 'jquery';
 
+import Leafletmap from './Leafletmap';
 import ResultsSummary from './ResultsSummary';
 
 class MapContainer extends React.Component {
@@ -78,14 +79,6 @@ class MapContainer extends React.Component {
     );
   }
 }
-
-const Leafletmap = () => (
-  <div className="leafletmapcontainer">
-    <div
-      id="leafletmap"
-    />
-  </div>
-);
 
 MapContainer.propTypes = {
   accessToken: React.PropTypes.string,
