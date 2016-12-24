@@ -1,4 +1,4 @@
-  module.exports = {
+module.exports = {
   "parser": "babel-eslint",
   "rules": {
     "strict": 0
@@ -20,7 +20,7 @@
   ],
   "rules": {
     "comma-dangle": [
-      "warning",
+      1,
       "never"
     ],
     "indent": [
