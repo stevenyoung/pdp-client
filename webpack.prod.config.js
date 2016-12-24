@@ -73,16 +73,11 @@ module.exports = {
     new CopyWebPackPlugin([{ from: PUBLIC, to: BUILD }],
       { ignore: ['.DS_Store'] })
   ],
-  postcss: function() {
+  postcss: function (webpack) {
     return [
-      PostcssImport({
-        addDependencyTo: webpack,
-        prefix: '_'
-      }),
+      PostcssImport({ addDependencyTo: webpack, prefix: '_' }),
       precss,
-      autoprefixer({
-        browsers: ['last 2 versions']
-      })
+      autoprefixer({ browsers: ['last 2 versions'] })
     ];
   }
 };
