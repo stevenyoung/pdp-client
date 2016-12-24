@@ -7,8 +7,7 @@ body {
   background: $page-background;
   font-family: $font-stack;
   color: #333;
-  font-size: 5px;
-  line-height: 72px;
+  font-size: 16px;
   font-weight: 700;
   text-align: center;
 }

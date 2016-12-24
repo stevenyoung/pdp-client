@@ -1,8 +1,8 @@
+@import 'styles/base/mixins';
+@import 'styles/base/variables';
 @import 'styles/theme';
 @import 'styles/base';
 @import 'styles/type';
-@import 'styles/base/variables';
-@import 'styles/base/mixins';
 @import 'styles/components/searchinput';
 @import 'styles/components/mapcontainer';
 @import 'styles/components/resultslist';
