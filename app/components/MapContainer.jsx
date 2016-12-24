@@ -1,5 +1,5 @@
 import React from 'react';
-import L from 'leaflet';
+
 import $ from 'jquery';
 
 import Leafletmap from './Leafletmap';
@@ -19,51 +19,10 @@ class MapContainer extends React.Component {
     };
   }
 
-  componentDidMount() {
-    // this.requestPlaceData(this.props.userLocation);
-    this.initializeLeafletMap();
-    this.displayMapForCoords(this.props.userLocation);
-    this.mapTiles.addTo(this.map);
-    this.displayMarker(this.props.userLocation, '<b>Hello world!</b><br>I am a popup.');
-    this.props.placeCollection.forEach((place) => {
-      const markerCoords = {
-        lat: place.location.latitude,
-        lng: place.location.longitude
-      };
-      const markerLabel = `${place.scenelocation} from ${place.title} by ${place.author}`;
-      this.displayMarker(markerCoords, markerLabel);
-    });
-  }
-
-  initializeLeafletMap() {
-    this.map = L.map('leafletmap');
-    this.mapTiles = L.tileLayer(
-      `${this.mapSettings.tileUrl}?access_token=${this.mapSettings.accessToken}`,
-      { maxZoom: this.mapSettings.maxZoom }
-    );
-  }
-
-  displayMapForCoords(coords) {
-    this.map.setView([coords.lng, coords.lat], this.mapSettings.defaultZoom);
-  }
-
-  displayMarker(coords, message) {
-    const marker = L.marker([coords.lng, coords.lat]);
-    marker.bindPopup(message).openPopup().addTo(this.map);
-  }
-
   requestPlaceData(location) {
     const nearbyPlacesUrl = `http://localhost:5000/places/near/${location.lat}/${location.lng}`;
     this.serverRequest = $.get(nearbyPlacesUrl, (response) => {
       this.setState({ placeCollection: response.result });
-    });
-  }
-
-  displayMarkerCollection(places) {
-    places.forEach((place) => {
-      const markerLabel = `${place.name} from ${place.title} by ${place.author}`;
-      const markerCoords = { lat: place.lat, lng: place.lng };
-      this.displayMarker(markerCoords, markerLabel);
     });
   }
 
@@ -73,6 +32,7 @@ class MapContainer extends React.Component {
         <Leafletmap
           center={this.props.userLocation}
           places={this.props.placeCollection}
+          mapSettings={this.mapSettings}
         />
         <ResultsSummary places={this.props.placeCollection} />
       </div>
@@ -87,7 +47,7 @@ MapContainer.propTypes = {
 };
 
 MapContainer.defaultProps = {
-  userLocation: { lat: -122.419416, lng: 37.774929 }
+  userLocation: { lat: 41.3137858194561, lng: -72.91281312704086 }
 };
 
 export default MapContainer;

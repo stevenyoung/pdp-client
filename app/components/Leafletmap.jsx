@@ -1,11 +1,63 @@
 import React from 'react';
+import L from 'leaflet';
 
-const Leafletmap = () => (
-  <div className="leafletmapcontainer">
-    <div
-      id="leafletmap"
-    />
-  </div>
-);
+class Leafletmap extends React.Component {
+  componentDidMount() {
+    this.initializeLeafletMap();
+    this.mapTiles.addTo(this.map);
+    this.displayMapForCoords(this.props.center);
+    this.displayMarkerCollection(this.props.places);
+  }
+
+  initializeLeafletMap() {
+    this.map = L.map('leafletmap');
+    this.mapTiles = L.tileLayer(
+      `${this.props.mapSettings.tileUrl}?access_token=${this.props.mapSettings.accessToken}`,
+      { maxZoom: this.props.mapSettings.maxZoom }
+    );
+  }
+
+  displayMapForCoords(coords) {
+    this.map.setView([coords.lat, coords.lng], this.props.mapSettings.defaultZoom);
+  }
+
+  displayMarkerCollection(places) {
+    places.forEach((place) => {
+      const markerLabel = `${place.scenelocation} from ${place.title} by ${place.author}`;
+      const markerCoords = {
+        lat: place.location.latitude,
+        lng: place.location.longitude
+      };
+      this.displayMarker(markerCoords, markerLabel);
+    });
+  }
+
+  displayMarker(coords, message) {
+    const marker = L.marker([coords.lat, coords.lng]);
+    marker.bindPopup(message).openPopup().addTo(this.map);
+  }
+
+  render() {
+    return (
+      <div className="leafletmapcontainer">
+        <div
+          id="leafletmap"
+        />
+      </div>
+    );
+  }
+}
+
+Leafletmap.propTypes = {
+  center: React.PropTypes.object,
+  map: React.PropTypes.node,
+  mapTiles: React.PropTypes.object,
+  places: React.PropTypes.array,
+  mapSettings: React.PropTypes.object
+};
+
+Leafletmap.defaultProps = {
+  places: []
+};
 
 export default Leafletmap;
