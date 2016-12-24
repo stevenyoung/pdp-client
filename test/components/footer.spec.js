@@ -16,8 +16,4 @@ describe('<Footer />', () => {
     const wrapper = shallow(<Footer />);
     expect(wrapper.props().children).to.be.defined;
   });
-  // it('should have four child nodes', () => {
-  //   const wrapper = shallow(<Footer />);
-  //   expect(wrapper.props().children).to.have.length(4);
-  // });
 });

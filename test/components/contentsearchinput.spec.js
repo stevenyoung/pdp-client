@@ -17,8 +17,4 @@ describe('<ContentSearchInput />', () => {
   });
   it('should hide the mobile search form for wide screens');
   it('should hide the hide the desktop search form for narrow screens');
-  it('should have four child nodes');// , () => {
-    // const wrapper = shallow(<AboutSection />);
-    // expect(wrapper.props().children).to.have.length(4);
-  // });
 });

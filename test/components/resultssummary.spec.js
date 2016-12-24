@@ -9,6 +9,6 @@ import ResultsSummary from '../../app/components/ResultsSummary';
 describe('<ResultsSummary />', () => {
   it('[shallow] should render one locations list component', () => {
     const wrapper = shallow(<ResultsSummary places="" />);
-    expect(wrapper.is('.placelistitem')).to.equal(true);
+    expect(wrapper.is('.resultssummary')).to.equal(true);
   });
 });
