@@ -3,7 +3,7 @@ import ContentSearchInput from './ContentSearchInput.jsx';
 import MapContainer from './MapContainer.jsx';
 import Footer from './Footer.jsx';
 import SiteData from '../content/SiteData.js';
-import PlacesData from '../content/PlacesData.js';
+import ThreePlacesData from '../content/ThreePlacesData.js';
 
 export default function HomePage() {
   return (
@@ -11,7 +11,7 @@ export default function HomePage() {
       <ContentSearchInput />
       <MapContainer
         accessToken={SiteData.mapboxToken}
-        placeCollection={PlacesData}
+        placeCollection={ThreePlacesData}
       />
       <Footer copyright={SiteData.copyright} />
     </div>
