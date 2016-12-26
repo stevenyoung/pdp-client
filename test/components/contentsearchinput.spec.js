@@ -15,6 +15,4 @@ describe('<ContentSearchInput />', () => {
     const wrapper = shallow(<ContentSearchInput />);
     expect(wrapper.props().children).to.be.defined;
   });
-  it('should hide the mobile search form for wide screens');
-  it('should hide the hide the desktop search form for narrow screens');
 });

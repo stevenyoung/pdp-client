@@ -16,12 +16,6 @@ describe('<HomePage />', () => {
     const wrapper = shallow(<HomePage />);
     expect(wrapper.props().children).to.have.length(3);
   });
-
-  it('should provide content navigation');
-  describe('<Navigation />', () => {
-    it('should show links to primary sections');
-  });
-  it('should display home page header');
   it('should display main home page content');
   it('should display footer');
 });
