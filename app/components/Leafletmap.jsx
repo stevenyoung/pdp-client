@@ -23,13 +23,23 @@ class Leafletmap extends React.Component {
 
   displayMarkerCollection(places) {
     places.forEach((place) => {
-      const markerLabel = `${place.scenelocation} from ${place.title} by ${place.author}`;
+      const markerLabel = this.popupMarkup(place);
       const markerCoords = {
         lat: place.location.latitude,
         lng: place.location.longitude
       };
       this.displayMarker(markerCoords, markerLabel);
     });
+  }
+
+  popupMarkup(place) {
+    return (
+      `<div class="leafletpopup">
+        <h4>${place.scenelocation}</h4>
+        <h5>${place.title} by ${place.author}</h5>
+        <span>${place.scenedescription}</span>
+      </div>`
+    );
   }
 
   displayMarker(coords, message) {
