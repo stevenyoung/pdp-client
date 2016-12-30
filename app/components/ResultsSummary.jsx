@@ -9,10 +9,10 @@ const ResultsSummary = (props) => {
           {props.places.map((place) =>
             <div className="locationitem">
               <a className="location-name" href="/location" >
-                {place.scenelocation}
+                <span>{place.scenelocation}</span>
               </a>
-              <div className="location-artist">
-                {place.title} by {place.author}
+              <div className="location-work-artist">
+                <span>{place.title} by {place.author}</span>
               </div>
             </div>
             )

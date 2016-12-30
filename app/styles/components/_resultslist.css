@@ -18,6 +18,8 @@
   margin: 10px;
   text-align: left;
   line-height: 24px;
+  padding-right: 10px;
+  font-weight: 500;
 }
 
 .location-work-title {
@@ -40,8 +42,8 @@
   flex-basis: 25%;
 }
 
-.location-artist {
-  margin-right: 100px;
+.location-work-artist {
+  margin-right: 10px;
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
