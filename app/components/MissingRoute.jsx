@@ -4,7 +4,7 @@ function MissingRoute() {
   return (
     <div id="missing">
       <h1>oops</h1>
-      <h2>read the latest. use the top menu to navigate</h2>
+      <h2>use the top menu to navigate</h2>
     </div>
   );
 }
