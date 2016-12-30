@@ -36,8 +36,9 @@ class Leafletmap extends React.Component {
     return (
       `<div class="leafletpopup">
         <h4>${place.scenelocation}</h4>
-        <h5>${place.title} by ${place.author}</h5>
-        <span>${place.scenedescription}</span>
+        <em><h4>${place.title}</em>
+        - <em>${place.author}</h4></em>
+        <p>${place.scenedescription}</p>
       </div>`
     );
   }

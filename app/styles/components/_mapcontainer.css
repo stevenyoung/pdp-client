@@ -2,8 +2,13 @@
   margin-left: auto;
   margin-right: auto;
   max-width: 940px;
+
+  #leafletmap {
+    min-height: 24em;
+  }
+
+  .leafletpopup {
+    font-family: $font-stack;
+  }
 }
 
-#leafletmap {
-  min-height: 24em;
-}
