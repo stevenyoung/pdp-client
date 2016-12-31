@@ -1,4 +1,5 @@
 import React from 'react';
+import $ from 'jquery';
 
 const MobileSearchForm = (props) =>
   (
@@ -14,6 +15,7 @@ const MobileSearchForm = (props) =>
       />
       <a
         className="searchformsubmit w-button w-hidden-main w-hidden-medium w-hidden-small"
+        onClick={props.submitSearch}
       >Go</a>
     </form>
   );
@@ -31,33 +33,76 @@ const SearchForm = (props) =>
           placeholder={props.placeholder}
           required="required"
           type="text"
+          onBlur={props.updateInput}
         />
         <a
           className="searchformsubmit w-button"
+          onClick={props.submitSearch}
         >Go</a>
       </form>
     </div>
   );
 
 
-const ContentSearchInput = (props) => {
-  const appTitle = 'places.press';
-  return (
-    <div className="searchinput w-form" >
-      <MobileSearchForm placeholder={props.placeholder} />
-      <div className="logosearchcontainer w-container">
-        <div className="app-title">
-          <span className="app-title">{appTitle}</span>
+class ContentSearchInput extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { searchValue: '' };
+    this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
+    this.handleInputBlur = this.handleInputBlur.bind(this);
+  }
+
+  handleSearchSubmit() {
+    const searchUrl = `http://localhost:5000/search/${this.state.searchValue}`;
+    this.serverRequest = $.get(searchUrl, (response) => {
+      this.setState({ placeCollection: response.result });
+    });
+  }
+
+  handleInputBlur(event) {
+    this.setState({ searchValue: event.target.value });
+  }
+
+  render() {
+    const appTitle = 'places.press';
+    return (
+      <div className="searchinput w-form" >
+        <MobileSearchForm
+          placeholder={this.props.placeholder}
+          searchValue={this.state.searchValue}
+          submitSearch={this.handleSearchSubmit}
+          updateInput={this.handleInputBlur}
+        />
+        <div className="logosearchcontainer w-container">
+          <div className="app-title">
+            <span className="app-title">{appTitle}</span>
+          </div>
+          <SearchForm
+            placeholder={this.props.placeholder}
+            searchValue={this.state.searchValue}
+            submitSearch={this.handleSearchSubmit}
+            updateInput={this.handleInputBlur}
+          />
         </div>
-        <SearchForm placeholder={props.placeholder} />
       </div>
-    </div>
-  );
+    );
+  }
+}
+
+MobileSearchForm.propTypes = {
+  placeholder: React.PropTypes.string,
+  searchValue: React.PropTypes.string,
+  submitSearch: React.PropTypes.func,
+  updateInput: React.PropTypes.func
 };
 
-MobileSearchForm.propTypes = { placeholder: React.PropTypes.string };
-SearchForm.propTypes = { placeholder: React.PropTypes.string };
+SearchForm.propTypes = {
+  placeholder: React.PropTypes.string,
+  searchValue: React.PropTypes.string,
+  submitSearch: React.PropTypes.func,
+  updateInput: React.PropTypes.func
+};
+
 ContentSearchInput.propTypes = { placeholder: React.PropTypes.string };
 
 export default ContentSearchInput;
-
