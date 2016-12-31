@@ -1,7 +1,7 @@
 import React from 'react';
 import MapContainer from './MapContainer.jsx';
 
-function Content() {
+function HomeContent() {
   return (
     <div className="content">
       <MapContainer />
@@ -9,4 +9,4 @@ function Content() {
   );
 }
 
-export default Content;
+export default HomeContent;

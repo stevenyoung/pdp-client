@@ -5,10 +5,12 @@ import Footer from './Footer.jsx';
 import SiteData from '../content/SiteData.js';
 import ThreePlacesData from '../content/ThreePlacesData.js';
 
-export default function HomePage() {
-  return (
+const HomePage = () =>
+  (
     <div className="home">
-      <ContentSearchInput />
+      <ContentSearchInput
+        placeholder="Place? Movie? Book? Song?"
+      />
       <MapContainer
         accessToken={SiteData.mapboxToken}
         placeCollection={ThreePlacesData}
@@ -16,8 +18,10 @@ export default function HomePage() {
       <Footer copyright={SiteData.copyright} />
     </div>
   );
-}
+
 
 HomePage.propTypes = {
   children: React.PropTypes.node
 };
+
+export default HomePage;
