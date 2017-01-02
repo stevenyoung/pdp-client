@@ -6,13 +6,13 @@ const ResultsSummary = (props) => {
     listNodeContent = (
       <div className="locationlist w-dyn-items" id="locations-list">
         <div className="location-list-items w-dyn-item">
-          {props.places.map((place) =>
+          {props.places.map((result) =>
             <div className="locationitem">
               <a className="location-name" href="/location" >
-                <span>{place.scenelocation}</span>
+                <span>{result.place.scenelocation}</span>
               </a>
               <div className="location-work-artist">
-                <span>{place.title} by {place.author}</span>
+                <span>{result.place.title} by {result.place.author}</span>
               </div>
             </div>
             )
