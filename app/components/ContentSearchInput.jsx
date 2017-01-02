@@ -9,17 +9,28 @@ class ContentSearchInput extends React.Component {
     this.state = { searchValue: '' };
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
     this.handleInputBlur = this.handleInputBlur.bind(this);
+    this.handleCollectionUpdate = this.handleCollectionUpdate.bind(this);
+    this.submitSearchOnEnter = this.submitSearchOnEnter.bind(this);
   }
 
   handleSearchSubmit() {
     const searchUrl = `http://localhost:5000/search/${this.state.searchValue}`;
     this.serverRequest = $.get(searchUrl, (response) => {
-      this.setState({ placeCollection: response.result });
+      this.handleCollectionUpdate(response.result);
     });
   }
 
   handleInputBlur(event) {
     this.setState({ searchValue: event.target.value });
+  }
+
+  handleCollectionUpdate(collection) {
+    this.props.onUserUpdate(collection);
+  }
+
+  submitSearchOnEnter(event) {
+    event.preventDefault();
+    this.handleSearchSubmit();
   }
 
   render() {
@@ -41,6 +52,7 @@ class ContentSearchInput extends React.Component {
             searchValue={this.state.searchValue}
             submitSearch={this.handleSearchSubmit}
             updateInput={this.handleInputBlur}
+            submitOnEnter={this.submitSearchOnEnter}
           />
         </div>
       </div>
@@ -48,6 +60,9 @@ class ContentSearchInput extends React.Component {
   }
 }
 
-ContentSearchInput.propTypes = { placeholder: React.PropTypes.string };
+ContentSearchInput.propTypes = {
+  placeholder: React.PropTypes.string,
+  onUserUpdate: React.PropTypes.func
+};
 
 export default ContentSearchInput;
