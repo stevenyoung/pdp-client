@@ -43,7 +43,8 @@ class MapContainer extends React.Component {
 MapContainer.propTypes = {
   accessToken: React.PropTypes.string,
   userLocation: React.PropTypes.object,
-  placeCollection: React.PropTypes.array
+  placeCollection: React.PropTypes.array,
+  onUserUpdate: React.PropTypes.func
 };
 
 MapContainer.defaultProps = {
