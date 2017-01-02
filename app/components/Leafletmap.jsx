@@ -9,6 +9,13 @@ class Leafletmap extends React.Component {
     this.displayMarkerCollection(this.props.places);
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    console.log('updated leaflet map', this.props);
+    console.log('previous props', prevProps);
+    console.log('previous state', prevState);
+    this.displayMarkerCollection(this.props.places);
+  }
+
   initializeLeafletMap() {
     this.map = L.map('leafletmap');
     this.mapTiles = L.tileLayer(
@@ -22,11 +29,13 @@ class Leafletmap extends React.Component {
   }
 
   displayMarkerCollection(places) {
-    places.forEach((place) => {
+    console.log('display Marker', places);
+    places.forEach((result) => {
+      const place = result.place;
       const markerLabel = this.popupMarkup(place);
       const markerCoords = {
-        lat: place.location.latitude,
-        lng: place.location.longitude
+        lat: place.loc.coordinates[1],
+        lng: place.loc.coordinates[0],
       };
       this.displayMarker(markerCoords, markerLabel);
     });
@@ -36,9 +45,9 @@ class Leafletmap extends React.Component {
     return (
       `<div class="leafletpopup">
         <h4>${place.scenelocation}</h4>
-        <em><h4>${place.title}</em>
-        - <em>${place.author}</h4></em>
+        <em><h4>${place.title}</em> - <em>${place.author}</h4></em>
         <p>${place.scenedescription}</p>
+        <p><a href="//${place.url}">${place.attribution}</a></p>
       </div>`
     );
   }
