@@ -3,12 +3,11 @@ import ContentSearchInput from './ContentSearchInput.jsx';
 import MapContainer from './MapContainer.jsx';
 import Footer from './Footer.jsx';
 import SiteData from '../content/SiteData.js';
-import ThreePlacesData from '../content/ThreePlacesData.js';
 
 class HomePage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { placeCollection: ThreePlacesData };
+    this.state = { placeCollection: [] };
     this.updatePlaceCollection = this.updatePlaceCollection.bind(this);
   }
 
