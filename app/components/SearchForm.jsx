@@ -25,6 +25,7 @@ const SearchForm = (props) =>
     <div className="logosearchformwrapper w-form">
       <form
         className="searchform"
+        onSubmit={props.submitOnEnter}
       >
         <input
           autoFocus="autofocus"
@@ -54,7 +55,8 @@ SearchForm.propTypes = {
   placeholder: React.PropTypes.string,
   searchValue: React.PropTypes.string,
   submitSearch: React.PropTypes.func,
-  updateInput: React.PropTypes.func
+  updateInput: React.PropTypes.func,
+  submitOnEnter: React.PropTypes.func
 };
 
 export { SearchForm, MobileSearchForm };
