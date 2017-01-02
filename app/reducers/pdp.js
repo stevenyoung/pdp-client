@@ -8,7 +8,7 @@ const initialState = {
 export default function pdpApp(state = initialState, action) {
   switch (action.type) {
   case actions.SEARCH_TERM:
-    return Object.assign({}, state, { searchTerm: action.text });
+    return { ...state, searchTerm: action.text };
   default:
     return state;
   }
