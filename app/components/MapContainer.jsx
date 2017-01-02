@@ -48,7 +48,7 @@ MapContainer.propTypes = {
 };
 
 MapContainer.defaultProps = {
-  userLocation: { lat: 41.3137858194561, lng: -72.91281312704086 }
+  userLocation: { lat: 37.749202, lng: -122.41575 }
 };
 
 export default MapContainer;
