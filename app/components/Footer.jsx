@@ -1,14 +1,14 @@
-import React, { PropTypes } from 'react'
+import React, { PropTypes } from 'react';
 
 class Footer extends React.Component {
   static propTypes = {
     copyright: PropTypes.string
   }
   static defaultProps = { copyright: '' }
-  render () {
+  render() {
     return (
       <footer className="footer" >
-        <div className ="Footer">
+        <div className="Footer">
           {this.props.copyright ? <p>{ this.props.copyright}</p> : ''}
           {this.props.children}
         </div>
@@ -17,5 +17,8 @@ class Footer extends React.Component {
   }
 }
 
-export default Footer;
+Footer.propTypes = {
+  children: React.PropTypes.node
+};
 
+export default Footer;
