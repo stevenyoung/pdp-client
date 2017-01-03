@@ -1,5 +1,5 @@
 import { createStore } from 'redux';
-import pdpApp from '../reducers/pdp';
+import pdpApp from '../reducers/pdpApp';
 
 const store = createStore(pdpApp);
 export default store;
