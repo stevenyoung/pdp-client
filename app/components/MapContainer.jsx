@@ -14,7 +14,7 @@ class MapContainer extends React.Component {
     this.mapSettings = {
       accessToken: props.accessToken,
       tileUrl: 'https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}',
-      defaultZoom: 13,
+      defaultZoom: 9,
       maxZoom: 18
     };
   }
