@@ -8,12 +8,12 @@ const ResultsSummary = (props) => {
         <div className="location-list-items w-dyn-item">
           {props.places.map((result) =>
             <div className="locationitem">
-              <a className="location-name" href="/location" >
-                <span>{result.place.scenelocation}</span>
+              <a href="/location" >
+                <span className="location-work-title">{result.place.scenelocation}</span>
+                &nbsp;<span className="location-work-name">{result.place.title}</span>
+                &nbsp;by&nbsp;
+                <span className="location-work-artist">{result.place.author}</span>
               </a>
-              <div className="location-work-artist">
-                <span>{result.place.title} by {result.place.author}</span>
-              </div>
             </div>
             )
           }
@@ -21,7 +21,7 @@ const ResultsSummary = (props) => {
       </div>);
   } else {
     listNodeContent = (
-      <div className="w-dyn-empty">
+      <div className="locationlist">
         <div className="emptylocationlist">No items found.</div>
         <a className="more-locations w-button" href="/nearby">more nearby locations...</a>
       </div>

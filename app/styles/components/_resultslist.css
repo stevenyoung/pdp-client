@@ -1,66 +1,65 @@
-.emptylocationlist,
-.placelistitem {
-  font-size: $normal-font-size;
-}
-
 .resultssummary {
   margin-left: auto;
   margin-right: auto;
   max-width: 940px;
   background-color: white;
-}
-
-.locationitem {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  margin: 10px;
-  text-align: left;
-  line-height: 24px;
-  padding-right: 10px;
-  font-weight: 500;
-}
 
-.location-work-title {
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  -webkit-flex-basis: 50%;
-  -ms-flex-preferred-size: 50%;
-  flex-basis: 50%;
-}
+  .emptylocationlist,
+  .placelistitem {
+    font-size: $normal-font-size;
+  }
 
-.location-name {
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  -webkit-flex-basis: 25%;
-  -ms-flex-preferred-size: 25%;
-  flex-basis: 25%;
-}
+  .locationitem {
+    margin: 10px;
+    text-align: left;
+    line-height: 24px;
+    padding-right: 10px;
+    font-weight: 400;
 
-.location-work-artist {
-  margin-right: 10px;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  -webkit-flex-basis: 25%;
-  -ms-flex-preferred-size: 25%;
-  flex-basis: 25%;
-}
+    .location-work-title {
+      -webkit-box-flex: 1;
+      -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+      flex-grow: 1;
+      -webkit-flex-basis: 50%;
+      -ms-flex-preferred-size: 50%;
+      flex-basis: 50%;
+      font-weight: 500;
+      font-size: larger;
+    }
 
-.w-button {
-  display: inline;
-  padding: 15px;
-  background-color: #3898ec;
-  color: white;
-  border: 0;
-  line-height: inherit;
-  text-decoration: none;
-  cursor: pointer;
-  border-radius: 20px;
+    .location-work-name {
+      -webkit-box-flex: 1;
+      -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+      flex-grow: 1;
+      -webkit-flex-basis: 25%;
+      -ms-flex-preferred-size: 25%;
+      flex-basis: 25%;
+    }
+
+    .location-work-artist {
+      margin-right: 10px;
+      -webkit-box-flex: 1;
+      -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+      flex-grow: 1;
+      -webkit-flex-basis: 25%;
+      -ms-flex-preferred-size: 25%;
+      flex-basis: 25%;
+    }
+  }
+
+  .w-button {
+    display: inline;
+    padding: 15px;
+    background-color: #3898ec;
+    color: white;
+    border: 0;
+    line-height: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 20px;
+  }
 }
