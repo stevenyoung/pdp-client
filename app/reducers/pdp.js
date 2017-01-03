@@ -1,4 +1,6 @@
+import { combineReducers } from 'redux';
 import * as actions from '../actions/pdp';
+
 
 function searchTerm(state = '', action) {
   switch (action.type) {
@@ -16,9 +18,6 @@ function searchResults(state = [], action) {
   }
 }
 
-export default function pdpApp(state = {}, action) {
-  return {
-    searchTerm: searchTerm(state.searchTerm, action),
-    searchResults: searchResults(state.searchResults, action)
-  };
-}
+const pdpApp = combineReducers({ searchTerm, searchResults });
+
+export default pdpApp;
