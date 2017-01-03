@@ -1,8 +1,10 @@
 import React from 'react';
-import ContentSearchInput from './ContentSearchInput.jsx';
-import MapContainer from './MapContainer.jsx';
-import Footer from './Footer.jsx';
-import SiteData from '../content/SiteData.js';
+import ContentSearchInput from './ContentSearchInput';
+import MapContainer from './MapContainer';
+import Footer from './Footer';
+import SiteData from '../content/SiteData';
+
+import places from '../fixtures/pdp/places';
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -24,7 +26,7 @@ class HomePage extends React.Component {
         />
         <MapContainer
           accessToken={SiteData.mapboxToken}
-          placeCollection={this.state.placeCollection}
+          placeCollection={places}
         />
         <Footer copyright={SiteData.copyright} />
       </div>
