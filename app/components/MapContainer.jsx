@@ -34,7 +34,7 @@ class MapContainer extends React.Component {
           places={this.props.placeCollection}
           mapSettings={this.mapSettings}
         />
-        <ResultsSummary places={this.props.placeCollection} />
+        <ResultsSummary results={this.props.placeCollection} />
       </div>
     );
   }

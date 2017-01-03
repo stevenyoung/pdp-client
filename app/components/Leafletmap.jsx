@@ -30,8 +30,7 @@ class Leafletmap extends React.Component {
 
   displayMarkerCollection(places) {
     console.log('display Marker', places);
-    places.forEach((result) => {
-      const place = result.place;
+    places.forEach((place) => {
       const markerLabel = this.popupMarkup(place);
       const markerCoords = {
         lat: place.loc.coordinates[1],

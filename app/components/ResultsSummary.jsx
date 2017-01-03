@@ -1,18 +1,18 @@
 import React from 'react';
 
-const ResultsSummary = (props) => {
+const ResultsSummary = ({ results }) => {
   let listNodeContent;
-  if (props.places.length > 0) {
+  if (results.length > 0) {
     listNodeContent = (
       <div className="locationlist w-dyn-items" id="locations-list">
         <div className="location-list-items w-dyn-item">
-          {props.places.map((result) =>
+          {results.map((place) =>
             <div className="locationitem">
               <a href="/location" >
-                <span className="location-work-title">{result.place.scenelocation}</span>
-                &nbsp;<span className="location-work-name">{result.place.title}</span>
+                <span className="location-work-title">{place.scenelocation}</span>
+                &nbsp;<span className="location-work-name">{place.title}</span>
                 &nbsp;by&nbsp;
-                <span className="location-work-artist">{result.place.author}</span>
+                <span className="location-work-artist">{place.author}</span>
               </a>
             </div>
             )
@@ -31,7 +31,7 @@ const ResultsSummary = (props) => {
 };
 
 ResultsSummary.propTypes = {
-  places: React.PropTypes.Array
+  results: React.PropTypes.Array
 };
 
 export default ResultsSummary;
