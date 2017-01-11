@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import { searchTerm, searchResults } from './pdp';
+import { searchTerm, searchResults, places } from './pdp';
 
-const pdpApp = combineReducers({ searchTerm, searchResults });
+const pdpApp = combineReducers({ searchTerm, searchResults, places });
 
 export default pdpApp;
