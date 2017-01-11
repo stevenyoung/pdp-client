@@ -21,6 +21,7 @@
   "author": "me",
   "license": "ISC",
   "dependencies": {
+    "isomorphic-fetch": "^2.2.1",
     "jquery": "^3.1.1",
     "leaflet": "^1.0.2",
     "react": "^15.2.1",
@@ -70,6 +71,8 @@
     "postcss-loader": "^0.9.1",
     "precss": "^1.4.0",
     "react-addons-test-utils": "^15.3.1",
+    "redux-logger": "^2.7.4",
+    "redux-thunk": "^2.1.0",
     "sinon": "^1.17.6",
     "style-loader": "^0.13.1",
     "stylelint": "^7.1.0",
