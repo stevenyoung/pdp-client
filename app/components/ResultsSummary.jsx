@@ -31,7 +31,11 @@ const ResultsSummary = ({ results }) => {
 };
 
 ResultsSummary.propTypes = {
-  results: React.PropTypes.Array
+  results: React.PropTypes.array
+};
+
+ResultsSummary.defaultProps = {
+  results: []
 };
 
 export default ResultsSummary;
