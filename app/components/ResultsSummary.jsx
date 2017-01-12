@@ -7,7 +7,10 @@ const ResultsSummary = ({ results }) => {
       <div className="locationlist w-dyn-items" id="locations-list">
         <div className="location-list-items w-dyn-item">
           {results.map((place) =>
-            <div className="locationitem">
+            <div
+              className="locationitem"
+              key={place.id}
+            >
               <a href="/location" >
                 <span className="location-work-title">{place.scenelocation}</span>
                 &nbsp;<span className="location-work-name">{place.title}</span>
