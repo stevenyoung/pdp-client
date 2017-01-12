@@ -9,10 +9,7 @@ class Leafletmap extends React.Component {
     this.displayMarkerCollection(this.props.places);
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    console.log('updated leaflet map', this.props);
-    console.log('previous props', prevProps);
-    console.log('previous state', prevState);
+  componentDidUpdate() {
     this.displayMarkerCollection(this.props.places);
   }
 
@@ -29,7 +26,7 @@ class Leafletmap extends React.Component {
   }
 
   displayMarkerCollection(places) {
-    console.log('display Marker', places);
+    // console.log('display Marker', places);
     places.forEach((place) => {
       const markerLabel = this.popupMarkup(place);
       const markerCoords = {
