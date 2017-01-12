@@ -23,14 +23,14 @@ export function receivePlaces(query, json) {
   return {
     type: RECEIVE_PLACES,
     query,
-    places: json.data.children.map((child) => child.data)
+    places: json.result.map((child) => child.place)
   };
 }
 
 export function fetchPlaces(searchTerm) {
-  return function (dispatch) {
+  return function (dispatch ) {
     dispatch(requestPlaces(searchTerm));
-    return fetch('http://localhost:5000/places/${searchTerm}')
+    return fetch(`http://localhost:5000/search/${searchTerm}`)
     .then(response => response.json())
     .then(json => dispatch(receivePlaces(searchTerm, json)));
   };
