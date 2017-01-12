@@ -1,16 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import { Router, Route, browserHistory } from 'react-router';
 
-import HomePage from './components/HomePage.jsx';
+import configureStore from './store/configureStore';
+
+// import HomePage from './components/HomePage.jsx';
 
 import MissingRoute from './components/MissingRoute.jsx';
 
+import VisibleMap from './containers/VisibleMap';
+
+
+const initialState = {
+  searchTerm: 'infin',
+  placeCollection: []
+};
+
+const store = configureStore(initialState);
+
 ReactDOM.render(
-  <Provider>
+  <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/" component={HomePage} />
+      <Route path="/" components={VisibleMap} />
       <Route path="*" component={MissingRoute} />
     </Router>
   </Provider>,
