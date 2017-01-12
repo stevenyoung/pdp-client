@@ -60,26 +60,17 @@ VisibleMap.propTypes = {
   dispatch: PropTypes.func.isRequired
 };
 
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
   const { searchTerm, places } = state;
   const isFetching = false;
   const placeCollection = places.items;
-
-  // const {
-  //   isFetching,
-  //   lastUpdated,
-  //   items: posts
-  // } = places[searchTerm] || {
-  //   isFetching: true,
-  //   items: []
-  // };
-
   return {
     searchTerm,
     placeCollection,
     isFetching
   };
-}
+};
+
 
 VisibleMap.defaultProps = {
   placeCollection: []
