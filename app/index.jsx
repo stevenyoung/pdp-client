@@ -13,8 +13,8 @@ import VisibleMap from './containers/VisibleMap';
 
 
 const initialState = {
-  searchTerm: 'infin',
-  placeCollection: []
+  searchTerm: '',
+  places: []
 };
 
 const store = configureStore(initialState);
