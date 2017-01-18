@@ -17,7 +17,10 @@ const MapContainer = (props) => {
         places={props.placeCollection}
         mapSettings={mapSettings}
       />
-      <ResultsSummary results={props.placeCollection} />
+      <ResultsSummary
+        results={props.placeCollection}
+        searchTerm={props.searchTerm}
+      />
     </div>
   );
 };
@@ -26,6 +29,7 @@ MapContainer.propTypes = {
   accessToken: React.PropTypes.string,
   userLocation: React.PropTypes.object,
   placeCollection: React.PropTypes.array,
+  searchTerm: React.PropTypes.string
 };
 
 MapContainer.defaultProps = {

@@ -30,11 +30,17 @@ const ResultsSummary = ({ results }) => {
       </div>
     );
   }
-  return <div className="resultssummary w-dyn-list">{listNodeContent}</div>;
+
+  return (
+    <div className="resultssummary w-dyn-list">
+      {listNodeContent}
+    </div>
+  );
 };
 
 ResultsSummary.propTypes = {
-  results: React.PropTypes.array
+  results: React.PropTypes.array,
+  searchTerm: React.PropTypes.string
 };
 
 ResultsSummary.defaultProps = {
