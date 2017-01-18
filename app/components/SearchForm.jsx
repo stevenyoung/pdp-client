@@ -4,6 +4,7 @@ const MobileSearchForm = (props) =>
   (
     <form
       className="mobilesearchform"
+      onSubmit={props.submitSearch}
     >
       <input
         className="mobilesearch w-hidden-main w-hidden-medium w-hidden-small w-input"
@@ -11,7 +12,8 @@ const MobileSearchForm = (props) =>
         maxLength="256"
         placeholder={props.placeholder}
         type="text"
-        onBlur={props.updateInput}
+        onChange={props.updateInput}
+        value={props.searchValue}
       />
       <a
         className="searchformsubmit w-button w-hidden-main w-hidden-medium w-hidden-small"
@@ -25,7 +27,7 @@ const SearchForm = (props) =>
     <div className="logosearchformwrapper w-form">
       <form
         className="searchform"
-        onSubmit={props.submitOnEnter}
+        onSubmit={props.submitSearch}
       >
         <input
           autoFocus="autofocus"
@@ -34,7 +36,8 @@ const SearchForm = (props) =>
           placeholder={props.placeholder}
           required="required"
           type="text"
-          onBlur={props.updateInput}
+          onChange={props.updateInput}
+          // value={props.searchValue}
         />
         <a
           className="searchformsubmit w-button"
@@ -55,8 +58,7 @@ SearchForm.propTypes = {
   placeholder: React.PropTypes.string,
   searchValue: React.PropTypes.string,
   submitSearch: React.PropTypes.func,
-  updateInput: React.PropTypes.func,
-  submitOnEnter: React.PropTypes.func
+  updateInput: React.PropTypes.func
 };
 
 export { SearchForm, MobileSearchForm };
