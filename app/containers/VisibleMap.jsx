@@ -1,27 +1,47 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { setSearchTerm, requestPlaces, receivePlaces, fetchPlaces } from '../actions/pdp';
+import { setSearchTerm, fetchPlaces } from '../actions/pdp';
 import ContentSearchInput from '../components/ContentSearchInput';
 import MapContainer from '../components/MapContainer';
 
 class VisibleMap extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.handleChange = this.handleChange.bind(this);
-  //   this.handleRefreshClick = this.handleRefreshClick.bind(this);
-  // }
+  constructor(props) {
+    super(props);
+    this.state = { searchTerm: props.searchTerm };
+    this.handleSearchValueUpdate = this.handleSearchValueUpdate.bind(this);
+    this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
+  }
 
   componentDidMount() {
+    // first time rendering
     const { dispatch, searchTerm } = this.props;
-    dispatch(fetchPlaces(searchTerm));
+    console.log('map mounted', searchTerm);
+    // dispatch(fetchPlaces(searchTerm));
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.searchTerm !== this.props.searchTerm) {
-      const { dispatch, selectedSubreddit } = nextProps;
-      dispatch(fetchPlaces(selectedSubreddit));
+      const { dispatch, query } = nextProps;
+      dispatch(fetchPlaces(query));
     }
+  }
+
+  handleSearchValueUpdate(event) {
+    // setState will re-render
+    this.setState({ searchTerm: event.target.value });
+  }
+
+  handleSearchSubmit(event, query) {
+    if (this.state.searchTerm) {
+      console.log('search submit', this.state);
+      // this.props.dispatch(setSearchTerm(this.state.searchTerm));
+      this.props.dispatch(fetchPlaces(this.state.searchTerm));
+    }
+  }
+
+  updateSearchTerm(query) {
+    this.props.dispatch(setSearchTerm(query));
   }
 
   // handleChange(nextSubreddit) {
@@ -39,13 +59,17 @@ class VisibleMap extends Component {
     const mapboxToken = 'pk.eyJ1Ijoic3RldmVueW91bmciLCJhIjoiY2l3anExbW4zMDAyOTJ0cXhwYnlpNGdmZSJ9.sjA5t0UMpCwyfVzZmzBVow';
     return (
       <div className="home">
+
         <ContentSearchInput
           placeholder="Place? Movie? Book? Song?"
-          onUserUpdate={this.updatePlaceCollection}
+          searchValue={this.props.searchTerm}
+          updateInput={this.handleSearchValueUpdate}
+          onUserSubmit={this.handleSearchSubmit}
         />
         <MapContainer
           accessToken={mapboxToken}
           placeCollection={this.props.placeCollection}
+          searchTerm={this.props.searchTerm}
         />
       </div>
     );
@@ -61,6 +85,7 @@ VisibleMap.propTypes = {
 };
 
 const mapStateToProps = (state) => {
+  console.log('mapping', state);
   const { searchTerm, places } = state;
   const isFetching = false;
   const placeCollection = places.items;
@@ -70,7 +95,6 @@ const mapStateToProps = (state) => {
     isFetching
   };
 };
-
 
 VisibleMap.defaultProps = {
   placeCollection: []
