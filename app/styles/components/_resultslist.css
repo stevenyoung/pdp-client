@@ -10,6 +10,12 @@
     font-size: $normal-font-size;
   }
 
+  .emptylocationlist {
+    min-height: 3em;
+    margin-left: auto;
+    align-items: center;
+  }
+
   .locationitem {
     margin: 10px;
     text-align: left;

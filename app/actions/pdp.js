@@ -35,3 +35,4 @@ export function fetchPlaces(searchTerm) {
     .then(json => dispatch(receivePlaces(searchTerm, json)));
   };
 }
+
