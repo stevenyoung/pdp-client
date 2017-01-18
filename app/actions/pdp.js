@@ -28,11 +28,10 @@ export function receivePlaces(query, json) {
 }
 
 export function fetchPlaces(searchTerm) {
-  return function (dispatch ) {
+  return function (dispatch) {
     dispatch(requestPlaces(searchTerm));
     return fetch(`http://localhost:5000/search/${searchTerm}`)
     .then(response => response.json())
     .then(json => dispatch(receivePlaces(searchTerm, json)));
   };
 }
-

@@ -14,10 +14,8 @@ class VisibleMap extends Component {
   }
 
   componentDidMount() {
-    // first time rendering
     const { dispatch, searchTerm } = this.props;
-    console.log('map mounted', searchTerm);
-    // dispatch(fetchPlaces(searchTerm));
+    dispatch(fetchPlaces(searchTerm));
   }
 
   componentWillReceiveProps(nextProps) {
@@ -32,10 +30,8 @@ class VisibleMap extends Component {
     this.setState({ searchTerm: event.target.value });
   }
 
-  handleSearchSubmit(event, query) {
+  handleSearchSubmit() {
     if (this.state.searchTerm) {
-      console.log('search submit', this.state);
-      // this.props.dispatch(setSearchTerm(this.state.searchTerm));
       this.props.dispatch(fetchPlaces(this.state.searchTerm));
     }
   }
@@ -43,17 +39,6 @@ class VisibleMap extends Component {
   updateSearchTerm(query) {
     this.props.dispatch(setSearchTerm(query));
   }
-
-  // handleChange(nextSubreddit) {
-  //   this.props.dispatch(setSearchTerm(nextSubreddit));
-  //   this.props.dispatch(fetchPlaces(nextSubreddit));
-  // }
-
-  // handleRefreshClick(e) {
-  //   e.preventDefault();
-  //   const { dispatch, searchTerm } = this.props;
-  //   dispatch(fetchPlaces(searchTerm));
-  // }
 
   render() {
     const mapboxToken = 'pk.eyJ1Ijoic3RldmVueW91bmciLCJhIjoiY2l3anExbW4zMDAyOTJ0cXhwYnlpNGdmZSJ9.sjA5t0UMpCwyfVzZmzBVow';
@@ -85,7 +70,6 @@ VisibleMap.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  console.log('mapping', state);
   const { searchTerm, places } = state;
   const isFetching = false;
   const placeCollection = places.items;
