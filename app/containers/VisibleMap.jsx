@@ -42,6 +42,7 @@ class VisibleMap extends Component {
 
   render() {
     const mapboxToken = 'pk.eyJ1Ijoic3RldmVueW91bmciLCJhIjoiY2l3anExbW4zMDAyOTJ0cXhwYnlpNGdmZSJ9.sjA5t0UMpCwyfVzZmzBVow';
+    const mapboxTileLayer = 'https://api.mapbox.com/styles/v1/stevenyoung/ciy3lsmea00802srjvyz0f0as/tiles/256/{z}/{x}/{y}';
     return (
       <div className="home">
 
@@ -55,6 +56,7 @@ class VisibleMap extends Component {
           accessToken={mapboxToken}
           placeCollection={this.props.placeCollection}
           searchTerm={this.props.searchTerm}
+          tileLayer={mapboxTileLayer}
         />
       </div>
     );
