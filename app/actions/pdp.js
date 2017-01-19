@@ -30,7 +30,7 @@ export function receivePlaces(query, json) {
 export function fetchPlaces(query) {
   return function (dispatch) {
     dispatch(requestPlaces(query));
-    return fetch(`http://localhost:5000/search/${query.searchTerm}`)
+    return fetch(`http://localhost:5000/search/${query}`)
     .then(response => response.json())
     .then(json => dispatch(receivePlaces(query, json)));
   };

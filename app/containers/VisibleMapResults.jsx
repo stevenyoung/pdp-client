@@ -12,17 +12,7 @@ class VisibleMapResults extends Component {
 
   componentDidMount() {
     const { dispatch, query } = this.props;
-    // dispatch(fetchPlaces(query.searchTerm));
-  }
-
-  componentWillReceiveProps(nextProps) {
-    const { dispatch, query } = nextProps;
-    console.log('next query', nextProps.query.searchTerm);
-    if (nextProps.query.searchTerm !== this.props.query.searchTerm) {
-      // const { dispatch, query } = nextProps;
-      console.log('dispatch fetchPlaces', query);
-      dispatch(fetchPlaces(query));
-    }
+    dispatch(fetchPlaces(query.searchTerm));
   }
 
   render() {
