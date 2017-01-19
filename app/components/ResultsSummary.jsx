@@ -1,23 +1,19 @@
 import React from 'react';
 
-const ResultsSummary = ({ results, searchTerm }) => {
+import LocationLink from './LocationLink';
+
+const ResultsSummary = ({ results, searchTerm, onItemSelect }) => {
   let listNodeContent;
   if (results.length > 0) {
     listNodeContent = (
       <div className="locationlist w-dyn-items" id="locations-list">
         <div className="location-list-items w-dyn-item">
           {results.map((place) =>
-            <div
-              className="locationitem"
+            <LocationLink
+              place={place}
               key={place.id}
-            >
-              <a href="/location" >
-                <span className="location-work-title">{place.scenelocation}</span>
-                &nbsp;<span className="location-work-name">{place.title}</span>
-                &nbsp;by&nbsp;
-                <span className="location-work-artist">{place.author}</span>
-              </a>
-            </div>
+              onClick={onItemSelect}
+            />
             )
           }
         </div>
@@ -31,9 +27,22 @@ const ResultsSummary = ({ results, searchTerm }) => {
     );
   }
 
+  let searchValueView;
+  if (searchTerm && results.length > 0) {
+    searchValueView = (
+      <div className="resultssummary w-dyn-list searchterm">
+        <span>matched {searchTerm}</span>
+      </div>
+    );
+  } else {
+    searchValueView = (
+      <div className="resultssummary w-dyn-list">&nbsp;</div>
+    );
+  }
+
   return (
-    <div>
-      <div className="resultssummary w-dyn-list">?...<em>{searchTerm}</em></div>
+    <div className="w-container">
+      {searchValueView}
       <div className="resultssummary w-dyn-list">{listNodeContent}</div>
     </div>
   );
@@ -41,7 +50,8 @@ const ResultsSummary = ({ results, searchTerm }) => {
 
 ResultsSummary.propTypes = {
   results: React.PropTypes.array,
-  searchTerm: React.PropTypes.string
+  searchTerm: React.PropTypes.string,
+  onItemSelect: React.PropTypes.func
 };
 
 ResultsSummary.defaultProps = {
