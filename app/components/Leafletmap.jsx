@@ -9,15 +9,20 @@ class Leafletmap extends React.Component {
     this.displayMarkerCollection(this.props.places);
   }
 
-  componentDidUpdate() {
-    this.displayMarkerCollection(this.props.places);
+  componentDidUpdate(nextProps) {
+    if (nextProps.places !== this.props.places) {
+      this.displayMarkerCollection(this.props.places);
+    }
   }
 
   initializeLeafletMap() {
     this.map = L.map('leafletmap');
     this.mapTiles = L.tileLayer(
       `${this.props.mapSettings.tileUrl}?access_token=${this.props.mapSettings.accessToken}`,
-      { maxZoom: this.props.mapSettings.maxZoom }
+      {
+        maxZoom: this.props.mapSettings.maxZoom,
+        attribution: '<© Mapbox>'
+      }
     );
   }
 
@@ -26,7 +31,6 @@ class Leafletmap extends React.Component {
   }
 
   displayMarkerCollection(places) {
-    // console.log('display Marker', places);
     places.forEach((place) => {
       const markerLabel = this.popupMarkup(place);
       const markerCoords = {
