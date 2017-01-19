@@ -2,61 +2,41 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import { setSearchTerm, fetchPlaces } from '../actions/pdp';
+
 import ContentSearchInput from '../components/ContentSearchInput';
-import MapContainer from '../components/MapContainer';
+import VisibleMapResults from './VisibleMapResults';
 
 class VisibleMap extends Component {
   constructor(props) {
     super(props);
-    this.state = { searchTerm: props.searchTerm };
+    this.state = { query: props.query };
     this.handleSearchValueUpdate = this.handleSearchValueUpdate.bind(this);
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
   }
 
-  componentDidMount() {
-    const { dispatch, searchTerm } = this.props;
-    dispatch(fetchPlaces(searchTerm));
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.searchTerm !== this.props.searchTerm) {
-      const { dispatch, query } = nextProps;
-      dispatch(fetchPlaces(query));
-    }
-  }
-
   handleSearchValueUpdate(event) {
-    // setState will re-render
-    this.setState({ searchTerm: event.target.value });
+    this.props.dispatch(setSearchTerm(event.target.value));
   }
 
   handleSearchSubmit() {
-    if (this.state.searchTerm) {
-      this.props.dispatch(fetchPlaces(this.state.searchTerm));
-    }
-  }
-
-  updateSearchTerm(query) {
-    this.props.dispatch(setSearchTerm(query));
+    this.props.dispatch(fetchPlaces(this.state.searchTerm));
   }
 
   render() {
     const mapboxToken = 'pk.eyJ1Ijoic3RldmVueW91bmciLCJhIjoiY2l3anExbW4zMDAyOTJ0cXhwYnlpNGdmZSJ9.sjA5t0UMpCwyfVzZmzBVow';
     const mapboxTileLayer = 'https://api.mapbox.com/styles/v1/stevenyoung/ciy3lsmea00802srjvyz0f0as/tiles/256/{z}/{x}/{y}';
     return (
-      <div className="home">
-
+      <div>
         <ContentSearchInput
           placeholder="Place? Movie? Book? Song?"
-          searchValue={this.props.searchTerm}
+          searchValue={this.props.query.searchTerm}
           updateInput={this.handleSearchValueUpdate}
           onUserSubmit={this.handleSearchSubmit}
         />
-        <MapContainer
-          accessToken={mapboxToken}
-          placeCollection={this.props.placeCollection}
-          searchTerm={this.props.searchTerm}
-          tileLayer={mapboxTileLayer}
+        <VisibleMapResults
+          mapboxToken={mapboxToken}
+          mapboxTileLayer={mapboxTileLayer}
+          query={this.props.query}
         />
       </div>
     );
@@ -64,7 +44,7 @@ class VisibleMap extends Component {
 }
 
 VisibleMap.propTypes = {
-  searchTerm: PropTypes.string.isRequired,
+  query: PropTypes.object,
   placeCollection: PropTypes.array.isRequired,
   isFetching: PropTypes.bool.isRequired,
   lastUpdated: PropTypes.number,
@@ -72,11 +52,11 @@ VisibleMap.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  const { searchTerm, places } = state;
+  const { query, places } = state;
   const isFetching = false;
   const placeCollection = places.items;
   return {
-    searchTerm,
+    query,
     placeCollection,
     isFetching
   };
