@@ -20,6 +20,7 @@ const MapContainer = (props) => {
       <ResultsSummary
         results={props.placeCollection}
         searchTerm={props.searchTerm}
+        onItemSelect={props.selectItem}
       />
     </div>
   );
@@ -30,7 +31,8 @@ MapContainer.propTypes = {
   tileLayer: React.PropTypes.string,
   userLocation: React.PropTypes.object,
   placeCollection: React.PropTypes.array,
-  searchTerm: React.PropTypes.string
+  searchTerm: React.PropTypes.string,
+  selectItem: React.PropTypes.func
 };
 
 MapContainer.defaultProps = {
