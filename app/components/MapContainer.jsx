@@ -6,7 +6,7 @@ import ResultsSummary from './ResultsSummary';
 const MapContainer = (props) => {
   const mapSettings = {
     accessToken: props.accessToken,
-    tileUrl: 'https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}',
+    tileUrl: props.tileLayer,
     defaultZoom: 9,
     maxZoom: 18
   };
@@ -27,6 +27,7 @@ const MapContainer = (props) => {
 
 MapContainer.propTypes = {
   accessToken: React.PropTypes.string,
+  tileLayer: React.PropTypes.string,
   userLocation: React.PropTypes.object,
   placeCollection: React.PropTypes.array,
   searchTerm: React.PropTypes.string
