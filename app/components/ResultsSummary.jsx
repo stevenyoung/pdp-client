@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ResultsSummary = ({ results }) => {
+const ResultsSummary = ({ results, searchTerm }) => {
   let listNodeContent;
   if (results.length > 0) {
     listNodeContent = (
@@ -32,8 +32,9 @@ const ResultsSummary = ({ results }) => {
   }
 
   return (
-    <div className="resultssummary w-dyn-list">
-      {listNodeContent}
+    <div>
+      <div className="resultssummary w-dyn-list">?...<em>{searchTerm}</em></div>
+      <div className="resultssummary w-dyn-list">{listNodeContent}</div>
     </div>
   );
 };
