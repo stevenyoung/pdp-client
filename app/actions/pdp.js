@@ -2,14 +2,14 @@ import fetch from 'isomorphic-fetch';
 
 /* action types */
 
-export const SEARCH_TERM = 'SEARCH_TERM';
+export const SET_SEARCH_TERM = 'SET_SEARCH_TERM';
 export const REQUEST_PLACES = 'REQUEST_PLACES';
 export const RECEIVE_PLACES = 'RECEIVE_PLACES';
 
 /* action creators */
 
 export function setSearchTerm(text) {
-  return { type: SEARCH_TERM, text };
+  return { type: SET_SEARCH_TERM, text };
 }
 
 export function requestPlaces(query) {
@@ -27,11 +27,11 @@ export function receivePlaces(query, json) {
   };
 }
 
-export function fetchPlaces(searchTerm) {
+export function fetchPlaces(query) {
   return function (dispatch) {
-    dispatch(requestPlaces(searchTerm));
-    return fetch(`http://localhost:5000/search/${searchTerm}`)
+    dispatch(requestPlaces(query));
+    return fetch(`http://localhost:5000/search/${query.searchTerm}`)
     .then(response => response.json())
-    .then(json => dispatch(receivePlaces(searchTerm, json)));
+    .then(json => dispatch(receivePlaces(query, json)));
   };
 }
