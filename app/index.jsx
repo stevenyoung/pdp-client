@@ -13,7 +13,9 @@ import VisibleMap from './containers/VisibleMap';
 
 
 const initialState = {
-  searchTerm: '',
+  query: {
+    searchTerm: ''
+  },
   places: []
 };
 
