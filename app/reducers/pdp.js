@@ -1,9 +1,11 @@
-import { SEARCH_TERM, REQUEST_PLACES, RECEIVE_PLACES } from '../actions/pdp';
+import { SET_SEARCH_TERM, REQUEST_PLACES, RECEIVE_PLACES } from '../actions/pdp';
 
-export function searchTerm(state = '', action) {
+export function query(state = '', action) {
   switch (action.type) {
-  case SEARCH_TERM:
-    return action.text;
+  case SET_SEARCH_TERM:
+    return Object.assign({}, state, {
+      searchTerm: action.text
+    });
   default:
     return state;
   }
