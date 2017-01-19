@@ -8,12 +8,11 @@ const MobileSearchForm = (props) =>
     >
       <input
         className="mobilesearch w-hidden-main w-hidden-medium w-hidden-small w-input"
-        id="mobile-search-input"
         maxLength="256"
         placeholder={props.placeholder}
+        required="required"
         type="text"
         onChange={props.updateInput}
-        value={props.searchValue}
       />
       <a
         className="searchformsubmit w-button w-hidden-main w-hidden-medium w-hidden-small"
@@ -30,14 +29,12 @@ const SearchForm = (props) =>
         onSubmit={props.submitSearch}
       >
         <input
-          autoFocus="autofocus"
           className="searchforminput w-input"
           maxLength="256"
           placeholder={props.placeholder}
           required="required"
           type="text"
           onChange={props.updateInput}
-          // value={props.searchValue}
         />
         <a
           className="searchformsubmit w-button"
