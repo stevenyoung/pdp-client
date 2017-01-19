@@ -9,7 +9,6 @@ import VisibleMapResults from './VisibleMapResults';
 class VisibleMap extends Component {
   constructor(props) {
     super(props);
-    this.state = { query: props.query };
     this.handleSearchValueUpdate = this.handleSearchValueUpdate.bind(this);
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
   }
@@ -19,7 +18,7 @@ class VisibleMap extends Component {
   }
 
   handleSearchSubmit() {
-    this.props.dispatch(fetchPlaces(this.state.searchTerm));
+    this.props.dispatch(fetchPlaces(this.props.query.searchTerm));
   }
 
   render() {
