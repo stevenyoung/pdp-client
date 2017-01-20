@@ -10,17 +10,17 @@ const MapContainer = (props) => {
     defaultZoom: 9,
     maxZoom: 18
   };
+
   return (
     <div className="mapcontainer">
       <Leafletmap
-        center={props.mapCenter}
+        mapCenter={props.mapCenter}
         places={props.placeCollection}
         mapSettings={mapSettings}
       />
       <ResultsSummary
         results={props.placeCollection}
         searchTerm={props.searchTerm}
-        onItemSelect={props.selectItem}
       />
     </div>
   );
@@ -31,8 +31,8 @@ MapContainer.propTypes = {
   tileLayer: React.PropTypes.string,
   mapCenter: React.PropTypes.object,
   placeCollection: React.PropTypes.array,
-  searchTerm: React.PropTypes.string,
-  selectItem: React.PropTypes.func
+  dispatch: React.PropTypes.func,
+  searchTerm: React.PropTypes.string
 };
 
 export default MapContainer;
