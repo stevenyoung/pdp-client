@@ -63,7 +63,6 @@ ResultsSummary.propTypes = {
   results: React.PropTypes.array,
   searchTerm: React.PropTypes.string,
   onItemSelect: React.PropTypes.func,
-  dispatch: React.PropTypes.func.isRequired
 };
 
 ResultsSummary.defaultProps = {
