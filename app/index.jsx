@@ -9,7 +9,7 @@ import configureStore from './store/configureStore';
 
 import MissingRoute from './components/MissingRoute.jsx';
 
-import VisibleMap from './containers/VisibleMap';
+import InputFilteredMap from './containers/InputFilteredMap';
 
 
 const initialState = {
@@ -24,7 +24,7 @@ const store = configureStore(initialState);
 ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/" components={VisibleMap} />
+      <Route path="/" components={InputFilteredMap} />
       <Route path="*" component={MissingRoute} />
     </Router>
   </Provider>,

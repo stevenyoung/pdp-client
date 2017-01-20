@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import { setSearchTerm, fetchPlaces } from '../actions/pdp';
 
 import ContentSearchInput from '../components/ContentSearchInput';
-import VisibleMapResults from './VisibleMapResults';
+import FilteredMapResults from './FilteredMapResults';
 
-class VisibleMap extends Component {
+class InputFilteredMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -35,7 +35,7 @@ class VisibleMap extends Component {
           updateInput={this.handleSearchValueUpdate}
           onUserSubmit={this.handleSearchSubmit}
         />
-        <VisibleMapResults
+        <FilteredMapResults
           mapboxToken={mapboxToken}
           mapboxTileLayer={mapboxTileLayer}
           query={this.props.query}
@@ -46,7 +46,7 @@ class VisibleMap extends Component {
   }
 }
 
-VisibleMap.propTypes = {
+InputFilteredMap.propTypes = {
   query: PropTypes.object,
   placeCollection: PropTypes.array.isRequired,
   isFetching: PropTypes.bool.isRequired,
@@ -66,8 +66,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-VisibleMap.defaultProps = {
+InputFilteredMap.defaultProps = {
   placeCollection: []
 };
 
-export default connect(mapStateToProps)(VisibleMap);
+export default connect(mapStateToProps)(InputFilteredMap);

@@ -1,13 +1,25 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
+import { updateMapCenter } from '../actions/pdp';
 import MapContainer from '../components/MapContainer';
 
-class VisibleMapResults extends Component {
+class FilteredMapResults extends Component {
   constructor(props) {
     super(props);
     this.state = { query: props.query };
   }
+
+  handleLocationSelect = (location) => {
+    console.log('selected', location, location.lat, location.lng);
+    if (location.lat) {
+      this.props.dispatch(updateMapCenter({
+        lat: location.lat,
+        lng: location.lng
+      }));
+    }
+  };
+
 
   render() {
     const mapboxToken = this.props.mapboxToken;
@@ -22,13 +34,14 @@ class VisibleMapResults extends Component {
           tileLayer={mapboxTileLayer}
           mapCenter={this.props.mapCenter}
           dispatch={this.props.dispatch}
+          handleLocationSelect={this.handleLocationSelect}
         />
       </div>
     );
   }
 }
 
-VisibleMapResults.propTypes = {
+FilteredMapResults.propTypes = {
   mapboxToken: PropTypes.string,
   mapboxTileLayer: PropTypes.string,
   query: PropTypes.object.isRequired,
@@ -50,8 +63,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-VisibleMapResults.defaultProps = {
+FilteredMapResults.defaultProps = {
   placeCollection: []
 };
 
-export default connect(mapStateToProps)(VisibleMapResults);
+export default connect(mapStateToProps)(FilteredMapResults);
