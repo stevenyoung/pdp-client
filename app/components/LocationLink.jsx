@@ -1,26 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-import { updateMapCenter } from '../actions/pdp';
 
 const LocationLink = (props) => {
-  const handleLocationSelect = (location) => {
-    console.log('selected', location);
-    if (location.lat) {
-      props.dispatch(updateMapCenter({
-        lat: location.lat,
-        lng: location.lng
-      }));
-    }
-  };
-
   return (
     <div
       className="locationitem"
       key={props.place.id}
     >
       <Link
-        onClick={handleLocationSelect}
+        onClick={props.onClick}
       >
         <div>
           <span className="location-work-title">{props.place.scenelocation}</span>

@@ -1,8 +1,19 @@
 import React from 'react';
 
+import { updateMapCenter } from '../actions/pdp';
 import LocationLink from './LocationLink';
 
-const ResultsSummary = ({ results, searchTerm, onItemSelect }) => {
+const ResultsSummary = ({ results, searchTerm }) => {
+  const handleLocationSelect = (location) => {
+    console.log('selected', location.lat, location.lng);
+    if (location.lat) {
+      this.props.dispatch(updateMapCenter({
+        lat: location.lat,
+        lng: location.lng
+      }));
+    }
+  };
+
   let listNodeContent;
   if (results.length > 0) {
     listNodeContent = (
@@ -12,6 +23,7 @@ const ResultsSummary = ({ results, searchTerm, onItemSelect }) => {
             <LocationLink
               place={place}
               key={place.id}
+              onClick={handleLocationSelect}
             />
             )
           }
@@ -50,7 +62,8 @@ const ResultsSummary = ({ results, searchTerm, onItemSelect }) => {
 ResultsSummary.propTypes = {
   results: React.PropTypes.array,
   searchTerm: React.PropTypes.string,
-  onItemSelect: React.PropTypes.func
+  onItemSelect: React.PropTypes.func,
+  dispatch: React.PropTypes.func.isRequired
 };
 
 ResultsSummary.defaultProps = {
