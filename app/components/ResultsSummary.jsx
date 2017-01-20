@@ -1,24 +1,17 @@
 import React from 'react';
 
-import { updateMapCenter } from '../actions/pdp';
 import LocationLink from './LocationLink';
+import EmptyLocationList from './EmptyLocationList';
 
-const ResultsSummary = ({ results, searchTerm }) => {
-  const handleLocationSelect = (location) => {
-    console.log('selected', location.lat, location.lng);
-    if (location.lat) {
-      this.props.dispatch(updateMapCenter({
-        lat: location.lat,
-        lng: location.lng
-      }));
-    }
-  };
 
+const ResultsSummary = ({ results, searchTerm, handleLocationSelect }) => {
   let listNodeContent;
   if (results.length > 0) {
     listNodeContent = (
-      <div className="locationlist w-dyn-items" id="locations-list">
-        <div className="location-list-items w-dyn-item">
+      <div
+        className="locationlist"
+      >
+        <div className="location-list-items">
           {results.map((place) =>
             <LocationLink
               place={place}
@@ -31,10 +24,7 @@ const ResultsSummary = ({ results, searchTerm }) => {
       </div>);
   } else {
     listNodeContent = (
-      <div className="locationlist">
-        <div className="emptylocationlist">No items found.</div>
-        <a className="more-locations w-button" href="/nearby">more nearby locations...</a>
-      </div>
+      <EmptyLocationList />
     );
   }
 
@@ -62,7 +52,7 @@ const ResultsSummary = ({ results, searchTerm }) => {
 ResultsSummary.propTypes = {
   results: React.PropTypes.array,
   searchTerm: React.PropTypes.string,
-  onItemSelect: React.PropTypes.func,
+  handleLocationSelect: React.PropTypes.func
 };
 
 ResultsSummary.defaultProps = {
