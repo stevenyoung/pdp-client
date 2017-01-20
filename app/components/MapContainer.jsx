@@ -21,6 +21,8 @@ const MapContainer = (props) => {
       <ResultsSummary
         results={props.placeCollection}
         searchTerm={props.searchTerm}
+        dispatch={props.dispatch}
+        handleLocationSelect={props.handleLocationSelect}
       />
     </div>
   );
@@ -28,11 +30,12 @@ const MapContainer = (props) => {
 
 MapContainer.propTypes = {
   accessToken: React.PropTypes.string,
+  placeCollection: React.PropTypes.array,
+  searchTerm: React.PropTypes.string,
   tileLayer: React.PropTypes.string,
   mapCenter: React.PropTypes.object,
-  placeCollection: React.PropTypes.array,
   dispatch: React.PropTypes.func,
-  searchTerm: React.PropTypes.string
+  handleLocationSelect: React.PropTypes.func
 };
 
 export default MapContainer;
