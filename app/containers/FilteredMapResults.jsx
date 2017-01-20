@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { updateMapCenter } from '../actions/pdp';
 import MapContainer from '../components/MapContainer';
 
 class FilteredMapResults extends Component {
@@ -9,17 +8,6 @@ class FilteredMapResults extends Component {
     super(props);
     this.state = { query: props.query };
   }
-
-  handleLocationSelect = (location) => {
-    console.log('selected', location, location.lat, location.lng);
-    if (location.lat) {
-      this.props.dispatch(updateMapCenter({
-        lat: location.lat,
-        lng: location.lng
-      }));
-    }
-  };
-
 
   render() {
     const mapboxToken = this.props.mapboxToken;
@@ -34,7 +22,7 @@ class FilteredMapResults extends Component {
           tileLayer={mapboxTileLayer}
           mapCenter={this.props.mapCenter}
           dispatch={this.props.dispatch}
-          handleLocationSelect={this.handleLocationSelect}
+          handleLocationSelect={this.props.handleLocationSelect}
         />
       </div>
     );
@@ -49,7 +37,8 @@ FilteredMapResults.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   lastUpdated: PropTypes.number,
   dispatch: PropTypes.func.isRequired,
-  mapCenter: PropTypes.object
+  mapCenter: PropTypes.object,
+  handleLocationSelect: PropTypes.func
 };
 
 const mapStateToProps = (state) => {

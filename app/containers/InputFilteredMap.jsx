@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { setSearchTerm, fetchPlaces } from '../actions/pdp';
+import { setSearchTerm, fetchPlaces, updateMapCenter } from '../actions/pdp';
 
 import ContentSearchInput from '../components/ContentSearchInput';
 import FilteredMapResults from './FilteredMapResults';
@@ -14,6 +14,18 @@ class InputFilteredMap extends Component {
     };
     this.handleSearchValueUpdate = this.handleSearchValueUpdate.bind(this);
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
+    this.handleLocationSelect = this.handleLocationSelect.bind(this);
+  }
+
+
+  handleLocationSelect(location) {
+    console.log('selected', location, location.lat, location.lng);
+    if (location.lat) {
+      this.props.dispatch(updateMapCenter({
+        lat: location.lat,
+        lng: location.lng
+      }));
+    }
   }
 
   handleSearchValueUpdate(event) {
@@ -40,6 +52,7 @@ class InputFilteredMap extends Component {
           mapboxTileLayer={mapboxTileLayer}
           query={this.props.query}
           mapCenter={this.state.mapCenter}
+          handleLocationSelect={this.handleLocationSelect}
         />
       </div>
     );
