@@ -16,7 +16,13 @@ const initialState = {
   query: {
     searchTerm: ''
   },
-  places: []
+  places: [],
+  mapCenter: {
+    place: {
+      lat: 37.749202,
+      lng: -122.41575
+    }
+  }
 };
 
 const store = configureStore(initialState);
