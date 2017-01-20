@@ -79,7 +79,7 @@
   }
 
   .locationlist {
-    height: 640px;
+    height: 20em;
     overflow-y: scroll;
   }
 }
