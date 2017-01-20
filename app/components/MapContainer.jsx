@@ -13,7 +13,7 @@ const MapContainer = (props) => {
   return (
     <div className="mapcontainer">
       <Leafletmap
-        center={props.userLocation}
+        center={props.mapCenter}
         places={props.placeCollection}
         mapSettings={mapSettings}
       />
@@ -29,14 +29,10 @@ const MapContainer = (props) => {
 MapContainer.propTypes = {
   accessToken: React.PropTypes.string,
   tileLayer: React.PropTypes.string,
-  userLocation: React.PropTypes.object,
+  mapCenter: React.PropTypes.object,
   placeCollection: React.PropTypes.array,
   searchTerm: React.PropTypes.string,
   selectItem: React.PropTypes.func
-};
-
-MapContainer.defaultProps = {
-  userLocation: { lat: 37.749202, lng: -122.41575 }
 };
 
 export default MapContainer;
