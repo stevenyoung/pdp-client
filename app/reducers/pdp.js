@@ -35,7 +35,7 @@ export function places(state = {
   }
 }
 
-export function focusMap(state = '', action) {
+export function mapCenter(state = '', action) {
   switch (action.type) {
   case SELECT_LOCATION:
     return Object.assign({}, state, {

@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux';
-import { query, places } from './pdp';
+import { query, places, mapCenter } from './pdp';
 
 const reducers = {
   query,
-  places
+  places,
+  mapCenter
 };
 
 const pdpApp = combineReducers(reducers);
