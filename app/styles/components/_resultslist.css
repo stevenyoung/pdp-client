@@ -1,4 +1,9 @@
 .resultssummary {
+  a {
+    text-decoration: none;
+    cursor: pointer;
+  }
+
   .searchterm {
     padding: 1em;
   }

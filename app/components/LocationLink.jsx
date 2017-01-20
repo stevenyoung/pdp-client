@@ -9,7 +9,6 @@ const LocationLink = (props) => {
       key={props.place.id}
     >
       <Link
-        to={`${url}`}
         onClick={props.onClick}
       >
         <div>
