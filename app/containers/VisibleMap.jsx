@@ -9,6 +9,9 @@ import VisibleMapResults from './VisibleMapResults';
 class VisibleMap extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      mapCenter: { lat: 37.749202, lng: -122.41575 }
+    };
     this.handleSearchValueUpdate = this.handleSearchValueUpdate.bind(this);
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
   }
@@ -36,6 +39,7 @@ class VisibleMap extends Component {
           mapboxToken={mapboxToken}
           mapboxTileLayer={mapboxTileLayer}
           query={this.props.query}
+          mapCenter={this.state.mapCenter}
         />
       </div>
     );
@@ -51,13 +55,14 @@ VisibleMap.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  const { query, places } = state;
+  const { query, places, mapCenter } = state;
   const isFetching = false;
   const placeCollection = places.items;
   return {
     query,
     placeCollection,
-    isFetching
+    isFetching,
+    mapCenter
   };
 };
 
