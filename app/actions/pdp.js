@@ -5,6 +5,7 @@ import fetch from 'isomorphic-fetch';
 export const SET_SEARCH_TERM = 'SET_SEARCH_TERM';
 export const REQUEST_PLACES = 'REQUEST_PLACES';
 export const RECEIVE_PLACES = 'RECEIVE_PLACES';
+export const SELECT_LOCATION = 'SELECT_LOCATION';
 
 /* action creators */
 
@@ -33,5 +34,18 @@ export function fetchPlaces(query) {
     return fetch(`http://localhost:5000/search/${query}`)
     .then(response => response.json())
     .then(json => dispatch(receivePlaces(query, json)));
+  };
+}
+
+export function selectLocationItem(place) {
+  return {
+    type: SELECT_LOCATION,
+    place
+  };
+}
+
+export function updateMapCenter(place) {
+  return (dispatch) => {
+    dispatch(selectLocationItem(place));
   };
 }
