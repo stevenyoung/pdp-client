@@ -12,7 +12,6 @@ const ResultsSummary = ({ results, searchTerm, onItemSelect }) => {
             <LocationLink
               place={place}
               key={place.id}
-              onClick={onItemSelect}
             />
             )
           }
