@@ -1,9 +1,8 @@
 import { combineReducers } from 'redux';
-import { query, searchResults, places } from './pdp';
+import { query, places } from './pdp';
 
 const reducers = {
   query,
-  searchResults,
   places
 };
 
