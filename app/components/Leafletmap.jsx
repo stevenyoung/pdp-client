@@ -5,8 +5,14 @@ class Leafletmap extends React.Component {
   componentDidMount() {
     this.initializeLeafletMap();
     this.mapTiles.addTo(this.map);
-    this.displayMapForCoords(this.props.mapCenter);
+    this.displayMapForCoords(this.props.mapCenter.place);
     this.displayMarkerCollection(this.props.places);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.mapCenter !== this.props.mapCenter) {
+      this.displayMapForCoords(nextProps.mapCenter.place);
+    }
   }
 
   componentDidUpdate(nextProps) {
