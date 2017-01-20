@@ -77,4 +77,10 @@
     cursor: pointer;
     border-radius: 20px;
   }
+
+  .locationlist {
+    height: 640px;
+    overflow-y: scroll;
+  }
 }
+
