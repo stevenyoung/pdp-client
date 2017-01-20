@@ -5,7 +5,7 @@ class Leafletmap extends React.Component {
   componentDidMount() {
     this.initializeLeafletMap();
     this.mapTiles.addTo(this.map);
-    this.displayMapForCoords(this.props.center);
+    this.displayMapForCoords(this.props.mapCenter);
     this.displayMarkerCollection(this.props.places);
   }
 
@@ -69,7 +69,7 @@ class Leafletmap extends React.Component {
 }
 
 Leafletmap.propTypes = {
-  center: React.PropTypes.object,
+  mapCenter: React.PropTypes.object,
   map: React.PropTypes.node,
   mapTiles: React.PropTypes.object,
   places: React.PropTypes.array,
