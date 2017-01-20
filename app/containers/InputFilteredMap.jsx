@@ -9,9 +9,6 @@ import FilteredMapResults from './FilteredMapResults';
 class InputFilteredMap extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      mapCenter: { lat: 37.749202, lng: -122.41575 }
-    };
     this.handleSearchValueUpdate = this.handleSearchValueUpdate.bind(this);
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
     this.handleLocationSelect = this.handleLocationSelect.bind(this);
@@ -19,13 +16,10 @@ class InputFilteredMap extends Component {
 
 
   handleLocationSelect(location) {
-    console.log('selected', location, location.lat, location.lng);
-    if (location.lat) {
-      this.props.dispatch(updateMapCenter({
-        lat: location.lat,
-        lng: location.lng
-      }));
-    }
+    this.props.dispatch(updateMapCenter({
+      lat: location.lat,
+      lng: location.lng
+    }));
   }
 
   handleSearchValueUpdate(event) {
@@ -51,7 +45,7 @@ class InputFilteredMap extends Component {
           mapboxToken={mapboxToken}
           mapboxTileLayer={mapboxTileLayer}
           query={this.props.query}
-          mapCenter={this.state.mapCenter}
+          mapCenter={this.props.mapCenter}
           handleLocationSelect={this.handleLocationSelect}
         />
       </div>
@@ -64,7 +58,8 @@ InputFilteredMap.propTypes = {
   placeCollection: PropTypes.array.isRequired,
   isFetching: PropTypes.bool.isRequired,
   lastUpdated: PropTypes.number,
-  dispatch: PropTypes.func.isRequired
+  dispatch: PropTypes.func.isRequired,
+  mapCenter: PropTypes.object
 };
 
 const mapStateToProps = (state) => {

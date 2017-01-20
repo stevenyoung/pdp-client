@@ -42,12 +42,13 @@ FilteredMapResults.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  const { query, places } = state;
+  const { query, places, mapCenter } = state;
   const isFetching = false;
   const placeCollection = places.items;
   return {
     query,
     placeCollection,
+    mapCenter,
     isFetching
   };
 };
