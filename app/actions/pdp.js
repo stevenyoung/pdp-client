@@ -31,7 +31,7 @@ export function receivePlaces(query, json) {
 export function fetchPlaces(query) {
   return function (dispatch) {
     dispatch(requestPlaces(query));
-    return fetch(`http://localhost:5000/search/${query}`)
+    return fetch(`https://pdp-proto.herokuapp.com/search/${query}`)
     .then(response => response.json())
     .then(json => dispatch(receivePlaces(query, json)));
   };
