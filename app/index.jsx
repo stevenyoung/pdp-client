@@ -5,12 +5,9 @@ import { Router, Route, browserHistory } from 'react-router';
 
 import configureStore from './store/configureStore';
 
-// import HomePage from './components/HomePage.jsx';
-
 import MissingRoute from './components/MissingRoute.jsx';
 
 import InputFilteredMap from './containers/InputFilteredMap';
-
 
 const initialState = {
   query: {

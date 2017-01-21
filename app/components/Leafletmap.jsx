@@ -41,7 +41,7 @@ class Leafletmap extends React.Component {
       const markerLabel = this.popupMarkup(place);
       const markerCoords = {
         lat: place.loc.coordinates[1],
-        lng: place.loc.coordinates[0],
+        lng: place.loc.coordinates[0]
       };
       this.displayMarker(markerCoords, markerLabel);
     });

@@ -14,7 +14,6 @@ class InputFilteredMap extends Component {
     this.handleLocationSelect = this.handleLocationSelect.bind(this);
   }
 
-
   handleLocationSelect(location) {
     this.props.dispatch(updateMapCenter({
       lat: location.lat,

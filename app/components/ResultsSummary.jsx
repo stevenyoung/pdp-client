@@ -3,7 +3,6 @@ import React from 'react';
 import LocationLink from './LocationLink';
 import EmptyLocationList from './EmptyLocationList';
 
-
 const ResultsSummary = ({ results, searchTerm, handleLocationSelect }) => {
   let listNodeContent;
   if (results.length > 0) {
