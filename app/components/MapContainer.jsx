@@ -1,6 +1,7 @@
 import React from 'react';
 
-import Leafletmap from './Leafletmap';
+// import Leafletmap from './Leafletmap';
+import MapboxGLMap from './MapboxGLMap';
 import ResultsSummary from './ResultsSummary';
 
 const MapContainer = (props) => {
@@ -14,7 +15,8 @@ const MapContainer = (props) => {
 
   return (
     <div className="mapcontainer">
-      <Leafletmap
+      <MapboxGLMap
+        accessToken={props.accessToken}
         mapCenter={props.mapCenter}
         places={props.placeCollection}
         mapSettings={mapSettings}
