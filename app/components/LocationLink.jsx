@@ -12,7 +12,7 @@ const LocationLink = (props) => {
         onClick={() => props.onClick(props.place)}
       >
         <div>
-          <span className="location-work-title">{props.place.scenelocation}</span>
+          <span className="location-work-title">{props.place.name}</span>
           &nbsp;
           <span className="location-work-name">{props.place.title}</span>
           &nbsp;by&nbsp;

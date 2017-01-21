@@ -50,7 +50,7 @@ class Leafletmap extends React.Component {
   popupMarkup(place) {
     return (
       `<div class="leafletpopup">
-        <h4>${place.scenelocation}</h4>
+        <h4>${place.name}</h4>
         <em><h4>${place.title}</em> - <em>${place.author}</h4></em>
         <p>${place.scenedescription}</p>
         <p><a href="//${place.url}">${place.attribution}</a></p>
