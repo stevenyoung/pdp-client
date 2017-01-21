@@ -28,7 +28,10 @@ module.exports = {
     style: STYLE
   },
   resolve: {
-    extensions: ['', '.js', '.jsx', '.css']
+    extensions: ['', '.js', '.jsx', '.css'],
+    alias: {
+      'mapbox-gl': path.resolve('./node_modules/mapbox-gl/dist/mapbox-gl.js')
+    }
   },
   output: {
     path: BUILD,
@@ -76,7 +79,8 @@ module.exports = {
     }),
     new StyleLintPlugin({
       files: STYLELINT,
-      syntax: 'scss'
+      syntax: 'scss',
+      formatter: 'string'
     }),
     new BrowserSyncPlugin(
       {
