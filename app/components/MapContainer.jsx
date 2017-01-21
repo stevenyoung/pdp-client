@@ -8,7 +8,8 @@ const MapContainer = (props) => {
     accessToken: props.accessToken,
     tileUrl: props.tileLayer,
     defaultZoom: 9,
-    maxZoom: 18
+    maxZoom: 18,
+    focusZoom: 12
   };
 
   return (

@@ -33,7 +33,7 @@ class Leafletmap extends React.Component {
   }
 
   displayMapForCoords(coords) {
-    this.map.setView([coords.lat, coords.lng], this.props.mapSettings.defaultZoom);
+    this.map.setView([coords.lat, coords.lng], this.props.mapSettings.focusZoom);
   }
 
   displayMarkerCollection(places) {
