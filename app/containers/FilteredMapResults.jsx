@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import MapContainer from '../components/MapContainer';
+import ResultsSummary from '../components/ResultsSummary';
 
 class FilteredMapResults extends Component {
   constructor(props) {
@@ -14,13 +15,19 @@ class FilteredMapResults extends Component {
     const mapboxTileLayer = this.props.mapboxTileLayer;
     const searchTerm = this.props.query.searchTerm;
     return (
-      <div className="home">
+      <div className="resultsmap">
         <MapContainer
           accessToken={mapboxToken}
           placeCollection={this.props.placeCollection}
           searchTerm={searchTerm}
           tileLayer={mapboxTileLayer}
           mapCenter={this.props.mapCenter}
+          dispatch={this.props.dispatch}
+          handleLocationSelect={this.props.handleLocationSelect}
+        />
+        <ResultsSummary
+          results={this.props.placeCollection}
+          searchTerm={this.props.query.searchTerm}
           dispatch={this.props.dispatch}
           handleLocationSelect={this.props.handleLocationSelect}
         />

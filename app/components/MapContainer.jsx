@@ -21,12 +21,6 @@ const MapContainer = (props) => {
         places={props.placeCollection}
         mapSettings={mapSettings}
       />
-      <ResultsSummary
-        results={props.placeCollection}
-        searchTerm={props.searchTerm}
-        dispatch={props.dispatch}
-        handleLocationSelect={props.handleLocationSelect}
-      />
     </div>
   );
 };
