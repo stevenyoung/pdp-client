@@ -44,21 +44,72 @@ class MapboxGLMap extends React.Component {
     this.addControls();
   }
 
+  jitter() {
+    return (Math.random() - 0.5) * 0.02 * this.map.getZoom();
+  }
+
   flyToCoords(coords) {
-    this.map.jumpTo({ center: [coords.lng, coords.lat] });
+    const nearbyCoords = {
+      center: [
+        coords.lng + this.jitter(),
+        coords.lat + this.jitter()
+      ]
+    };
+    this.map.jumpTo(nearbyCoords);
+    this.map.flyTo({ center: [coords.lng, coords.lat] });
   }
 
   addControls() {
-    this.map.addControl(new mapboxgl.NavigationControl(), 'top-left');
-    this.map.addControl((new mapboxgl.AttributionControl({
-        compact: true
-    })), 'top-left');
+    return true;
+    // this.map.addControl(new mapboxgl.GeolocateControl());
+    // this.map.addControl(new mapboxgl.NavigationControl(), 'top-left');
+    // this.map.addControl((new mapboxgl.AttributionControl({
+    //     compact: true
+    // })), 'bottom-left');
   }
 
-  markerEl() {
-    return (
-      <div className="mbglmarker" />
-    );
+  addPopup(coords, place) {
+    const popup = new mapboxgl.Popup();
+    popup.setLngLat([coords.lng, coords.lat]);
+    const markup =
+      `<div>
+        <h6>${place.name}</h6>
+        <em><h6>${place.title}</em> - <em>${place.author}</h6></em>
+        <p>${place.scenedescription}</p>
+        <p><a href="//${place.url}">${place.attribution}</a></p>
+      </div>`;
+    popup.setHTML(markup);
+    popup.addTo(this.map);
+  }
+
+  addIcon(coords, place) {
+    const layerId = `icon-layer-${place.id}`;
+    const layer = {
+      id: layerId,
+      source: place.id,
+      type: 'symbol',
+      layout: {
+        'icon-image': 'library-15',
+        'icon-padding': 0,
+        'icon-allow-overlap': true
+      }
+    };
+    this.map.addLayer(layer);
+  }
+
+  addCircleMarker(coords, place, color = '#000') {
+    const layerId = `circle-layer-${place.id}`;
+    const layer = {
+      id: layerId,
+      source: place.id,
+      type: 'circle',
+      paint: {
+        'circle-radius': 15,
+        'circle-color': color,
+        'circle-opacity': 0.3
+      }
+    };
+    this.map.addLayer(layer);
   }
 
   displayMarkerCollection(places) {
@@ -67,7 +118,17 @@ class MapboxGLMap extends React.Component {
         lat: place.loc.coordinates[1],
         lng: place.loc.coordinates[0]
       };
-      this.displayMarker(markerCoords, place.id);
+      this.map.addSource(place.id, {
+        type: 'geojson',
+        data:
+        {
+          type: 'Point',
+          coordinates: [markerCoords.lng, markerCoords.lat]
+        }
+      });
+      this.addCircleMarker(markerCoords, place);
+      this.addIcon(markerCoords, place);
+      // this.addPopup(markerCoords, place);
     });
   }
 

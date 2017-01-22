@@ -1,8 +1,6 @@
 import React from 'react';
 
-// import Leafletmap from './Leafletmap';
 import MapboxGLMap from './MapboxGLMap';
-import ResultsSummary from './ResultsSummary';
 
 const MapContainer = (props) => {
   const mapSettings = {
