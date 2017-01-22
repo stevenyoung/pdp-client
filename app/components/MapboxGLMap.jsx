@@ -14,7 +14,7 @@ class MapboxGLMap extends React.Component {
     super(props);
     this.mapOptions = {
       container: mapElem,
-      style: 'mapbox://styles/mapbox/streets-v9',
+      style: 'mapbox://styles/mapbox/light-v9',
       center: [this.props.mapCenter.place.lng, this.props.mapCenter.place.lat],
       attributionControl: false,
       zoom: 11,
