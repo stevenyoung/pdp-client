@@ -2,7 +2,8 @@ import {
   SET_SEARCH_TERM,
   REQUEST_PLACES,
   RECEIVE_PLACES,
-  SELECT_LOCATION
+  SELECT_LOCATION,
+  DISPLAY_PLACE
 } from '../actions/pdp';
 
 export function query(state = '', action) {
@@ -38,6 +39,17 @@ export function places(state = {
 export function mapCenter(state = '', action) {
   switch (action.type) {
   case SELECT_LOCATION:
+    return Object.assign({}, state, {
+      place: action.place
+    });
+  default:
+    return state;
+  }
+}
+
+export function displayPlace(state = {}, action) {
+  switch (action.type) {
+  case DISPLAY_PLACE:
     return Object.assign({}, state, {
       place: action.place
     });
