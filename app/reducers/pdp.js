@@ -3,7 +3,8 @@ import {
   REQUEST_PLACES,
   RECEIVE_PLACES,
   SELECT_LOCATION,
-  DISPLAY_PLACE
+  DISPLAY_PLACE,
+  GET_DEVICE_LOCATION
 } from '../actions/pdp';
 
 export function query(state = '', action) {
@@ -52,6 +53,17 @@ export function displayPlace(state = {}, action) {
   case DISPLAY_PLACE:
     return Object.assign({}, state, {
       place: action.place
+    });
+  default:
+    return state;
+  }
+}
+
+export function updateLocation(state = {}, action) {
+  switch (action.type) {
+  case GET_DEVICE_LOCATION:
+    return Object.assign({}, state, {
+      userPosition: action.position
     });
   default:
     return state;
