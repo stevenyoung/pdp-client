@@ -38,27 +38,8 @@ class InputFilteredMap extends Component {
 
 InputFilteredMap.propTypes = {
   query: PropTypes.object,
-  placeCollection: PropTypes.array.isRequired,
-  isFetching: PropTypes.bool.isRequired,
-  lastUpdated: PropTypes.number,
   dispatch: PropTypes.func.isRequired,
   mapCenter: PropTypes.object
 };
 
-const mapStateToProps = (state) => {
-  const { query, places, mapCenter } = state;
-  const isFetching = false;
-  const placeCollection = places.items;
-  return {
-    query,
-    placeCollection,
-    isFetching,
-    mapCenter
-  };
-};
-
-InputFilteredMap.defaultProps = {
-  placeCollection: []
-};
-
-export default connect(mapStateToProps)(InputFilteredMap);
+export default connect()(InputFilteredMap);
