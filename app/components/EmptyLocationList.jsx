@@ -1,10 +1,11 @@
 import React from 'react';
+import GeolocationButton from './GeolocationButton';
 
 const EmptyLocationList = () =>
   (
     <div className="locationlist">
       <div className="emptylocationlist">No items found.</div>
-      <a className="more-locations w-button" href="/nearby">more nearby locations...</a>
+      <GeolocationButton />
     </div>
   );
 
