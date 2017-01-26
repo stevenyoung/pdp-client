@@ -1,0 +1,14 @@
+.placeinfo {
+  max-height: 5em;
+  max-width: 48em;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0.5em;
+  text-align: left;
+
+  span {
+    font-weight: normal;
+    font-size: $normal-font-size;
+    line-height: $normal-line-height;
+  }
+}

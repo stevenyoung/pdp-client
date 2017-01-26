@@ -1,4 +1,3 @@
-@import 'styles/base/mixins';
 @import 'styles/base/variables';
 @import 'styles/theme';
 @import 'styles/base';
@@ -10,3 +9,4 @@
 @import 'styles/containers/grid';
 @import 'styles/navigation';
 @import 'styles/wrapper';
+@import 'styles/components/placeinfo';
