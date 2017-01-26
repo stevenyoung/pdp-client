@@ -7,6 +7,7 @@ export const REQUEST_PLACES = 'REQUEST_PLACES';
 export const RECEIVE_PLACES = 'RECEIVE_PLACES';
 export const SELECT_LOCATION = 'SELECT_LOCATION';
 export const DISPLAY_PLACE = 'DISPLAY_PLACE';
+export const GET_DEVICE_LOCATION = 'GET_DEVICE_LOCATION';
 
 /* action creators */
 
@@ -62,5 +63,25 @@ export function displayPlace(place) {
 export function updateDisplayedPlace(place) {
   return (dispatch) => {
     dispatch(displayPlace(place));
+  };
+}
+
+export function updateDeviceLocation(position) {
+  return {
+    type: GET_DEVICE_LOCATION,
+    position
+  };
+}
+
+export function fetchPlacesByLocation(position) {
+  const lat = position.lat;
+  const lng = position.lng;
+  const query = { searchTerm: '' };
+  return function (dispatch) {
+    dispatch(updateDeviceLocation(position));
+    return fetch(`//localhost:5000/places/near/${lng}/${lat}`)
+    .then(response => response.json())
+    .then(json => dispatch(receivePlaces(query, json)))
+    .catch(err => (console.log('error: ', err)));
   };
 }
