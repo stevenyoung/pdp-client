@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { setSearchTerm, fetchPlaces } from '../actions/pdp';
 
 import ContentSearchInput from '../components/ContentSearchInput';
+import PlaceInfo from '../components/PlaceInfo';
 
 class Home extends React.Component {
   constructor(props) {
@@ -29,6 +30,7 @@ class Home extends React.Component {
           updateInput={this.handleSearchValueUpdate}
           onUserSubmit={this.handleSearchSubmit}
         />
+        <PlaceInfo selected={this.props.displayPlace} />
         <div className="maincontent">{this.props.children}</div>
       </div>
     );
@@ -41,7 +43,8 @@ Home.propTypes = {
   placeCollection: React.PropTypes.array.isRequired,
   isFetching: React.PropTypes.bool.isRequired,
   dispatch: React.PropTypes.func.isRequired,
-  mapCenter: React.PropTypes.object
+  mapCenter: React.PropTypes.object,
+  displayPlace: React.PropTypes.object
 };
 
 Home.defaultProps = {
