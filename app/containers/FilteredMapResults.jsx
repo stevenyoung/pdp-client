@@ -7,7 +7,10 @@ import ResultsSummary from '../components/ResultsSummary';
 class FilteredMapResults extends Component {
   constructor(props) {
     super(props);
-    this.state = { query: props.query };
+    this.state = {
+      query: props.query,
+      displayPlace: props.displayPlace
+    };
   }
 
   render() {
@@ -42,10 +45,10 @@ FilteredMapResults.propTypes = {
   query: PropTypes.object.isRequired,
   placeCollection: PropTypes.array.isRequired,
   isFetching: PropTypes.bool.isRequired,
-  lastUpdated: PropTypes.number,
   dispatch: PropTypes.func.isRequired,
   mapCenter: PropTypes.object,
-  handleLocationSelect: PropTypes.func
+  handleLocationSelect: PropTypes.func,
+  displayPlace: PropTypes.object
 };
 
 const mapStateToProps = (state) => {
