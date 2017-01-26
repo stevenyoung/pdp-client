@@ -1,16 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { setSearchTerm, fetchPlaces, updateMapCenter } from '../actions/pdp';
+import { updateMapCenter, updateDisplayedPlace } from '../actions/pdp';
 
-import ContentSearchInput from '../components/ContentSearchInput';
 import FilteredMapResults from './FilteredMapResults';
 
 class InputFilteredMap extends Component {
   constructor(props) {
     super(props);
-    this.handleSearchValueUpdate = this.handleSearchValueUpdate.bind(this);
-    this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
     this.handleLocationSelect = this.handleLocationSelect.bind(this);
   }
 
@@ -19,14 +16,7 @@ class InputFilteredMap extends Component {
       lat: location.lat,
       lng: location.lng
     }));
-  }
-
-  handleSearchValueUpdate(event) {
-    this.props.dispatch(setSearchTerm(event.target.value));
-  }
-
-  handleSearchSubmit() {
-    this.props.dispatch(fetchPlaces(this.props.query.searchTerm));
+    this.props.dispatch(updateDisplayedPlace(location));
   }
 
   render() {
@@ -34,12 +24,6 @@ class InputFilteredMap extends Component {
     const mapboxTileLayer = 'https://api.mapbox.com/styles/v1/stevenyoung/ciy3lsmea00802srjvyz0f0as/tiles/256/{z}/{x}/{y}';
     return (
       <div>
-        <ContentSearchInput
-          placeholder="Place? Movie? Book? Song?"
-          searchValue={this.props.query.searchTerm}
-          updateInput={this.handleSearchValueUpdate}
-          onUserSubmit={this.handleSearchSubmit}
-        />
         <FilteredMapResults
           mapboxToken={mapboxToken}
           mapboxTileLayer={mapboxTileLayer}
