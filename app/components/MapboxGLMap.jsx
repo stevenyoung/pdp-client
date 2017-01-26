@@ -20,6 +20,7 @@ class MapboxGLMap extends React.Component {
       zoom: 11,
       pitch: 30
     };
+    this.sourceIds = [];
   }
 
   componentDidMount() {
@@ -68,20 +69,6 @@ class MapboxGLMap extends React.Component {
     // })), 'bottom-left');
   }
 
-  addPopup(coords, place) {
-    const popup = new mapboxgl.Popup();
-    popup.setLngLat([coords.lng, coords.lat]);
-    const markup =
-      `<div>
-        <h6>${place.name}</h6>
-        <em><h6>${place.title}</em> - <em>${place.author}</h6></em>
-        <p>${place.scenedescription}</p>
-        <p><a href="//${place.url}">${place.attribution}</a></p>
-      </div>`;
-    popup.setHTML(markup);
-    popup.addTo(this.map);
-  }
-
   addIcon(coords, place) {
     const layerId = `icon-layer-${place.id}`;
     const layer = {
@@ -114,21 +101,23 @@ class MapboxGLMap extends React.Component {
 
   displayMarkerCollection(places) {
     places.forEach((place) => {
-      const markerCoords = {
-        lat: place.loc.coordinates[1],
-        lng: place.loc.coordinates[0]
-      };
-      this.map.addSource(place.id, {
-        type: 'geojson',
-        data:
-        {
-          type: 'Point',
-          coordinates: [markerCoords.lng, markerCoords.lat]
-        }
-      });
-      this.addCircleMarker(markerCoords, place);
-      this.addIcon(markerCoords, place);
-      // this.addPopup(markerCoords, place);
+      if (this.sourceIds.indexOf(place.id) === -1) {
+        this.sourceIds.push(place.id);
+        const markerCoords = {
+          lat: place.loc.coordinates[1],
+          lng: place.loc.coordinates[0]
+        };
+        this.map.addSource(place.id, {
+          type: 'geojson',
+          data:
+          {
+            type: 'Point',
+            coordinates: [markerCoords.lng, markerCoords.lat]
+          }
+        });
+        this.addCircleMarker(markerCoords, place);
+        this.addIcon(markerCoords, place);
+      }
     });
   }
 
