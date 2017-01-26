@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router';
 
+import { connect } from 'react-redux';
+
 const LocationLink = (props) =>
 (
   <div
@@ -27,4 +29,4 @@ LocationLink.propTypes = {
   dispatch: React.PropTypes.func
 };
 
-export default LocationLink;
+export default connect()(LocationLink);
