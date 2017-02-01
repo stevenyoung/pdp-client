@@ -4,14 +4,17 @@ import createLogger from 'redux-logger';
 import pdpApp from '../reducers/pdpApp';
 
 const loggerMiddleware = createLogger();
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export default function configureStore(preloadedState) {
   return createStore(
     pdpApp,
     preloadedState,
-    applyMiddleware(
-      thunkMiddleware,
-      loggerMiddleware
+    composeEnhancers(
+      applyMiddleware(
+        thunkMiddleware,
+        loggerMiddleware
+      )
     )
   );
 }
