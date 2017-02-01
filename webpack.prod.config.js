@@ -25,7 +25,10 @@ module.exports = {
     vendor: PACKAGE
   },
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['', '.js', '.jsx'],
+    alias: {
+      'mapbox-gl': path.resolve('./node_modules/mapbox-gl/dist/mapbox-gl.js')
+    }
   },
   output: {
     path: BUILD,
