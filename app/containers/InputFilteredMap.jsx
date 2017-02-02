@@ -6,12 +6,7 @@ import { updateMapCenter, updateDisplayedPlace } from '../actions/pdp';
 import FilteredMapResults from './FilteredMapResults';
 
 class InputFilteredMap extends Component {
-  constructor(props) {
-    super(props);
-    this.handleLocationSelect = this.handleLocationSelect.bind(this);
-  }
-
-  handleLocationSelect(location) {
+  handleLocationSelect = (location) => {
     this.props.dispatch(updateMapCenter({
       lat: location.lat,
       lng: location.lng
