@@ -10,19 +10,6 @@ class MapboxGLMap extends React.Component {
     places: React.PropTypes.array
   }
 
-  constructor(props) {
-    super(props);
-    this.mapOptions = {
-      container: mapElem,
-      style: 'mapbox://styles/mapbox/light-v9',
-      center: [this.props.mapCenter.place.lng, this.props.mapCenter.place.lat],
-      attributionControl: false,
-      zoom: 11,
-      pitch: 30
-    };
-    this.sourceIds = [];
-  }
-
   componentDidMount() {
     mapboxgl.accessToken = this.props.accessToken;
     this.initializeMap();
@@ -39,6 +26,15 @@ class MapboxGLMap extends React.Component {
       this.displayMarkerCollection(this.props.places);
     }
   }
+
+  mapOptions = {
+    container: mapElem,
+    style: 'mapbox://styles/mapbox/light-v9',
+    center: [this.props.mapCenter.place.lng, this.props.mapCenter.place.lat],
+    attributionControl: false,
+    zoom: 11,
+    pitch: 30
+  };
 
   initializeMap() {
     this.map = new mapboxgl.Map(this.mapOptions);
@@ -101,23 +97,20 @@ class MapboxGLMap extends React.Component {
 
   displayMarkerCollection(places) {
     places.forEach((place) => {
-      if (this.sourceIds.indexOf(place.id) === -1) {
-        this.sourceIds.push(place.id);
-        const markerCoords = {
-          lat: place.loc.coordinates[1],
-          lng: place.loc.coordinates[0]
-        };
-        this.map.addSource(place.id, {
-          type: 'geojson',
-          data:
-          {
-            type: 'Point',
-            coordinates: [markerCoords.lng, markerCoords.lat]
-          }
-        });
-        this.addCircleMarker(markerCoords, place);
-        this.addIcon(markerCoords, place);
-      }
+      const markerCoords = {
+        lat: place.loc.coordinates[1],
+        lng: place.loc.coordinates[0]
+      };
+      this.map.addSource(place.id, {
+        type: 'geojson',
+        data:
+        {
+          type: 'Point',
+          coordinates: [markerCoords.lng, markerCoords.lat]
+        }
+      });
+      this.addCircleMarker(markerCoords, place);
+      this.addIcon(markerCoords, place);
     });
   }
 
