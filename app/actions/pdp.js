@@ -1,5 +1,3 @@
-import fetch from 'isomorphic-fetch';
-
 /* action types */
 
 export const SET_SEARCH_TERM = 'SET_SEARCH_TERM';
@@ -10,6 +8,8 @@ export const DISPLAY_PLACE = 'DISPLAY_PLACE';
 export const GET_DEVICE_LOCATION = 'GET_DEVICE_LOCATION';
 
 /* action creators */
+
+const apiServer = '//localhost:8000';
 
 export function setSearchTerm(text) {
   return { type: SET_SEARCH_TERM, text };
@@ -33,10 +33,9 @@ export function receivePlaces(query, json) {
 export function fetchPlaces(query) {
   return function (dispatch) {
     dispatch(requestPlaces(query));
-    return fetch(`//localhost:5000/search/${query}`)
+    return fetch(`${apiServer}/search/${query}`)
     .then(response => response.json())
-    .then(json => dispatch(receivePlaces(query, json)))
-    .catch(err => (console.log('error: ', err)));
+    .then(json => dispatch(receivePlaces(query, json)));
   };
 }
 
@@ -79,7 +78,7 @@ export function fetchPlacesByLocation(position) {
   const query = { searchTerm: '' };
   return function (dispatch) {
     dispatch(updateDeviceLocation(position));
-    return fetch(`//localhost:5000/places/near/${lng}/${lat}`)
+    return fetch(`${apiServer}/places/near/${lng}/${lat}`)
     .then(response => response.json())
     .then(json => dispatch(receivePlaces(query, json)))
     .catch(err => (console.log('error: ', err)));
