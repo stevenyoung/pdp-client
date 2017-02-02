@@ -18,14 +18,14 @@
   margin-right: auto;
   max-width: 940px;
   min-width: 90%;
-  height: 26em;
+  height: 20em;
 
   #mgblmap {
-    min-height: 26em;
+    min-height: 20em;
   }
 
   canvas.mapboxgl-canvas {
     position: relative !important;
-    min-height: 26em !important;
+    min-height: 20em !important;
   }
 }

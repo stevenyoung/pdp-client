@@ -2,6 +2,7 @@
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 1em;
 }
 
 .resultssummary {
@@ -11,7 +12,9 @@
   }
 
   .searchterm {
-    padding: 1em;
+    span {
+      padding: 1em;
+    }
   }
 
   .emptylocationlist,

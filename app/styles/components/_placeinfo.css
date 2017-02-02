@@ -1,14 +1,27 @@
 .placeinfo {
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 6em;
+  left: 5em;
+  z-index: 1;
   max-height: 5em;
-  max-width: 48em;
+  max-width: 40em;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 0.5em;
   text-align: left;
+  padding: 0.75em;
+  overflow-y: scroll;
 
   span {
     font-weight: normal;
     font-size: $normal-font-size;
     line-height: $normal-line-height;
+  }
+
+  @media (max-width: 470px) {
+    left: 0;
+    top: 8em;
   }
 }
