@@ -30,15 +30,6 @@ export function receivePlaces(query, json) {
   };
 }
 
-export function fetchPlaces(query) {
-  return function (dispatch) {
-    dispatch(requestPlaces(query));
-    return fetch(`${apiServer}/search/${query}`)
-    .then(response => response.json())
-    .then(json => dispatch(receivePlaces(query, json)));
-  };
-}
-
 export function centerMapCoords(place) {
   return {
     type: SELECT_LOCATION,
@@ -69,6 +60,15 @@ export function updateDeviceLocation(position) {
   return {
     type: GET_DEVICE_LOCATION,
     position
+  };
+}
+
+export function fetchPlacesByQuery(query) {
+  return function (dispatch) {
+    dispatch(requestPlaces(query));
+    return fetch(`${apiServer}/search/${query}`)
+    .then(response => response.json())
+    .then(json => dispatch(receivePlaces(query, json)));
   };
 }
 
