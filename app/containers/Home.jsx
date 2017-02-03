@@ -1,24 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { setSearchTerm, fetchPlaces } from '../actions/pdp';
+import { setSearchTerm, fetchPlacesByQuery } from '../actions/pdp';
 
 import ContentSearchInput from '../components/ContentSearchInput';
 import PlaceInfo from '../components/PlaceInfo';
 
 class Home extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleSearchValueUpdate = this.handleSearchValueUpdate.bind(this);
-    this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
-  }
-
-  handleSearchValueUpdate(event) {
+  handleSearchValueUpdate = (event) => {
     this.props.dispatch(setSearchTerm(event.target.value));
   }
 
-  handleSearchSubmit() {
-    this.props.dispatch(fetchPlaces(this.props.query.searchTerm));
+  handleSearchSubmit = () => {
+    this.props.dispatch(fetchPlacesByQuery(this.props.query.searchTerm));
   }
 
   render() {
