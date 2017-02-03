@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { updateMapCenter, updateDisplayedPlace } from '../actions/pdp';
 
-import FilteredMapResults from './FilteredMapResults';
+import FilteredMapResults from '../components/FilteredMapResults';
 
 class InputFilteredMap extends Component {
   handleLocationSelect = (location) => {
