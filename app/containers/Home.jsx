@@ -11,6 +11,12 @@ class Home extends React.Component {
     this.props.dispatch(setSearchTerm(event.target.value));
   }
 
+  handleKeyboardSubmit = (event) => {
+    if (event.nativeEvent.code === 'Enter') {
+      this.handleSearchSubmit();
+    }
+  }
+
   handleSearchSubmit = () => {
     this.props.dispatch(fetchPlacesByQuery(this.props.query.searchTerm));
   }
@@ -23,6 +29,7 @@ class Home extends React.Component {
           searchValue={this.props.query.searchTerm}
           updateInput={this.handleSearchValueUpdate}
           onUserSubmit={this.handleSearchSubmit}
+          onKeyboardEnter={this.handleKeyboardSubmit}
         />
         <PlaceInfo selected={this.props.displayPlace} />
         <div className="maincontent">{this.props.children}</div>
