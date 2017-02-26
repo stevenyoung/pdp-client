@@ -2,9 +2,8 @@ import React from 'react';
 
 const MobileSearchForm = (props) =>
   (
-    <form
+    <div
       className="mobilesearchform"
-      onSubmit={props.submitSearch}
     >
       <input
         className="mobilesearch w-hidden-main w-hidden-medium w-hidden-small w-input"
@@ -18,15 +17,14 @@ const MobileSearchForm = (props) =>
         className="searchformsubmit w-button w-hidden-main w-hidden-medium w-hidden-small"
         onClick={props.submitSearch}
       >Go</a>
-    </form>
+    </div>
   );
 
 const SearchForm = (props) =>
   (
     <div className="logosearchformwrapper w-form">
-      <form
+      <div
         className="searchform"
-        onSubmit={props.submitSearch}
       >
         <input
           className="searchforminput w-input"
@@ -35,12 +33,13 @@ const SearchForm = (props) =>
           required="required"
           type="text"
           onChange={props.updateInput}
+          onKeyUp={props.onKeyboardEnter}
         />
         <a
           className="searchformsubmit w-button"
           onClick={props.submitSearch}
         >Go</a>
-      </form>
+      </div>
     </div>
   );
 
@@ -48,14 +47,16 @@ MobileSearchForm.propTypes = {
   placeholder: React.PropTypes.string,
   searchValue: React.PropTypes.string,
   submitSearch: React.PropTypes.func,
-  updateInput: React.PropTypes.func
+  updateInput: React.PropTypes.func,
+  onKeyboardEnter: React.PropTypes.func
 };
 
 SearchForm.propTypes = {
   placeholder: React.PropTypes.string,
   searchValue: React.PropTypes.string,
   submitSearch: React.PropTypes.func,
-  updateInput: React.PropTypes.func
+  updateInput: React.PropTypes.func,
+  onKeyboardEnter: React.PropTypes.func
 };
 
 export { SearchForm, MobileSearchForm };
