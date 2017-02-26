@@ -11,6 +11,7 @@ const ContentSearchInput = (props) => {
         searchValue={props.searchValue}
         submitSearch={props.onUserSubmit}
         updateInput={props.updateInput}
+        onKeyboardEnter={props.onKeyboardEnter}
       />
       <div className="logosearchcontainer w-container">
         <div className="app-title">
@@ -21,6 +22,7 @@ const ContentSearchInput = (props) => {
           searchValue={props.searchValue}
           submitSearch={props.onUserSubmit}
           updateInput={props.updateInput}
+          onKeyboardEnter={props.onKeyboardEnter}
         />
       </div>
     </div>
@@ -31,7 +33,8 @@ ContentSearchInput.propTypes = {
   placeholder: React.PropTypes.string,
   searchValue: React.PropTypes.string,
   onUserSubmit: React.PropTypes.func,
-  updateInput: React.PropTypes.func
+  updateInput: React.PropTypes.func,
+  onKeyboardEnter: React.PropTypes.func
 };
 
 export default ContentSearchInput;
