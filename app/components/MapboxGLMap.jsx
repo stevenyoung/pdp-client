@@ -36,6 +36,8 @@ class MapboxGLMap extends React.Component {
     pitch: 30
   };
 
+  markerIds = []
+
   initializeMap() {
     this.map = new mapboxgl.Map(this.mapOptions);
     this.addControls();
@@ -101,16 +103,19 @@ class MapboxGLMap extends React.Component {
         lat: place.loc.coordinates[1],
         lng: place.loc.coordinates[0]
       };
-      this.map.addSource(place.id, {
-        type: 'geojson',
-        data:
-        {
-          type: 'Point',
-          coordinates: [markerCoords.lng, markerCoords.lat]
-        }
-      });
-      this.addCircleMarker(markerCoords, place);
-      this.addIcon(markerCoords, place);
+      if (this.markerIds.indexOf(place.id) < 0) {
+        this.map.addSource(place.id, {
+          type: 'geojson',
+          data:
+          {
+            type: 'Point',
+            coordinates: [markerCoords.lng, markerCoords.lat]
+          }
+        });
+        this.addCircleMarker(markerCoords, place);
+        this.addIcon(markerCoords, place);
+        this.markerIds.push(place.id);
+      }
     });
   }
 
