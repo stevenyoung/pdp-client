@@ -16,11 +16,11 @@ describe('<Leafletmap />', () => {
     const wrapper = render(<Leafletmap />);
     expect(wrapper.mapTiles);
   });
-  it('calls componentDidMount');  // , () => {
-    // sinon.spy(Leafletmap.prototype, 'componentDidMount');
+  it('calls componentDidMount', () => {
+    sinon.spy(Leafletmap.prototype, 'componentDidMount');
     // const wrapper = mount(<Leafletmap />);
-    // expect(Leafletmap.prototype.componentDidMount.calledOnce).to.equal(true);
-  // });
+    expect(Leafletmap.prototype.componentDidMount.calledOnce).to.equal(true);
+  });
   it('will update view to lat, lng');
   it('will display a marker at lat, lng with a message');
   it('<render> should display markers given a list of places');
