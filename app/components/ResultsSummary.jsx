@@ -41,9 +41,9 @@ const ResultsSummary = ({ results, searchTerm, handleLocationSelect }) => {
   }
 
   return (
-    <div className="w-container listcontainer">
+    <div className="resultssummary w-container listcontainer">
       {searchValueView}
-      <div className="resultssummary w-dyn-list">{listNodeContent}</div>
+      <div className="w-dyn-list">{listNodeContent}</div>
     </div>
   );
 };
