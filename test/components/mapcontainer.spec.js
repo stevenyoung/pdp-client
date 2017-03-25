@@ -6,8 +6,8 @@ import { shallow, mount } from 'enzyme';
 
 // import MapContainer from '../../app/components/MapContainer';
 
-import Leafletmap from '../../app/components/Leafletmap';
-import ResultsSummary from '../../app/components/ResultsSummary';
+// import Leafletmap from '../../app/components/Leafletmap';
+// import ResultsSummary from '../../app/components/ResultsSummary';
 
 describe('<MapContainer />', () => {
   it('should render one map container node', () => {
