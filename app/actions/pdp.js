@@ -1,6 +1,7 @@
 /* action types */
 
 export const SET_SEARCH_TERM = 'SET_SEARCH_TERM';
+export const UPDATE_QUERY_LIST = 'UPDATE_QUERY_LIST';
 export const REQUEST_PLACES = 'REQUEST_PLACES';
 export const RECEIVE_PLACES = 'RECEIVE_PLACES';
 export const SELECT_LOCATION = 'SELECT_LOCATION';
@@ -10,6 +11,7 @@ export const GET_DEVICE_LOCATION = 'GET_DEVICE_LOCATION';
 /* action creators */
 
 const apiServer = '//localhost:8000';
+// const apiServer = '';
 
 export function setSearchTerm(text) {
   return { type: SET_SEARCH_TERM, text };
@@ -19,6 +21,14 @@ export function requestPlaces(query) {
   return {
     type: REQUEST_PLACES,
     query
+  };
+}
+
+export function updateQueryList(text, previousQueries) {
+  previousQueries.terms.push(text);
+  return {
+    type: UPDATE_QUERY_LIST,
+    terms: previousQueries.terms
   };
 }
 
@@ -64,7 +74,7 @@ export function updateDeviceLocation(position) {
 }
 
 export function fetchPlacesByQuery(query) {
-  return function (dispatch) {
+  return (dispatch) => {
     dispatch(requestPlaces(query));
     return fetch(`${apiServer}/search/${query}`)
     .then(response => response.json())
@@ -76,9 +86,10 @@ export function fetchPlacesByLocation(position) {
   const lat = position.lat;
   const lng = position.lng;
   const query = { searchTerm: '' };
-  return function (dispatch) {
+  return (dispatch) => {
     dispatch(updateDeviceLocation(position));
     return fetch(`${apiServer}/places/near/${lng}/${lat}`)
+    // return fetch(`/places/near/${lng}/${lat}`)
     .then(response => response.json())
     .then(json => dispatch(receivePlaces(query, json)))
     .catch(err => (console.log('error: ', err)));
