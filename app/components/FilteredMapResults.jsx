@@ -22,6 +22,7 @@ const FilteredMapResults = (props) => {
       <ResultsSummary
         results={props.placeCollection}
         searchTerm={props.query.searchTerm}
+        previousQueries={props.previousQueries}
         dispatch={props.dispatch}
         handleLocationSelect={props.handleLocationSelect}
       />
@@ -33,6 +34,7 @@ FilteredMapResults.propTypes = {
   mapboxToken: PropTypes.string,
   mapboxTileLayer: PropTypes.string,
   query: PropTypes.object.isRequired,
+  previousQueries: PropTypes.object,
   placeCollection: PropTypes.array.isRequired,
   isFetching: PropTypes.bool.isRequired,
   dispatch: PropTypes.func.isRequired,

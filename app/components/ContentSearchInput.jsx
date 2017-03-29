@@ -8,9 +8,9 @@ const ContentSearchInput = (props) => {
     <div className="searchinput w-form" >
       <MobileSearchForm
         placeholder={props.placeholder}
+        updateInput={props.updateInput}
         searchValue={props.searchValue}
         submitSearch={props.onUserSubmit}
-        updateInput={props.updateInput}
         onKeyboardEnter={props.onKeyboardEnter}
       />
       <div className="logosearchcontainer w-container">
@@ -19,9 +19,9 @@ const ContentSearchInput = (props) => {
         </div>
         <SearchForm
           placeholder={props.placeholder}
+          updateInput={props.updateInput}
           searchValue={props.searchValue}
           submitSearch={props.onUserSubmit}
-          updateInput={props.updateInput}
           onKeyboardEnter={props.onKeyboardEnter}
         />
       </div>

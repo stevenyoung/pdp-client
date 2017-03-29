@@ -1,48 +1,40 @@
 import React from 'react';
 
-import LocationLink from './LocationLink';
 import EmptyLocationList from './EmptyLocationList';
+import ResultsHeader from './ResultsHeader';
+import ResultsList from './ResultsList';
 
-const ResultsSummary = ({ results, searchTerm, handleLocationSelect }) => {
+const ResultsSummary = ({
+  results,
+  searchTerm,
+  handleLocationSelect,
+  previousQueries
+}) => {
+  const headerContent = (
+    <ResultsHeader
+      searchValue={searchTerm}
+      currentCount={results.length}
+      previousQueries={previousQueries}
+    />
+  );
+
   let listNodeContent;
   if (results.length > 0) {
     listNodeContent = (
-      <div
-        className="locationlist"
-      >
-        <div className="location-list-items">
-          {results.map((place) =>
-            <LocationLink
-              place={place}
-              key={place.id}
-              onClick={handleLocationSelect}
-            />
-            )
-          }
-        </div>
-      </div>);
+      <ResultsList
+        results={results}
+        handleLocationSelect={handleLocationSelect}
+      />
+    );
   } else {
     listNodeContent = (
       <EmptyLocationList />
     );
   }
 
-  let searchValueView;
-  if (searchTerm && results.length > 0) {
-    searchValueView = (
-      <div className="resultssummary w-dyn-list searchterm">
-        <span>matched {searchTerm}</span>
-      </div>
-    );
-  } else {
-    searchValueView = (
-      <div className="resultssummary w-dyn-list">&nbsp;</div>
-    );
-  }
-
   return (
     <div className="resultssummary w-container listcontainer">
-      {searchValueView}
+      {headerContent}
       <div className="w-dyn-list">{listNodeContent}</div>
     </div>
   );
@@ -51,6 +43,7 @@ const ResultsSummary = ({ results, searchTerm, handleLocationSelect }) => {
 ResultsSummary.propTypes = {
   results: React.PropTypes.array,
   searchTerm: React.PropTypes.string,
+  previousQueries: React.PropTypes.object,
   handleLocationSelect: React.PropTypes.func
 };
 
