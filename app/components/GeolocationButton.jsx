@@ -4,9 +4,10 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { updateMapCenter, fetchPlacesByLocation } from '../actions/pdp';
 
-const GeolocationButton = (props) => {
+export const GeolocationButton = (props) => {
   const getCurrentLocation = () => {
     navigator.geolocation.getCurrentPosition((position) => {
+      console.log('getCurrentLocation', position);
       const pos = {
         lat: position.coords.latitude,
         lng: position.coords.longitude
@@ -17,12 +18,14 @@ const GeolocationButton = (props) => {
   };
 
   return (
-    <Link
-      className="more-locations w-button"
-      onClick={getCurrentLocation}
-    >
-      get nearby locations
-    </Link>
+    <div className="more-locations">
+      <Link
+        className="w-button"
+        onClick={getCurrentLocation}
+      >
+        get nearby locations
+      </Link>
+    </div>
   );
 };
 
