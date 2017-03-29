@@ -1,5 +1,6 @@
 import {
   SET_SEARCH_TERM,
+  UPDATE_QUERY_LIST,
   REQUEST_PLACES,
   RECEIVE_PLACES,
   SELECT_LOCATION,
@@ -64,6 +65,17 @@ export function updateLocation(state = {}, action) {
   case GET_DEVICE_LOCATION:
     return Object.assign({}, state, {
       userPosition: action.position
+    });
+  default:
+    return state;
+  }
+}
+
+export function previousQueries(state = {}, action) {
+  switch (action.type) {
+  case UPDATE_QUERY_LIST:
+    return Object.assign({}, state, {
+      terms: action.terms
     });
   default:
     return state;
