@@ -5,7 +5,6 @@ const PlaceInfo = (props) => {
     const place = props.selected.place;
     return (
       <div className="placeinfo">
-
         <div>
           <span className="placedesc">{place.scenedescription}</span>
         </div>

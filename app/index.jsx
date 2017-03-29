@@ -9,7 +9,6 @@ import MissingRoute from './components/MissingRoute.jsx';
 
 import InputFilteredMap from './containers/InputFilteredMap';
 import Home from './containers/Home';
-import PlaceInfo from './components/PlaceInfo';
 
 const initialState = {
   query: {
@@ -22,7 +21,8 @@ const initialState = {
       lng: -122.41575
     }
   },
-  displayPlace: {}
+  displayPlace: {},
+  previousQueries: { terms: [] }
 };
 
 const store = configureStore(initialState);
@@ -32,7 +32,6 @@ ReactDOM.render(
     <Router history={browserHistory}>
       <Route path="/" components={Home}>
         <IndexRoute components={InputFilteredMap} />
-        <Route path="/place/:placeId" component={PlaceInfo} />
         <Route path="*" component={MissingRoute} />
       </Route>
     </Router>
