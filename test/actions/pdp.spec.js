@@ -46,6 +46,26 @@ describe('Pdp Actions Spec', () => {
     expect(store.getState().previousQueries.terms.length).to.equal(1);
     expect(store.getState().previousQueries.terms[0]).to.equal('previously searched');
   });
+  it('should not append empty query to list', () => {
+    const store = configureStore(initialState);
+    const searches = { terms: [] };
+    expect(store.getState().previousQueries.terms.length).to.equal(0);
+    store.dispatch(actions.updateQueryList('', searches));
+    expect(store.getState().previousQueries.terms.length).to.equal(0);
+  });
+  it('should not append a duplicate search term to list of queries', () => {
+    const store = configureStore(initialState);
+    const searches = { terms: [] };
+    expect(store.getState().previousQueries.terms.length).to.equal(0);
+    store.dispatch(actions.updateQueryList('blue', searches));
+    expect(store.getState().previousQueries.terms.length).to.equal(1);
+    store.dispatch(actions.updateQueryList('red', searches));
+    expect(store.getState().previousQueries.terms.length).to.equal(2);
+    store.dispatch(actions.updateQueryList('red', searches));
+    expect(store.getState().previousQueries.terms.length).to.equal(2);
+    store.dispatch(actions.updateQueryList('red ', searches));
+    expect(store.getState().previousQueries.terms.length).to.equal(2);
+  });
   it('should update map center', () => {
     const store = configureStore(initialState);
     expect(store.getState().mapCenter.place.lat).to.equal(37.749202);
@@ -54,5 +74,5 @@ describe('Pdp Actions Spec', () => {
     expect(store.getState().mapCenter.place.lat).to.equal(0.0000);
     expect(store.getState().mapCenter.place.lng).to.equal(0.0000);
   });
-
+  it('new action? should save recently retrieved results');
 });

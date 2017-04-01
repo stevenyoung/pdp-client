@@ -25,7 +25,13 @@ export function requestPlaces(query) {
 }
 
 export function updateQueryList(text, previousQueries) {
-  previousQueries.terms.push(text);
+  const trimmed = text.trim();
+  if (trimmed.length > 0) {
+    if (previousQueries.terms.indexOf(trimmed) > -1) {
+      previousQueries.terms.splice(previousQueries.terms.indexOf(trimmed), 1);
+    }
+    previousQueries.terms.push(trimmed);
+  }
   return {
     type: UPDATE_QUERY_LIST,
     terms: previousQueries.terms
