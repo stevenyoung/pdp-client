@@ -1,4 +1,5 @@
 import React from 'react';
+import { PropTypes } from 'prop-types';
 
 import { SearchForm, MobileSearchForm } from './SearchForm';
 
@@ -30,11 +31,11 @@ const ContentSearchInput = (props) => {
 };
 
 ContentSearchInput.propTypes = {
-  placeholder: React.PropTypes.string,
-  searchValue: React.PropTypes.string,
-  onUserSubmit: React.PropTypes.func,
-  updateInput: React.PropTypes.func,
-  onKeyboardEnter: React.PropTypes.func
+  placeholder: PropTypes.string,
+  searchValue: PropTypes.string,
+  onUserSubmit: PropTypes.func,
+  updateInput: PropTypes.func,
+  onKeyboardEnter: PropTypes.func
 };
 
 export default ContentSearchInput;

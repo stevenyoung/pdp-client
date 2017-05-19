@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const ResultsHeader = ({ searchValue, currentCount, previousQueries }) => {
   let searchValueView;
@@ -35,9 +36,9 @@ const ResultsHeader = ({ searchValue, currentCount, previousQueries }) => {
 };
 
 ResultsHeader.propTypes = {
-  searchValue: React.PropTypes.string,
-  currentCount: React.PropTypes.number,
-  previousQueries: React.PropTypes.object
+  searchValue: PropTypes.string,
+  currentCount: PropTypes.number,
+  previousQueries: PropTypes.object
 };
 
 ResultsHeader.defaultProps = {

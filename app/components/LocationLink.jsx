@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 
 import { connect } from 'react-redux';
@@ -15,18 +16,18 @@ export const LocationLink = (props) =>
       <div>
         <span className="location-work-title">{props.place.name}</span>
         &nbsp;
-        <span className="location-work-name">{props.place.title}</span>
+        <span className="location-work-name">{props.place.artwork}</span>
         &nbsp;by&nbsp;
-        <span className="location-work-artist">{props.place.author}</span>
+        <span className="location-work-artist">{props.place.artist}</span>
       </div>
     </Link>
   </div>
 );
 
 LocationLink.propTypes = {
-  place: React.PropTypes.object,
-  onClick: React.PropTypes.func,
-  dispatch: React.PropTypes.func
+  place: PropTypes.object,
+  onClick: PropTypes.func,
+  dispatch: PropTypes.func
 };
 
 export default connect()(LocationLink);

@@ -1,4 +1,5 @@
 import React from 'react';
+import { PropTypes } from 'prop-types';
 import L from 'leaflet';
 
 class Leafletmap extends React.Component {
@@ -75,11 +76,11 @@ class Leafletmap extends React.Component {
 }
 
 Leafletmap.propTypes = {
-  mapCenter: React.PropTypes.object,
-  map: React.PropTypes.node,
-  mapTiles: React.PropTypes.object,
-  places: React.PropTypes.array,
-  mapSettings: React.PropTypes.object
+  mapCenter: PropTypes.object,
+  map: PropTypes.node,
+  mapTiles: PropTypes.object,
+  places: PropTypes.array,
+  mapSettings: PropTypes.object
 };
 
 Leafletmap.defaultProps = {

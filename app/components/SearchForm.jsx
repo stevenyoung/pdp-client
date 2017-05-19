@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const MobileSearchForm = (props) =>
   (
@@ -44,19 +45,19 @@ const SearchForm = (props) =>
   );
 
 MobileSearchForm.propTypes = {
-  placeholder: React.PropTypes.string,
-  searchValue: React.PropTypes.string,
-  submitSearch: React.PropTypes.func,
-  updateInput: React.PropTypes.func,
-  onKeyboardEnter: React.PropTypes.func
+  placeholder: PropTypes.string,
+  searchValue: PropTypes.string,
+  submitSearch: PropTypes.func,
+  updateInput: PropTypes.func,
+  onKeyboardEnter: PropTypes.func
 };
 
 SearchForm.propTypes = {
-  placeholder: React.PropTypes.string,
-  searchValue: React.PropTypes.string,
-  submitSearch: React.PropTypes.func,
-  updateInput: React.PropTypes.func,
-  onKeyboardEnter: React.PropTypes.func
+  placeholder: PropTypes.string,
+  searchValue: PropTypes.string,
+  submitSearch: PropTypes.func,
+  updateInput: PropTypes.func,
+  onKeyboardEnter: PropTypes.func
 };
 
 export { SearchForm, MobileSearchForm };

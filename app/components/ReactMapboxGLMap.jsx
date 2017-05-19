@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl';
 
 const ReactMapboxGLMap = ({
@@ -31,21 +32,24 @@ const ReactMapboxGLMap = ({
       containerStyle={containerStyle}
       pitch={mapOptions.pitch}
     >
-      <Layer
-        type="symbol"
-        id="marker"
-        layout={{ 'icon-image': 'marker-15' }}
-      >
-        <Feature coordinates={[mapCenter.place.lng, mapCenter.place.lat]} />
-      </Layer>
+      {places.map((place) =>
+        <Layer
+          key={place.id}
+          type="symbol"
+          id={place.id}
+          layout={{ 'icon-image': 'library-15' }}
+        >
+          <Feature coordinates={[place.lng, place.lat]} />
+        </Layer>
+      )}
     </ReactMapboxGl>
   );
 };
 
 ReactMapboxGLMap.propTypes = {
-  accessToken: React.PropTypes.string,
-  mapCenter: React.PropTypes.object,
-  places: React.PropTypes.array
+  accessToken: PropTypes.string,
+  mapCenter: PropTypes.object,
+  places: PropTypes.array
 };
 
 export default ReactMapboxGLMap;

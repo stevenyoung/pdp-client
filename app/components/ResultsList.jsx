@@ -1,4 +1,5 @@
 import React from 'react';
+import { PropTypes } from 'prop-types';
 
 import LocationLink from './LocationLink';
 import EmptyLocationList from './EmptyLocationList';
@@ -35,8 +36,8 @@ const ResultsList = ({ results, handleLocationSelect }) => {
 };
 
 ResultsList.propTypes = {
-  results: React.PropTypes.array,
-  handleLocationSelect: React.PropTypes.func
+  results: PropTypes.array,
+  handleLocationSelect: PropTypes.func
 };
 
 ResultsList.defaultProps = {

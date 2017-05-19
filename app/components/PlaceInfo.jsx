@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const PlaceInfo = (props) => {
   if (props.selected.place) {
@@ -15,7 +16,7 @@ const PlaceInfo = (props) => {
 };
 
 PlaceInfo.propTypes = {
-  selected: React.PropTypes.object
+  selected: PropTypes.object
 };
 
 export default PlaceInfo;

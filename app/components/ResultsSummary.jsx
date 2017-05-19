@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import EmptyLocationList from './EmptyLocationList';
 import ResultsHeader from './ResultsHeader';
@@ -41,10 +42,10 @@ const ResultsSummary = ({
 };
 
 ResultsSummary.propTypes = {
-  results: React.PropTypes.array,
-  searchTerm: React.PropTypes.string,
-  previousQueries: React.PropTypes.object,
-  handleLocationSelect: React.PropTypes.func
+  results: PropTypes.array,
+  searchTerm: PropTypes.string,
+  previousQueries: PropTypes.object,
+  handleLocationSelect: PropTypes.func
 };
 
 ResultsSummary.defaultProps = {

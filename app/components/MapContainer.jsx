@@ -1,6 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
+// import Leafletmap from './Leafletmap';
 import MapboxGLMap from './MapboxGLMap';
+// import MapboxGLMap from './newMapboxGLMap';
+// import ReactMapboxGLMap from './ReactMapboxGLMap';
 
 const MapContainer = (props) => {
   const mapSettings = {
@@ -24,13 +28,13 @@ const MapContainer = (props) => {
 };
 
 MapContainer.propTypes = {
-  accessToken: React.PropTypes.string,
-  placeCollection: React.PropTypes.array,
-  searchTerm: React.PropTypes.string,
-  tileLayer: React.PropTypes.string,
-  mapCenter: React.PropTypes.object,
-  dispatch: React.PropTypes.func,
-  handleLocationSelect: React.PropTypes.func
+  accessToken: PropTypes.string,
+  placeCollection: PropTypes.array,
+  searchTerm: PropTypes.string,
+  tileLayer: PropTypes.string,
+  mapCenter: PropTypes.object,
+  dispatch: PropTypes.func,
+  handleLocationSelect: PropTypes.func
 };
 
 export default MapContainer;
