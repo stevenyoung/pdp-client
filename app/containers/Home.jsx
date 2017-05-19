@@ -1,29 +1,38 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { setSearchTerm, fetchPlacesByQuery } from '../actions/pdp';
+import {
+  setSearchTerm,
+  fetchPlacesByQuery,
+  updateQueryList } from '../actions/pdp';
 
 import ContentSearchInput from '../components/ContentSearchInput';
 import PlaceInfo from '../components/PlaceInfo';
 
-class Home extends React.Component {
+export class Home extends Component {
   handleSearchValueUpdate = (event) => {
     this.props.dispatch(setSearchTerm(event.target.value));
   }
 
   handleKeyboardSubmit = (event) => {
-    if (event.nativeEvent.code === 'Enter') {
+  // DEPR event.which in favor of KeyboardEvent.code === 'Enter'.
+  // But Safari 10.0 is late.
+    if (event.nativeEvent.which === 13 || event.nativeEvent.code === 'Enter') {
       this.handleSearchSubmit();
     }
   }
 
   handleSearchSubmit = () => {
-    this.props.dispatch(fetchPlacesByQuery(this.props.query.searchTerm));
+    const term = this.props.query.searchTerm.trim();
+    this.props.dispatch(setSearchTerm(term));
+    this.props.dispatch(fetchPlacesByQuery(term));
+    this.props.dispatch(updateQueryList(term, this.props.previousQueries));
   }
 
   render() {
     return (
-      <div>
+      <div className="home">
         <ContentSearchInput
           placeholder="Place? Movie? Book? Song?"
           searchValue={this.props.query.searchTerm}
@@ -39,13 +48,15 @@ class Home extends React.Component {
 }
 
 Home.propTypes = {
-  children: React.PropTypes.node,
-  query: React.PropTypes.object,
-  placeCollection: React.PropTypes.array.isRequired,
-  isFetching: React.PropTypes.bool.isRequired,
-  dispatch: React.PropTypes.func.isRequired,
-  mapCenter: React.PropTypes.object,
-  displayPlace: React.PropTypes.object
+  children: PropTypes.node,
+  query: PropTypes.object,
+  placeCollection: PropTypes.array.isRequired,
+  isFetching: PropTypes.bool.isRequired,
+  isUserUpdating: PropTypes.bool,
+  dispatch: PropTypes.func.isRequired,
+  mapCenter: PropTypes.object,
+  displayPlace: PropTypes.object,
+  previousQueries: PropTypes.object
 };
 
 Home.defaultProps = {
@@ -53,15 +64,18 @@ Home.defaultProps = {
 };
 
 const mapStateToProps = (state) => {
-  const { query, places, mapCenter, displayPlace } = state;
+  const { query, places, mapCenter, displayPlace, previousQueries } = state;
   const isFetching = false;
   const placeCollection = places.items;
+  const isUserUpdating = false;
   return {
     query,
     placeCollection,
     isFetching,
+    isUserUpdating,
     mapCenter,
-    displayPlace
+    displayPlace,
+    previousQueries
   };
 };
 
