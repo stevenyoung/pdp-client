@@ -23,7 +23,9 @@ class MapboxGLMap extends React.Component {
 
   componentDidUpdate(nextProps) {
     if (nextProps.places !== this.props.places) {
-      this.displayMarkerCollection(this.props.places);
+      // this.displayMarkerCollection(this.props.places);
+      // this.addLabeledLayer('label', this.props.places);
+      this.displayFeatureLayer(this.props.places);
     }
   }
 
@@ -40,6 +42,7 @@ class MapboxGLMap extends React.Component {
 
   initializeMap() {
     this.map = new mapboxgl.Map(this.mapOptions);
+    // this.map.addSource('scenes', { type: 'geojson', data: this.props.places });
     this.addControls();
   }
 
@@ -71,7 +74,7 @@ class MapboxGLMap extends React.Component {
     const layerId = `icon-layer-${place.id}`;
     const layer = {
       id: layerId,
-      source: place.id,
+      source: `${place.id}`,
       type: 'symbol',
       layout: {
         'icon-image': 'library-15',
@@ -82,22 +85,110 @@ class MapboxGLMap extends React.Component {
     this.map.addLayer(layer);
   }
 
+
   addCircleMarker(coords, place, color = '#000') {
     const layerId = `circle-layer-${place.id}`;
+    const sourceId = `${place.id}`;
     const layer = {
       id: layerId,
-      source: place.id,
+      source: sourceId,
       type: 'circle',
       paint: {
         'circle-radius': 15,
         'circle-color': color,
-        'circle-opacity': 0.3
+        'circle-opacity': 1.0
       }
     };
+    console.log('circle layer', layer);
     this.map.addLayer(layer);
   }
 
+  addLabeledLayer(label, places) {
+    const placeList = [];
+    places.forEach((place) => {
+      const placeData = {
+        type: 'Feature',
+        geometry: {
+          type: 'Point',
+          coordinates: [place.loc.coordinates[0], place.loc.coordinates[0]]
+        },
+        id: place.id
+      };
+      const placeCircle = {
+        id: `circle-layer-${place.id}`,
+        source: place.id,
+        type: 'circle',
+        paint: {
+          'circle-radius': 15,
+          'circle-color': '#000',
+          'circle-opacity': 0.3
+        }
+      };
+      placeList.push(placeData);
+      placeList.push(placeCircle);
+    });
+
+    this.map.addSource(label, {
+      type: 'geojson',
+      data: placeList
+    });
+    // this.map.addLayer(placeList);
+  }
+
+  displayFeatureLayer(places) {
+    const layer = {
+      id: null,
+      type: 'symbol',
+      source: null,
+      layout: null
+    };
+    const layerSource = {
+      type: 'geojson',
+      data: null
+    };
+    const layerLayout = {
+      'icon-image': '{icon}-15',
+      'text-field': '{title}',
+      'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold'],
+      'text-offset': [0, 0.6],
+      'text-anchor': 'top',
+      'text-size': 12
+    };
+    const featureLayer = {
+      type: 'FeatureCollection',
+      features: null
+    };
+    featureLayer.features = this.featureLayer(places);
+    layerSource.data = featureLayer;
+    layer.source = layerSource;
+    layer.layout = layerLayout;
+    layer.id = 'placesdotpress';
+    this.map.addLayer(layer);
+  }
+
+  featureLayer(places) {
+    const features = [];
+    places.forEach((place) => {
+      const feature = {
+        type: 'Feature',
+        geometry: {
+          type: 'Point',
+          coordinates: [place.lng, place.lat]
+        },
+        properties: {
+          title: place.name,
+          icon: 'library'
+        }
+      };
+      features.push(feature);
+    });
+    return features;
+  }
+
   displayMarkerCollection(places) {
+    // this.map.addSource
+    // const circleLayers = [];
+    // const iconLayers = [];
     places.forEach((place) => {
       const markerCoords = {
         lat: place.loc.coordinates[1],

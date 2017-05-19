@@ -10,8 +10,9 @@ export const GET_DEVICE_LOCATION = 'GET_DEVICE_LOCATION';
 
 /* action creators */
 
-const apiServer = '//localhost:8000';
-// const apiServer = '';
+// const apiServer = ''; // production, no CORS
+// const apiServer = '//localhost:8888'; // flask: gunicorn -b 127.0.0.8 main:APP
+const apiServer = '//localhost:8000'; // django, dev with cors, NOT production
 
 export function setSearchTerm(text) {
   return { type: SET_SEARCH_TERM, text };
@@ -92,6 +93,7 @@ export function fetchPlacesByLocation(position) {
   const lat = position.lat;
   const lng = position.lng;
   const query = { searchTerm: '' };
+  console.log('fetchPlacesByLocation: ', lat, lng);
   return (dispatch) => {
     dispatch(updateDeviceLocation(position));
     return fetch(`${apiServer}/places/near/${lng}/${lat}`)
