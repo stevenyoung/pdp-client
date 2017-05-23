@@ -4,7 +4,7 @@ import GeolocationButton from './GeolocationButton';
 const EmptyLocationList = () =>
   (
     <div className="locationlist">
-      <div className="emptylocationlist">No items found.</div>
+      <span className="emptylocationlist">No items found.</span>
       <GeolocationButton />
     </div>
   );

@@ -28,7 +28,7 @@ const ResultsHeader = ({ searchValue, currentCount, previousQueries }) => {
   }
 
   return (
-    <div className="resultssummary w-container listcontainer">
+    <div>
       {searchValueView}
       {previousQueryView}
     </div>

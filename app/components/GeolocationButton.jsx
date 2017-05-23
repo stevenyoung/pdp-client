@@ -18,14 +18,14 @@ export const GeolocationButton = (props) => {
   };
 
   return (
-    <div className="more-locations">
+    <span className="more-locations">
       <Link
         className="w-button"
         onClick={getCurrentLocation}
       >
-        get nearby locations
+       get nearby locations
       </Link>
-    </div>
+    </span>
   );
 };
 

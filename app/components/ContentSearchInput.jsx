@@ -3,32 +3,30 @@ import { PropTypes } from 'prop-types';
 
 import { SearchForm, MobileSearchForm } from './SearchForm';
 
-const ContentSearchInput = (props) => {
-  const appTitle = 'places.press';
-  return (
-    <div className="searchinput w-form" >
-      <MobileSearchForm
+const ContentSearchInput = (props) =>
+(
+  <div className="searchinput w-form" >
+    <MobileSearchForm
+      placeholder={props.placeholder}
+      updateInput={props.updateInput}
+      searchValue={props.searchValue}
+      submitSearch={props.onUserSubmit}
+      onKeyboardEnter={props.onKeyboardEnter}
+    />
+    <div className="logosearchcontainer w-container">
+      <div className="app-title">
+        <span className="app-title">places.press</span>
+      </div>
+      <SearchForm
         placeholder={props.placeholder}
         updateInput={props.updateInput}
         searchValue={props.searchValue}
         submitSearch={props.onUserSubmit}
         onKeyboardEnter={props.onKeyboardEnter}
       />
-      <div className="logosearchcontainer w-container">
-        <div className="app-title">
-          <span className="app-title">{appTitle}</span>
-        </div>
-        <SearchForm
-          placeholder={props.placeholder}
-          updateInput={props.updateInput}
-          searchValue={props.searchValue}
-          submitSearch={props.onUserSubmit}
-          onKeyboardEnter={props.onKeyboardEnter}
-        />
-      </div>
     </div>
-  );
-};
+  </div>
+);
 
 ContentSearchInput.propTypes = {
   placeholder: PropTypes.string,
