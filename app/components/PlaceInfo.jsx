@@ -7,9 +7,11 @@ const PlaceInfo = (props) => {
     return (
       <div className="placeinfo">
         <div>
-          <span className="placename">{place.name}</span>
-          <span className="placeartwork"> from {place.artwork}</span>
-          <span className="placeartist"> by {place.artist}</span>
+          <span className="placename location-work-title">{place.name}</span>
+          <span className="placeartwork location-work-name"> from {place.artwork}
+          </span>
+          <span className="placeartist location-work-artist">  by {place.artist}
+          </span>
           <p />
           <span className="placedesc">{place.scenedescription}</span>
         </div>
