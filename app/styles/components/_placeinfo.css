@@ -3,16 +3,16 @@
   background-color: rgba(0, 0, 0, 0.5);
   position: fixed;
   top: 6em;
-  left: 5em;
+  left: 9em;
   z-index: 1;
-  max-height: 5em;
-  max-width: 40em;
+  max-height: 30em;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 0.5em;
   text-align: left;
   padding: 0.75em;
   overflow-y: scroll;
+  width: 40%;
 
   span {
     font-weight: normal;
@@ -20,8 +20,14 @@
     line-height: $normal-line-height;
   }
 
-  @media (max-width: 470px) {
-    left: 0;
+  @media (max-width: 991px) {
+    left: 5em;
     top: 8em;
+  }
+
+  @media (max-width: 470px) {
+    left: 0.5em;
+    top: 8em;
+    width: 95%;
   }
 }
