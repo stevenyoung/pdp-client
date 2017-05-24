@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl';
 
 class ReactMapboxGLMap extends React.Component {
+
   mapOptions = {
     style: 'mapbox://styles/mapbox/light-v9',
     center: [this.props.mapCenter.place.lng, this.props.mapCenter.place.lat],
@@ -38,10 +39,11 @@ class ReactMapboxGLMap extends React.Component {
       <ReactMapboxGl
         style={this.mapOptions.style}
         accessToken={this.props.accessToken}
-        center={this.mapOptions.center}
+        center={[this.props.mapCenter.place.lng, this.props.mapCenter.place.lat]}
         containerStyle={this.containerStyle}
         pitch={this.mapOptions.pitch}
         onClick={this.props.onClick}
+        movingMethod="easeTo"
       >
         {this.props.places.map((place) => (
           <Layer
