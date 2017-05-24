@@ -4,15 +4,28 @@ import { connect } from 'react-redux';
 
 import { updateMapCenter, updateDisplayedPlace } from '../actions/pdp';
 
-import FilteredMapResults from '../components/FilteredMapResults';
+// import FilteredMapResults from '../components/FilteredMapResults';
+import MapContainer from '../components/MapContainer';
+import ResultsSummary from '../components/ResultsSummary';
 
-export class InputFilteredMap extends Component {
+
+class InputFilteredMap extends Component {
   handleLocationSelect = (location) => {
+    console.log('location select', location);
+    const offsetLat = location.lat + 0.01;
     this.props.dispatch(updateMapCenter({
-      lat: location.lat,
+      lat: offsetLat,
       lng: location.lng
     }));
     this.props.dispatch(updateDisplayedPlace(location));
+  }
+
+  handleMapClick = (event, mbEvent) => {
+    console.log('handle map click', event, mbEvent);
+  }
+
+  handleMarkerClick = (event) => {
+    console.log('handle marker click', event);
   }
 
   render() {
@@ -22,24 +35,45 @@ export class InputFilteredMap extends Component {
     mapboxTileLayer += 'ciy3lsmea00802srjvyz0f0as/tiles/256/{z}/{x}/{y}';
     return (
       <div>
-        <FilteredMapResults
-          mapboxToken={mapboxToken}
-          mapboxTileLayer={mapboxTileLayer}
-          query={this.props.query}
-          previousQueries={this.props.previousQueries}
-          mapCenter={this.props.mapCenter}
-          handleLocationSelect={this.handleLocationSelect}
-        />
+        <div className="resultsmap">
+          <MapContainer
+            accessToken={mapboxToken}
+            placeCollection={this.props.placeCollection}
+            searchTerm={this.props.query.searchTerm}
+            tileLayer={mapboxTileLayer}
+            mapCenter={this.props.mapCenter}
+            dispatch={this.props.dispatch}
+            handleMapClick={this.handleMapClick}
+            handleMarkerClick={this.handleMarkerClick}
+          />
+          <ResultsSummary
+            results={this.props.placeCollection}
+            searchTerm={this.props.query.searchTerm}
+            previousQueries={this.props.previousQueries}
+            dispatch={this.props.dispatch}
+            handleLocationSelect={this.handleLocationSelect}
+          />
+        </div>
       </div>
     );
   }
 }
 
 InputFilteredMap.propTypes = {
-  query: PropTypes.object,
+  query: PropTypes.object.isRequired,
+  previousQueries: PropTypes.object,
+  placeCollection: PropTypes.array.isRequired,
+  isFetching: PropTypes.bool.isRequired,
   dispatch: PropTypes.func.isRequired,
   mapCenter: PropTypes.object,
-  previousQueries: PropTypes.object
+  handleLocationSelect: PropTypes.func,
+  handleMapClick: PropTypes.func,
+  handleMarkerClick: PropTypes.func,
+  displayPlace: PropTypes.object
+};
+
+InputFilteredMap.defaultProps = {
+  placeCollection: []
 };
 
 const mapStateToProps = (state) => {
