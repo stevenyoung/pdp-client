@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl';
+import ReactMapboxGl, { GeoJSONLayer } from 'react-mapbox-gl';
+// import ReactMapboxGl, { GeoJSONLayer, Layer, Feature } from 'react-mapbox-gl';
 
 class ReactMapboxGLMap extends React.Component {
 
@@ -22,16 +23,40 @@ class ReactMapboxGLMap extends React.Component {
     minHeight: '20em'
   };
 
-  layerLayout(place) {
-    const layout = {
-      'icon-image': 'library-15',
-      'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold'],
-      'text-offset': [0, 0.6],
-      'text-anchor': 'top',
-      'text-size': 12
-    };
-    layout['text-field'] = place.name.toLowerCase();
-    return layout;
+  symbolLayout = {
+    'icon-image': 'library-15',
+    'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold'],
+    'text-offset': [0, 0.6],
+    'text-anchor': 'top',
+    'text-size': 12,
+    'text-field': '{title}'
+  }
+
+  circleLayout = {
+    'circle-radius': 10,
+    'circle-color': '#3898ec',
+    'circle-opacity': 0.2
+  }
+
+  geoJsonFeatureCollection(places) {
+    const geoJsonData = { type: 'FeatureCollection' };
+    const features = [];
+    places.forEach((place) => {
+      const feature = {
+        type: 'Feature',
+        geometry: {
+          type: 'Point',
+          coordinates: [place.lng, place.lat]
+        },
+        properties: {
+          title: place.name.toLowerCase(),
+          icon: 'library'
+        }
+      };
+      features.push(feature);
+    });
+    geoJsonData.features = features;
+    return geoJsonData;
   }
 
   render() {
@@ -45,19 +70,11 @@ class ReactMapboxGLMap extends React.Component {
         onClick={this.props.onClick}
         movingMethod="easeTo"
       >
-        {this.props.places.map((place) => (
-          <Layer
-            key={place.id.toString()}
-            type="symbol"
-            id={place.id.toString()}
-            layout={this.layerLayout(place)}
-          >
-            <Feature
-              coordinates={[place.lng, place.lat]}
-            />
-          </Layer>
-          )
-        )}
+        <GeoJSONLayer
+          data={this.geoJsonFeatureCollection(this.props.places)}
+          symbolLayout={this.symbolLayout}
+          circlePaint={this.circleLayout}
+        />
       </ReactMapboxGl>
     );
   }
