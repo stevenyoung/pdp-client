@@ -6,7 +6,7 @@ import ReactMapboxGl, { GeoJSONLayer } from 'react-mapbox-gl';
 class ReactMapboxGLMap extends React.Component {
 
   mapOptions = {
-    style: 'mapbox://styles/mapbox/light-v9',
+    style: 'mapbox://styles/mapbox/satellite-streets-v10',
     center: [this.props.mapCenter.place.lng, this.props.mapCenter.place.lat],
     attributionControl: false,
     zoom: 11,
@@ -24,7 +24,7 @@ class ReactMapboxGLMap extends React.Component {
   };
 
   symbolLayout = {
-    'icon-image': 'library-15',
+    'icon-image': 'cinema-15',
     'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold'],
     'text-offset': [0, 0.6],
     'text-anchor': 'top',
@@ -33,9 +33,9 @@ class ReactMapboxGLMap extends React.Component {
   }
 
   circleLayout = {
-    'circle-radius': 10,
-    'circle-color': '#3898ec',
-    'circle-opacity': 0.2
+    'circle-radius': 8,
+    'circle-color': '#dd0',
+    'circle-opacity': 0.3
   }
 
   geoJsonFeatureCollection(places) {
