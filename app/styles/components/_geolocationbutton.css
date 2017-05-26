@@ -1,0 +1,16 @@
+.more-locations {
+  display: inline;
+  padding: 9px;
+
+  .w-button {
+    display: inline;
+    padding: 9px;
+    background-color: #3898ec;
+    color: white;
+    border: 0;
+    line-height: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 20px;
+  }
+}

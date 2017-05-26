@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import EmptyLocationList from './EmptyLocationList';
 import ResultsHeader from './ResultsHeader';
 import ResultsList from './ResultsList';
+import GeolocationButton from './GeolocationButton';
+import AddPlaceButton from './AddPlaceButton';
 
 const ResultsSummary = ({
   results,
@@ -36,7 +38,11 @@ const ResultsSummary = ({
   return (
     <div className="resultssummary w-container listcontainer">
       {headerContent}
-      <div className="w-dyn-list">{listNodeContent}</div>
+      <div className="w-dyn-list">
+        <GeolocationButton />
+        <AddPlaceButton />
+        {listNodeContent}
+      </div>
     </div>
   );
 };

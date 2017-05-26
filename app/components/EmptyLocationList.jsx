@@ -1,12 +1,10 @@
 import React from 'react';
-import GeolocationButton from './GeolocationButton';
 
 const EmptyLocationList = () =>
   (
-    <div className="locationlist">
+    <span className="locationlist">
       <span className="emptylocationlist">No items found.</span>
-      <GeolocationButton />
-    </div>
+    </span>
   );
 
 export default EmptyLocationList;
