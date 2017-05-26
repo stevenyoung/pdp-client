@@ -19,7 +19,7 @@ const ResultsHeader = ({ searchValue, currentCount, previousQueries }) => {
   let previousQueryView;
   const previousQueryLabel = 'matched';
   const previousQueryTerm = previousQueries.terms[previousQueries.terms.length - 1];
-  if (currentCount > 0) {
+  if (currentCount > 0 && previousQueryTerm) {
     previousQueryView = (
       <div className="resultssummary w-dyn-list searchterm">
         <span>{previousQueryLabel} {previousQueryTerm}</span>
