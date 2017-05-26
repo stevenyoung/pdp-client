@@ -5,7 +5,7 @@
   top: 6em;
   left: 9em;
   z-index: 1;
-  max-height: 30em;
+  max-height: 10em;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 0.5em;
@@ -21,7 +21,7 @@
   }
 
   @media (max-width: 991px) {
-    left: 5em;
+    left: 3em;
     top: 8em;
   }
 
@@ -29,5 +29,6 @@
     left: 0.5em;
     top: 8em;
     width: 95%;
+    max-height: 6em;
   }
 }

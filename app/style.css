@@ -10,3 +10,6 @@
 @import 'styles/navigation';
 @import 'styles/wrapper';
 @import 'styles/components/placeinfo';
+@import 'styles/components/geolocationbutton';
+@import 'styles/components/newplaceform';
+@import 'styles/components/addplacebutton';

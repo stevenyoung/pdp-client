@@ -29,3 +29,13 @@
     min-height: 20em !important;
   }
 }
+
+.mapcontainer {
+  canvas.mapboxgl-canvas {
+    position: relative !important;
+  }
+}
+
+.mapboxgl-popup-content {
+  display: none;
+}

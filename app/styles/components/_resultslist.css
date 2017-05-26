@@ -12,6 +12,7 @@
   }
 
   .searchterm {
+    min-height: 2.0em;
     span {
       padding: 1em;
     }
@@ -84,6 +85,7 @@
   .locationlist {
     height: 20em;
     overflow-y: scroll;
+    display: inline;
   }
 }
 
