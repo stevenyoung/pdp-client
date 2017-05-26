@@ -2,17 +2,15 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 
-import { updateMapCenter, updateDisplayedPlace } from '../actions/pdp';
+import { updateMapCenter, updateDisplayedPlace, addContentAtPosition } from '../actions/pdp';
 
-// import FilteredMapResults from '../components/FilteredMapResults';
+import PlaceInfo from '../components/PlaceInfo';
 import MapContainer from '../components/MapContainer';
 import ResultsSummary from '../components/ResultsSummary';
 
-
 class InputFilteredMap extends Component {
   handleLocationSelect = (location) => {
-    console.log('location select', location);
-    const offsetLat = location.lat + 0.01;
+    const offsetLat = location.lat + 0.0;
     this.props.dispatch(updateMapCenter({
       lat: offsetLat,
       lng: location.lng
@@ -22,6 +20,7 @@ class InputFilteredMap extends Component {
 
   handleMapClick = (event, mbEvent) => {
     console.log('handle map click', event, mbEvent);
+    this.props.dispatch(addContentAtPosition(mbEvent.lngLat));
   }
 
   handleMarkerClick = (event) => {
@@ -35,6 +34,7 @@ class InputFilteredMap extends Component {
     mapboxTileLayer += 'ciy3lsmea00802srjvyz0f0as/tiles/256/{z}/{x}/{y}';
     return (
       <div>
+        <PlaceInfo selected={this.props.displayPlace} />
         <div className="resultsmap">
           <MapContainer
             accessToken={mapboxToken}
