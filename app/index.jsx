@@ -5,10 +5,11 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
 import configureStore from './store/configureStore';
 
-import MissingRoute from './components/MissingRoute.jsx';
-
-import InputFilteredMap from './containers/InputFilteredMap';
 import Home from './containers/Home';
+import InputFilteredMap from './containers/InputFilteredMap';
+import ContactForm from './components/ContactForm';
+import NewPlaceForm from './components/NewPlaceForm';
+import MissingRoute from './components/MissingRoute.jsx';
 
 const initialState = {
   query: {
@@ -22,7 +23,9 @@ const initialState = {
     }
   },
   displayPlace: {},
-  previousQueries: { terms: [] }
+  previousQueries: { terms: [] },
+  isUserAddingContent: false,
+  isUserLoggedIn: false
 };
 
 const store = configureStore(initialState);
@@ -32,6 +35,9 @@ ReactDOM.render(
     <Router history={browserHistory}>
       <Route path="/" components={Home}>
         <IndexRoute components={InputFilteredMap} />
+        <Route path="/new" components={NewPlaceForm} />
+        <Route path="/contact" components={ContactForm} />
+
         <Route path="*" component={MissingRoute} />
       </Route>
     </Router>
