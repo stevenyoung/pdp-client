@@ -1,11 +1,15 @@
 import { combineReducers } from 'redux';
+import { reducer as formReducer } from 'redux-form';
+
 import {
   query,
   places,
   mapCenter,
   displayPlace,
   updateLocation,
-  previousQueries } from './pdp';
+  previousQueries,
+  isUserAddingContent,
+  isUserLoggedIn } from './pdp';
 
 const reducers = {
   query,
@@ -13,7 +17,10 @@ const reducers = {
   mapCenter,
   displayPlace,
   updateLocation,
-  previousQueries
+  previousQueries,
+  isUserAddingContent,
+  isUserLoggedIn,
+  formReducer
 };
 
 const pdpApp = combineReducers(reducers);

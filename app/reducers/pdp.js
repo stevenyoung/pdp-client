@@ -5,7 +5,10 @@ import {
   RECEIVE_PLACES,
   SELECT_LOCATION,
   DISPLAY_PLACE,
-  GET_DEVICE_LOCATION
+  GET_DEVICE_LOCATION,
+  ADD_NEW_CONTENT,
+  USER_LOGGED_IN
+
 } from '../actions/pdp';
 
 export function query(state = '', action) {
@@ -79,5 +82,27 @@ export function previousQueries(state = {}, action) {
     });
   default:
     return state;
+  }
+}
+
+export function isUserAddingContent(state = {}, action) {
+  switch (action.type) {
+  case ADD_NEW_CONTENT:
+    return Object.assign({}, state, {
+      position: action.position
+    });
+  default:
+    return state;
+  }
+}
+
+export function isUserLoggedIn(state = {}, action) {
+  switch (action.type) {
+  case USER_LOGGED_IN:
+    return Object.assign({}, state, {
+      status: action.status
+    });
+    default:
+      return state;
   }
 }
