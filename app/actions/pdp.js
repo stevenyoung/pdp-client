@@ -7,6 +7,10 @@ export const RECEIVE_PLACES = 'RECEIVE_PLACES';
 export const SELECT_LOCATION = 'SELECT_LOCATION';
 export const DISPLAY_PLACE = 'DISPLAY_PLACE';
 export const GET_DEVICE_LOCATION = 'GET_DEVICE_LOCATION';
+export const ADD_NEW_CONTENT = 'ADD_NEW_CONTENT';
+export const USER_LOGGED_IN = 'USER_LOGGED_IN';
+export const FORM_UPDATE_VALUE = 'FORM_UPDATE_VALUE';
+export const FORM_RESET = 'FORM_RESET';
 
 /* action creators */
 
@@ -85,7 +89,8 @@ export function fetchPlacesByQuery(query) {
     dispatch(requestPlaces(query));
     return fetch(`${apiServer}/search/${query}`)
     .then(response => response.json())
-    .then(json => dispatch(receivePlaces(query, json)));
+    .then(json => dispatch(receivePlaces(query, json)))
+    .then(dispatch(setSearchTerm('')));
   };
 }
 
@@ -93,7 +98,6 @@ export function fetchPlacesByLocation(position) {
   const lat = position.lat;
   const lng = position.lng;
   const query = { searchTerm: '' };
-  console.log('fetchPlacesByLocation: ', lat, lng);
   return (dispatch) => {
     dispatch(updateDeviceLocation(position));
     return fetch(`${apiServer}/places/near/${lng}/${lat}`)
@@ -102,4 +106,32 @@ export function fetchPlacesByLocation(position) {
     .then(json => dispatch(receivePlaces(query, json)))
     .catch(err => (console.log('error: ', err)));
   };
+}
+
+export function addContentAtPosition(position) {
+  return {
+    type: ADD_NEW_CONTENT,
+    position
+  };
+}
+
+export function userLogin(status) {
+  return {
+    type: USER_LOGGED_IN,
+    status
+  };
+}
+
+export function update(name, value) {
+  return dispatch => dispatch({
+    type: FORM_UPDATE_VALUE,
+    name,
+    value
+  });
+}
+
+export function reset() {
+  return dispatch => dispatch({
+    type: FORM_RESET
+  });
 }
