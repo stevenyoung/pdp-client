@@ -1,0 +1,331 @@
+.newplaceform {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+
+  .closebutton {
+    float: right;
+  }
+
+  .w-button {
+    display: inline-block;
+    padding: 9px 15px;
+    background-color: #3898ec;
+    color: white;
+    border: 0;
+    line-height: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 20px;
+  }
+
+  input.w-button {
+    -webkit-appearance: button;
+  }
+
+  .w-input,
+  .w-select {
+    display: block;
+    width: 100%;
+    height: 38px;
+    padding: 8px 12px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 1.428571429;
+    color: #333;
+    vertical-align: middle;
+    background-color: #fff;
+    border: 1px solid #ccc;
+  }
+
+  .formtextinput {
+    width: 75%;
+    min-height: 40px;
+    margin-right: 20px;
+    border-radius: 25px;
+    font-family: Arimo, sans-serif;
+  }
+
+  .formsubmit {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    max-height: 50px;
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 auto;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    border-radius: 50px;
+    font-size: 18px;
+    line-height: 30px;
+    text-align: left;
+    text-decoration: none;
+    text-transform: none;
+  }
+
+  .mobilesearchform {
+    display: none;
+  }
+
+  .w-form-done {
+    display: none;
+    padding: 20px;
+    text-align: center;
+    background-color: #ddd;
+  }
+
+  .w-form-fail {
+    display: none;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #ffdede;
+  }
+
+  .logosearchcontainer {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+
+    .app-title {
+      position: relative;
+      left: 10%;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      margin-top: 5px;
+      margin-left: 10px;
+      padding-top: 0;
+      -webkit-box-pack: start;
+      -webkit-justify-content: flex-start;
+      -ms-flex-pack: start;
+      justify-content: flex-start;
+      font-size: 32px;
+      line-height: 72px;
+    }
+
+    .logosearchformwrapper {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      width: 100%;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      -webkit-justify-content: space-around;
+      -ms-flex-pack: distribute;
+      justify-content: space-around;
+
+      .searchform {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        width: 80%;
+        margin-top: 25px;
+        margin-right: auto;
+        margin-left: auto;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-box-align: start;
+        -webkit-align-items: flex-start;
+        -ms-flex-align: start;
+        align-items: flex-start;
+        -webkit-box-flex: 1;
+        -webkit-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
+
+        .searchforminput {
+          width: 75%;
+          min-height: 50px;
+          margin-right: 20px;
+          border-radius: 25px;
+          font-family: Arimo, sans-serif;
+        }
+
+        .searchformsubmit {
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+          width: 50px;
+          height: 50px;
+          max-height: 50px;
+          -webkit-box-flex: 0;
+          -webkit-flex: 0 0 auto;
+          -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+          border-radius: 50px;
+          font-size: 18px;
+          line-height: 30px;
+          text-align: left;
+          text-decoration: none;
+          text-transform: none;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 991px) {
+    .logosearchcontainer {
+      .app-title {
+        left: 6%;
+      }
+
+      .searchform {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+      }
+
+      .searchforminput {
+        width: 75%;
+      }
+    }
+  }
+
+  @media (max-width: 767px) {
+    .logosearchcontainer {
+      .app-title {
+        position: static;
+        margin-top: 0;
+        margin-left: 5px;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
+        font-size: 30px;
+      }
+
+      .searchform {
+        padding-right: 10px;
+        padding-left: 10px;
+      }
+
+      .searchforminput {
+        margin-right: 1px;
+      }
+
+      .searchformsubmit {
+        margin-left: 15px;
+        -webkit-box-flex: 0;
+        -webkit-flex: 0 0 auto;
+        -ms-flex: 0 0 auto;
+        flex: 0 0 auto;
+      }
+    }
+  }
+}
+
+@media (max-width: 479px) {
+  .searchinput {
+    .mobilesearchform {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      padding: 0.5em;
+
+      .mobilesearch {
+        width: 95%;
+        margin-top: 7px;
+        margin-right: 1em;
+        margin-left: auto;
+        border-style: solid;
+        border-width: 1px;
+        border-color: rgba(0, 0, 0, 0.17);
+        border-radius: 20px;
+        font-family: Arimo, sans-serif;
+      }
+    }
+
+    .logosearchcontainer {
+      .app-title {
+        display: block;
+        margin-right: auto;
+        margin-left: auto;
+        font-size: 24px;
+        line-height: 48px;
+      }
+
+      .searchform {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        margin-top: 20px;
+      }
+
+      .searchforminput {
+        width: 100%;
+        margin-right: 5px;
+        margin-left: 10px;
+        padding-left: 13px;
+        -webkit-box-flex: 0;
+        -webkit-flex: 0 0 auto;
+        -ms-flex: 0 0 auto;
+        flex: 0 0 auto;
+        border-radius: 50px;
+      }
+
+      .searchformsubmit {
+        position: static;
+        display: block;
+        min-height: 50px;
+        min-width: 50px;
+        margin-right: auto;
+        margin-bottom: 1px;
+        margin-left: auto;
+        padding-bottom: 9px;
+        float: none;
+        clear: none;
+        -webkit-align-self: stretch;
+        -ms-flex-item-align: stretch;
+        align-self: stretch;
+        -webkit-box-flex: 0;
+        -webkit-flex: 0 0 auto;
+        -ms-flex: 0 0 auto;
+        flex: 0 0 auto;
+        border-radius: 50px;
+        font-size: 16px;
+        line-height: 33px;
+        font-style: normal;
+        text-align: justify;
+        text-decoration: none;
+      }
+
+      .logosearchformwrapper {
+        display: none;
+      }
+    }
+  }
+}
+
+@media (max-width: 479px) {
+  .newplaceform {
+    width: 95%;
+  }
+}
