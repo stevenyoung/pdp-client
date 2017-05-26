@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 
 import { connect } from 'react-redux';
 
-export const LocationLink = (props) =>
+const LocationLink = (props) =>
 (
   <div
     className="locationitem"

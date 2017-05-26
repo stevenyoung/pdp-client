@@ -8,9 +8,8 @@ import {
   updateQueryList } from '../actions/pdp';
 
 import ContentSearchInput from '../components/ContentSearchInput';
-import PlaceInfo from '../components/PlaceInfo';
 
-export class Home extends Component {
+class Home extends Component {
   handleSearchValueUpdate = (event) => {
     this.props.dispatch(setSearchTerm(event.target.value));
   }
@@ -40,7 +39,6 @@ export class Home extends Component {
           onUserSubmit={this.handleSearchSubmit}
           onKeyboardEnter={this.handleKeyboardSubmit}
         />
-        <PlaceInfo selected={this.props.displayPlace} />
         <div className="maincontent">{this.props.children}</div>
       </div>
     );
