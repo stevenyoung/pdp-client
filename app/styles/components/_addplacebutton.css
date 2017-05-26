@@ -1,0 +1,24 @@
+.addplace {
+  display: inline;
+  position: fixed;
+  top: 7.5em;
+  left: 90%;
+
+  .w-button {
+    display: inline;
+    padding: 9px;
+    background-color: #3898ec;
+    color: white;
+    border: 0;
+    line-height: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 20px;
+  }
+}
+
+@media (max-width: 479px) {
+  .addplace {
+    top: 20%;
+  }
+}
