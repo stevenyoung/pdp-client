@@ -37,7 +37,7 @@ describe('<Home /> [shallow]', () => {
   });
   it('should have three child nodes', () => {
     const { enzymeWrapper } = setup();
-    expect(enzymeWrapper.props().children).to.have.length(3);
+    expect(enzymeWrapper.props().children).to.have.length(2);
   });
   it('should display search input and selected place information', () => {
     const { enzymeWrapper } = setup();
