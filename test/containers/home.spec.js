@@ -7,7 +7,6 @@ import { shallow } from 'enzyme';
 import { Home } from '../../app/containers/Home.jsx';
 
 import ContentSearchInput from '../../app/components/ContentSearchInput.jsx';
-import PlaceInfo from '../../app/components/PlaceInfo';
 
 function setup() {
   const props = {
@@ -42,6 +41,5 @@ describe('<Home /> [shallow]', () => {
   it('should display search input and selected place information', () => {
     const { enzymeWrapper } = setup();
     expect(enzymeWrapper.find(ContentSearchInput)).to.have.length(1);
-    expect(enzymeWrapper.find(PlaceInfo)).to.have.length(1);
   });
 });
