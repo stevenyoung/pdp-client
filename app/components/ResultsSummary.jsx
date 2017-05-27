@@ -5,7 +5,6 @@ import EmptyLocationList from './EmptyLocationList';
 import ResultsHeader from './ResultsHeader';
 import ResultsList from './ResultsList';
 import GeolocationButton from './GeolocationButton';
-import AddPlaceButton from './AddPlaceButton';
 
 const ResultsSummary = ({
   results,
@@ -40,7 +39,6 @@ const ResultsSummary = ({
       {headerContent}
       <div className="w-dyn-list">
         <GeolocationButton />
-        <AddPlaceButton />
         {listNodeContent}
       </div>
     </div>
