@@ -31,3 +31,5 @@ LocationLink.propTypes = {
 };
 
 export default connect()(LocationLink);
+export { LocationLink };
+
