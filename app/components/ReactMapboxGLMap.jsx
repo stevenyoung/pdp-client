@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactMapboxGl, { GeoJSONLayer } from 'react-mapbox-gl';
-// import ReactMapboxGl, { GeoJSONLayer, Layer, Feature } from 'react-mapbox-gl';
+import ReactMapboxGl, { GeoJSONLayer, Source } from 'react-mapbox-gl';
 
 class ReactMapboxGLMap extends React.Component {
-
   mapOptions = {
-    style: 'mapbox://styles/mapbox/satellite-streets-v10',
+    style: 'mapbox://styles/mapbox/streets-v10',
+    // style: 'mapbox://styles/stevenyoung/cj33q0fhu00352snzjostxzzw',
+    // style: 'mapbox://styles/mapbox/satellite-streets-v10',
     center: [this.props.mapCenter.place.lng, this.props.mapCenter.place.lat],
     attributionControl: false,
     zoom: 11,
@@ -24,7 +24,7 @@ class ReactMapboxGLMap extends React.Component {
   };
 
   symbolLayout = {
-    'icon-image': 'cinema-15',
+    'icon-image': 'circle-stroked-15',
     'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold'],
     'text-offset': [0, 0.6],
     'text-anchor': 'top',
@@ -33,8 +33,8 @@ class ReactMapboxGLMap extends React.Component {
   }
 
   circleLayout = {
-    'circle-radius': 8,
-    'circle-color': '#dd0',
+    'circle-radius': 6,
+    'circle-color': '#3898ec',
     'circle-opacity': 0.3
   }
 
@@ -70,7 +70,9 @@ class ReactMapboxGLMap extends React.Component {
         onClick={this.props.onClick}
         movingMethod="easeTo"
       >
+        <Source id={this.sourceId} />
         <GeoJSONLayer
+          key="geojsonlayer"
           data={this.geoJsonFeatureCollection(this.props.places)}
           symbolLayout={this.symbolLayout}
           circlePaint={this.circleLayout}
@@ -85,8 +87,7 @@ ReactMapboxGLMap.propTypes = {
   mapCenter: PropTypes.object,
   places: PropTypes.array,
   onClick: PropTypes.func,
-  handleMapClick: PropTypes.func,
-  handleMarkerClick: PropTypes.func
+  searchTerm: PropTypes.string
 };
 
 export default ReactMapboxGLMap;
