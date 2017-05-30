@@ -15,8 +15,14 @@ describe('<PlaceInfo />', () => {
     const wrapper = shallow(<PlaceInfo {...props} />);
     expect(wrapper.is('.placeinfo')).to.equal(false);
   });
+  it('[shallow] should not render if place details are missing', () => {
+    props.selected.place = {};
+    const wrapper = shallow(<PlaceInfo {...props} />);
+    expect(wrapper.is('.placeinfo')).to.equal(false);
+  });
   it('[shallow] render .placeinfo component only if a place is selected', () => {
     props.selected.place = {};
+    props.selected.place.name = 'some title';
     const wrapper = shallow(<PlaceInfo {...props} />);
     expect(wrapper.is('.placeinfo')).to.equal(true);
   });
