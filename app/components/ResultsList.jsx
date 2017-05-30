@@ -1,7 +1,7 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 
-import LocationLink from './LocationLink';
+import { LocationLink } from './LocationLink';
 import EmptyLocationList from './EmptyLocationList';
 
 const ResultsList = ({ results, handleLocationSelect }) => {
