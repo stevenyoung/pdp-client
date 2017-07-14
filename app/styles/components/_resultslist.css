@@ -12,7 +12,8 @@
   }
 
   .searchterm {
-    min-height: 2.0em;
+    min-height: 2em;
+
     span {
       padding: 1em;
     }
@@ -83,9 +84,16 @@
   }
 
   .locationlist {
-    height: 20em;
+    height: 35em;
     overflow-y: scroll;
-    display: inline;
+  }
+}
+
+@media (max-width: 479px) {
+  .resultssummary {
+    .locationlist {
+      height: 20em;
+    }
   }
 }
 

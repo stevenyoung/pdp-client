@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+// import icons from 'glyphicons';
 
 const MobileSearchForm = (props) =>
   (
@@ -17,7 +18,7 @@ const MobileSearchForm = (props) =>
       <a
         className="searchformsubmit w-button w-hidden-main w-hidden-medium w-hidden-small"
         onClick={props.submitSearch}
-      >Go</a>
+      >go</a>
     </div>
   );
 
@@ -39,7 +40,7 @@ const SearchForm = (props) =>
         <a
           className="searchformsubmit w-button"
           onClick={props.submitSearch}
-        >Go</a>
+        >go</a>
       </div>
     </div>
   );

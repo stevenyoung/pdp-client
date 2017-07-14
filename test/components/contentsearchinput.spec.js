@@ -13,6 +13,6 @@ describe('<ContentSearchInput />', () => {
   });
   it('[shallow] should define a prop for children', () => {
     const wrapper = shallow(<ContentSearchInput />);
-    expect(wrapper.props().children).to.be.defined;
+    expect(wrapper.props().children).to.be.not.an('undefined');
   });
 });

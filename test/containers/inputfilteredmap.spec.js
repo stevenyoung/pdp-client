@@ -34,7 +34,7 @@ describe('<InputFilteredMap /> [shallow]', () => {
   //   const { enzymeWrapper } = setup();
   //   expect(enzymeWrapper.is('.home')).to.equal(true);
   // });
-  // it('should have three child nodes', () => {
+  it('[shallow] new place marker is hidden until user selects it'); // () => {
   //   const { enzymeWrapper } = setup();
   //   expect(enzymeWrapper.props().children).to.have.length(3);
   // });

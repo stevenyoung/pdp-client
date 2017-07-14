@@ -27,3 +27,7 @@ map container
   + leaflet map
     + markers
   + location list
+
+to do:
+update results info view to display current search input value, previously matched search terms, as separate components:
+

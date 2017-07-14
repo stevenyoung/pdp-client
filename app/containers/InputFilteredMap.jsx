@@ -20,7 +20,10 @@ class InputFilteredMap extends Component {
 
   handleMapClick = (event, mbEvent) => {
     console.log('handle map click', event, mbEvent);
-    this.props.dispatch(addContentAtPosition(mbEvent.lngLat));
+    const point = mbEvent.lngLat;
+    this.props.dispatch(updateDisplayedPlace({}));
+    this.props.dispatch(updateMapCenter({ lat: point.lat, lng: point.lng }));
+    this.props.dispatch(addContentAtPosition(point));
   }
 
   handleMarkerClick = (event) => {

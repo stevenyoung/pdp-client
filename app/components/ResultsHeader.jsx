@@ -10,10 +10,6 @@ const ResultsHeader = ({ searchValue, currentCount, previousQueries }) => {
         <span>{searchHeaderLabel} {searchValue}</span>
       </div>
     );
-  } else {
-    searchValueView = (
-      <div className="resultssummary w-dyn-list">&nbsp;</div>
-    );
   }
 
   let previousQueryView;

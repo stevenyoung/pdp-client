@@ -2,9 +2,13 @@ import React from 'react';
 import { Link } from 'react-router';
 
 import { connect } from 'react-redux';
+// import icons from 'glyphicons';
+
 import { updateMapCenter, fetchPlacesByLocation } from '../actions/pdp';
 
+
 const GeolocationButton = (props) => {
+  // console.info('I' + icons.heart + ' Glyphicons!');
   const getNearbyPlaces = () => {
     navigator.geolocation.getCurrentPosition((position) => {
       console.log('getCurrentLocation', position);
@@ -23,7 +27,7 @@ const GeolocationButton = (props) => {
         className="w-button"
         onClick={getNearbyPlaces}
       >
-       get nearby locations
+        here
       </Link>
     </span>
   );

@@ -1,13 +1,20 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import mapboxgl from 'mapbox-gl';
+
+// import MapboxLayer from './MapboxLayer';
+import { connect } from 'react-redux';
+import { updateMapCenter, fetchPlacesByLocation } from '../actions/pdp';
 
 const mapElem = 'mbglmap';
 
 class MapboxGLMap extends React.Component {
   static propTypes = {
-    accessToken: React.PropTypes.string,
-    mapCenter: React.PropTypes.object,
-    places: React.PropTypes.array
+    accessToken: PropTypes.string,
+    mapCenter: PropTypes.object,
+    places: PropTypes.array,
+    searchTerm: PropTypes.string,
+    dispatch: PropTypes.func
   }
 
   componentDidMount() {
@@ -25,7 +32,7 @@ class MapboxGLMap extends React.Component {
     if (nextProps.places !== this.props.places) {
       // this.displayMarkerCollection(this.props.places);
       // this.addLabeledLayer('label', this.props.places);
-      this.displayFeatureLayer(this.props.places);
+      this.displayFeatureLayer(this.props.places, this.props.searchTerm);
     }
   }
 
@@ -42,8 +49,18 @@ class MapboxGLMap extends React.Component {
 
   initializeMap() {
     this.map = new mapboxgl.Map(this.mapOptions);
-    // this.map.addSource('scenes', { type: 'geojson', data: this.props.places });
     this.addControls();
+    this.map.on('click', (event) => {
+      console.log('map event', event);
+      this.props.dispatch(updateMapCenter(event.lngLat));
+      this.props.dispatch(fetchPlacesByLocation(event.lngLat));
+      this.map.queryRenderedFeatures(
+        event.point,
+        { radius: 100, layer: 'nearby' },
+        (err, features) => {
+            console.log(features[0]);
+        });
+    });
   }
 
   jitter() {
@@ -62,12 +79,10 @@ class MapboxGLMap extends React.Component {
   }
 
   addControls() {
-    return true;
-    // this.map.addControl(new mapboxgl.GeolocateControl());
-    // this.map.addControl(new mapboxgl.NavigationControl(), 'top-left');
-    // this.map.addControl((new mapboxgl.AttributionControl({
-    //     compact: true
-    // })), 'bottom-left');
+    this.map.addControl(new mapboxgl.GeolocateControl());
+    this.map.addControl(new mapboxgl.NavigationControl(), 'top-left');
+    // this.map.addControl((new mapboxgl.AttributionControl({ compact: true })),
+    //   'bottom-left');
   }
 
   addIcon(coords, place) {
@@ -120,7 +135,7 @@ class MapboxGLMap extends React.Component {
         type: 'circle',
         paint: {
           'circle-radius': 15,
-          'circle-color': '#000',
+          'circle-color': '#006',
           'circle-opacity': 0.3
         }
       };
@@ -135,13 +150,18 @@ class MapboxGLMap extends React.Component {
     // this.map.addLayer(placeList);
   }
 
-  displayFeatureLayer(places) {
+  displayFeatureLayer(places, searchTerm) {
     const layer = {
       id: null,
       type: 'symbol',
       source: null,
       layout: null
     };
+    if (searchTerm !== '') {
+      layer.id = searchTerm;
+    } else {
+      layer.id = 'nearby';
+    }
     const layerSource = {
       type: 'geojson',
       data: null
@@ -162,7 +182,7 @@ class MapboxGLMap extends React.Component {
     layerSource.data = featureLayer;
     layer.source = layerSource;
     layer.layout = layerLayout;
-    layer.id = 'placesdotpress';
+    console.log('layer', layer);
     this.map.addLayer(layer);
   }
 
@@ -212,11 +232,27 @@ class MapboxGLMap extends React.Component {
 
   render() {
     return (
-      <div className="mbglmapcontainer" >
+      <div
+        className="mbglmapcontainer"
+      >
         <div id={mapElem} />
       </div>
     );
   }
 }
 
-export default MapboxGLMap;
+
+const mapStateToProps = (state) => {
+  const { query, places, mapCenter, displayPlace } = state;
+  const isFetching = false;
+  const placeCollection = places.items;
+  return {
+    query,
+    placeCollection,
+    mapCenter,
+    isFetching,
+    displayPlace
+  };
+};
+
+export default connect(mapStateToProps)(MapboxGLMap);

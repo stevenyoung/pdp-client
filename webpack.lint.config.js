@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
-const StyleLintPlugin = require('stylelint-webpack-plugin');
+// const StyleLintPlugin = require('stylelint-webpack-plugin');
 
 const PostcssImport = require('postcss-easy-import');
 const precss = require('precss');
@@ -20,7 +20,7 @@ const PORT = process.env.PORT || 8080;
 const PROXY = `http://${HOST}:${PORT}`;
 
 const LINT = path.join(__dirname, '.eslintrc.js');
-const STYLELINT = ['./app/styles/**/*.css', './app/styles.css'];
+// const STYLELINT = ['./app/styles/**/*.css', './app/styles.css'];
 
 module.exports = {
   entry: {
@@ -77,11 +77,11 @@ module.exports = {
       template: TEMPLATE,
       inject: 'body'
     }),
-    new StyleLintPlugin({
-      files: STYLELINT,
-      syntax: 'scss',
-      formatter: 'string'
-    }),
+    // new StyleLintPlugin({
+    //   files: STYLELINT,
+    //   syntax: 'scss',
+    //   formatter: 'json'
+    // }),
     new BrowserSyncPlugin(
       {
         host: HOST,

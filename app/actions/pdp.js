@@ -11,6 +11,7 @@ export const ADD_NEW_CONTENT = 'ADD_NEW_CONTENT';
 export const USER_LOGGED_IN = 'USER_LOGGED_IN';
 export const FORM_UPDATE_VALUE = 'FORM_UPDATE_VALUE';
 export const FORM_RESET = 'FORM_RESET';
+export const UPDATE_USER_MARKER = 'UPDATE_USER_MARKER';
 
 /* action creators */
 
@@ -123,7 +124,7 @@ export function userLogin(status) {
 }
 
 export function update(name, value) {
-  return dispatch => dispatch({
+  return (dispatch) => dispatch({
     type: FORM_UPDATE_VALUE,
     name,
     value
@@ -131,7 +132,14 @@ export function update(name, value) {
 }
 
 export function reset() {
-  return dispatch => dispatch({
+  return (dispatch) => dispatch({
     type: FORM_RESET
   });
+}
+
+export function userMarker(position) {
+  return {
+    type: UPDATE_USER_MARKER,
+    position
+  };
 }

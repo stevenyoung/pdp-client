@@ -14,15 +14,11 @@ const BUILD = path.join(__dirname, '/build');
 const PUBLIC = path.join(__dirname, '/app/public');
 const STYLE = path.join(__dirname, '/app/style.css');
 const TEMPLATE = path.join(__dirname, '/app/templates/index.html');
-const PACKAGE = Object.keys(
-  require('./package.json').dependencies
-);
 
 module.exports = {
   entry: {
     app: APP,
-    style: STYLE,
-    vendor: PACKAGE
+    style: STYLE
   },
   resolve: {
     extensions: ['', '.js', '.jsx'],

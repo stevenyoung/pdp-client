@@ -25,7 +25,11 @@ const initialState = {
   displayPlace: {},
   previousQueries: { terms: [] },
   isUserAddingContent: false,
-  isUserLoggedIn: false
+  isUserLoggedIn: false,
+  userMarkerLocation: {
+    lat: 0.0,
+    lng: 0.0
+  }
 };
 
 const store = configureStore(initialState);

@@ -241,6 +241,7 @@
       display: -ms-flexbox;
       display: flex;
       padding: 0.5em;
+      width: 98%;
 
       .mobilesearch {
         width: 95%;
@@ -252,6 +253,7 @@
         border-color: rgba(0, 0, 0, 0.17);
         border-radius: 20px;
         font-family: Arimo, sans-serif;
+        flex: 0 1 auto;
       }
     }
 
@@ -285,13 +287,13 @@
       }
 
       .searchformsubmit {
-        position: static;
+        /*position: static;*/
         display: block;
         min-height: 50px;
         min-width: 50px;
         margin-right: auto;
         margin-bottom: 1px;
-        margin-left: auto;
+        /*margin-left: auto;*/
         padding-bottom: 9px;
         float: none;
         clear: none;

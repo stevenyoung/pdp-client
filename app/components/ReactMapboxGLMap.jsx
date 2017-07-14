@@ -3,10 +3,16 @@ import PropTypes from 'prop-types';
 import ReactMapboxGl, { GeoJSONLayer, Source } from 'react-mapbox-gl';
 
 class ReactMapboxGLMap extends React.Component {
+  mapStyles = [
+    'mapbox://styles/stevenyoung/cj4zv8wkf0jz62qo60yv3y59k', // standard (retro)
+    'mapbox://styles/stevenyoung/cj3o3a3ro002v2smj6bzelzw0', // moonlight
+    'mapbox://styles/mapbox/streets-v10',
+    'mapbox://styles/stevenyoung/cj33q0fhu00352snzjostxzzw', // satellite
+    'mapbox://styles/mapbox/satellite-streets-v10'
+  ];
+
   mapOptions = {
-    style: 'mapbox://styles/mapbox/streets-v10',
-    // style: 'mapbox://styles/stevenyoung/cj33q0fhu00352snzjostxzzw',
-    // style: 'mapbox://styles/mapbox/satellite-streets-v10',
+    style: this.mapStyles[0],
     center: [this.props.mapCenter.place.lng, this.props.mapCenter.place.lat],
     attributionControl: false,
     zoom: 11,
@@ -25,11 +31,12 @@ class ReactMapboxGLMap extends React.Component {
 
   symbolLayout = {
     'icon-image': 'circle-stroked-15',
+    'text-field': '{title}',
     'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold'],
     'text-offset': [0, 0.6],
     'text-anchor': 'top',
     'text-size': 12,
-    'text-field': '{title}'
+    'text-transform': 'lowercase',
   }
 
   circleLayout = {
@@ -49,8 +56,7 @@ class ReactMapboxGLMap extends React.Component {
           coordinates: [place.lng, place.lat]
         },
         properties: {
-          title: place.name.toLowerCase(),
-          icon: 'library'
+          title: place.name
         }
       };
       features.push(feature);

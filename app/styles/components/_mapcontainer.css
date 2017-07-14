@@ -30,7 +30,7 @@
   }
 }
 
-.mapcontainer {
+ .mapcontainer {
   canvas.mapboxgl-canvas {
     position: relative !important;
   }

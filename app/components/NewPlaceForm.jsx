@@ -47,7 +47,13 @@ const NewPlaceForm = (props) => {
             className="w-input formtextinput"
           />
         </div>
-        <button type="submit" className="formsubmit">Submit</button>
+        <span>
+          <Link
+            className="w-button"
+          >
+          save
+          </Link>
+        </span>
       </form>
     </div>
   );
