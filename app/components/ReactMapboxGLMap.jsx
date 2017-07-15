@@ -41,8 +41,10 @@ class ReactMapboxGLMap extends React.Component {
 
   circleLayout = {
     'circle-radius': 6,
+    'circle-blur': 0.8,
     'circle-color': '#3898ec',
-    'circle-opacity': 0.3
+    'circle-opacity': 0.8,
+    'circle-stroke-width': 0.1
   }
 
   geoJsonFeatureCollection(places) {
