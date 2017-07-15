@@ -15,9 +15,9 @@ export const UPDATE_USER_MARKER = 'UPDATE_USER_MARKER';
 
 /* action creators */
 
-// const apiServer = ''; // production, no CORS
+const apiServer = ''; // production, no CORS
 // const apiServer = '//localhost:8888'; // flask: gunicorn -b 127.0.0.8 main:APP
-const apiServer = '//localhost:8000'; // django, dev with cors, NOT production
+// const apiServer = '//localhost:8000'; // django, dev with cors, NOT production
 
 export function setSearchTerm(text) {
   return { type: SET_SEARCH_TERM, text };
