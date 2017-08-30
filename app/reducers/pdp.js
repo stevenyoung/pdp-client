@@ -14,9 +14,7 @@ import {
 export function query(state = '', action) {
   switch (action.type) {
   case SET_SEARCH_TERM:
-    return Object.assign({}, state, {
-      searchTerm: action.text
-    });
+    return Object.assign({}, state, { searchTerm: action.text });
   default:
     return state;
   }
@@ -102,7 +100,7 @@ export function isUserLoggedIn(state = {}, action) {
     return Object.assign({}, state, {
       status: action.status
     });
-    default:
-      return state;
+  default:
+    return state;
   }
 }

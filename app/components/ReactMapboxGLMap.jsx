@@ -16,7 +16,7 @@ class ReactMapboxGLMap extends React.Component {
     center: [this.props.mapCenter.place.lng, this.props.mapCenter.place.lat],
     attributionControl: false,
     zoom: 11,
-    pitch: 30
+    pitch: 0
   };
 
   containerStyle = {
